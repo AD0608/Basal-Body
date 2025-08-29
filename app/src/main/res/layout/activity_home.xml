@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.activity.HomeActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCallAPI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_purple_20"
+        android:backgroundTint="@color/colorPrimary"
+        android:paddingHorizontal="@dimen/dp_40"
+        android:text="Call API"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.mxb.app.utils.MxbTextView
+        android:id="@+id/tvApiResponse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_15"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCallAPI"
+        app:textStyle="medium"
+        tools:text="Api Response" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnTermCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_purple_20"
+        android:layout_marginTop="@dimen/dp_15"
+        android:backgroundTint="@color/colorPrimary"
+        android:paddingHorizontal="@dimen/dp_40"
+        android:text="Terms &amp; Conditions"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/tvApiResponse"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_purple_20"
+        android:layout_marginTop="@dimen/dp_15"
+        android:backgroundTint="@color/colorPrimary"
+        android:paddingHorizontal="@dimen/dp_40"
+        android:text="@string/label_logout"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintEnd_toEndOf="@+id/btnTermCondition"
+        app:layout_constraintStart_toStartOf="@+id/btnTermCondition"
+        app:layout_constraintTop_toBottomOf="@+id/btnTermCondition"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonDeleteAccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_purple_20"
+        android:layout_marginTop="@dimen/dp_15"
+        android:backgroundTint="@color/colorPrimary"
+        android:paddingHorizontal="@dimen/dp_40"
+        android:text="@string/label_delete_account"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintEnd_toEndOf="@+id/btnTermCondition"
+        app:layout_constraintStart_toStartOf="@+id/btnTermCondition"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogout"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

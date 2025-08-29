@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottomsheet_bg"
+    android:padding="@dimen/dp_18">
+
+    <com.mxb.app.utils.MxbTextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_8"
+        android:gravity="center"
+        tools:text="Choose Option to Upload"
+        android:textColor="@color/colorSecondary"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:textStyle="bold" />
+
+    <View
+        android:id="@+id/viewDividerLine"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_2"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/colorDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+
+    <com.mxb.app.utils.MxbTextView
+        android:id="@+id/tvDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_12"
+        android:gravity="center"
+        android:textColor="@color/textColorGray"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewDividerLine"
+        app:textStyle="medium"
+        tools:text="Choose a profile picture from Camera or Gallery" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_32"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
+        <com.mxb.app.utils.MxbTextView
+            android:id="@+id/textViewCamera"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_purple_20"
+            android:backgroundTint="@color/colorSecondary4"
+            android:drawableTop="@drawable/ic_camera"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp_15"
+            android:paddingBottom="@dimen/dp_20"
+            android:text="@string/label_text_camera"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/sp_14"
+            app:textStyle="medium" />
+
+        <com.mxb.app.utils.MxbTextView
+            android:id="@+id/textViewGallery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_weight="1"
+            android:background="@drawable/bg_purple_20"
+            android:backgroundTint="@color/colorSecondary4"
+            android:drawableTop="@drawable/ic_gallery"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp_15"
+            android:paddingBottom="@dimen/dp_20"
+            android:text="@string/label_text_gallery"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/sp_14"
+            app:textStyle="medium" />
+
+        <com.mxb.app.utils.MxbTextView
+            android:id="@+id/textViewFiles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_weight="1"
+            android:background="@drawable/bg_purple_20"
+            android:backgroundTint="@color/colorSecondary4"
+            android:drawableTop="@drawable/ic_files"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp_15"
+            android:paddingBottom="@dimen/dp_20"
+            android:text="@string/label_text_files"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/sp_14"
+            android:visibility="gone"
+            app:textStyle="medium" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

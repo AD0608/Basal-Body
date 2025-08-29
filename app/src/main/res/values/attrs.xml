@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MxbTextInputLayout">
+        <attr name="inputType">
+            <flag name="none" value="0x00000000" />
+            <flag name="text" value="0x00000001" />
+            <flag name="textCapCharacters" value="0x00001001" />
+            <flag name="textCapWords" value="0x00002001" />
+            <flag name="textCapSentences" value="0x00004001" />
+            <flag name="textAutoCorrect" value="0x00008001" />
+            <flag name="textAutoComplete" value="0x00010001" />
+            <flag name="textMultiLine" value="0x00020001" />
+            <flag name="textImeMultiLine" value="0x00040001" />
+            <flag name="textNoSuggestions" value="0x00080001" />
+            <flag name="textEnableTextConversionSuggestions" value="0x00100001" />
+            <flag name="textUri" value="0x00000011" />
+            <flag name="textEmailAddress" value="0x00000021" />
+            <flag name="textEmailSubject" value="0x00000031" />
+            <flag name="textShortMessage" value="0x00000041" />
+            <flag name="textLongMessage" value="0x00000051" />
+            <flag name="textPersonName" value="0x00000061" />
+            <flag name="textPostalAddress" value="0x00000071" />
+            <flag name="textPassword" value="0x00000081" />
+            <flag name="textVisiblePassword" value="0x00000091" />
+            <flag name="textWebEditText" value="0x000000a1" />
+            <flag name="textFilter" value="0x000000b1" />
+            <flag name="textPhonetic" value="0x000000c1" />
+            <flag name="textWebEmailAddress" value="0x000000d1" />
+            <flag name="textWebPassword" value="0x000000e1" />
+            <flag name="number" value="0x00000002" />
+            <flag name="numberSigned" value="0x00001002" />
+            <flag name="numberDecimal" value="0x00002002" />
+            <flag name="numberPassword" value="0x00000012" />
+            <flag name="phone" value="0x00000003" />
+            <flag name="datetime" value="0x00000004" />
+            <flag name="date" value="0x00000014" />
+            <flag name="time" value="0x00000024" />
+        </attr>
+
+        <attr name="maxLines" format="integer" min="0" />
+        <attr name="minLines" format="integer" min="1" />
+        <attr name="lines" format="integer" min="1" />
+
+        <attr name="singleLine" format="boolean" />
+
+        <attr name="lineSpacingExtra" format="float" />
+
+        <attr name="maxLength" format="integer" min="0" />
+
+        <attr name="imeOptions">
+            <flag name="actionSearch" value="0x00000003" />
+            <flag name="actionSend" value="0x00000004" />
+            <flag name="actionNext" value="0x00000005" />
+            <flag name="actionDone" value="0x00000006" />
+        </attr>
+
+        <attr name="textSize" format="float" /> <!--Text size should be in float or int, ex: 14, 18-->
+        <!--pass "[a-zA-Z0-9.,@ ]+" in value of digits for add that digits and add character that you want to use in field - like: .,@# etc-->
+        <!--"[a-zA-Z ]+" this will allow only small, capital & space-->
+        <attr name="digits" format="string" />
+
+        <attr name="padding" format="dimension" />
+        <attr name="paddingHorizontal" format="dimension" />
+        <attr name="paddingVertical" format="dimension" />
+        <attr name="paddingTop" format="dimension" />
+        <attr name="paddingBottom" format="dimension" />
+        <attr name="paddingLeft" format="dimension" />
+        <attr name="paddingRight" format="dimension" />
+
+        <attr name="drawableEnd" format="reference|color" />
+        <attr name="drawableStart" format="reference|color" />
+        <attr name="tilTextColor" format="color" />
+        <attr name="prefixText" format="string" />
+        <attr name="fontFamilyStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="medium" value="2" />
+            <flag name="semiBold" value="3" />
+            <flag name="extraBold" value="4" />
+            <flag name="light" value="5" />
+            <flag name="extraLight" value="6" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="UTToolBar">
+        <attr name="title" format="string"/>
+        <attr name="isTitleVisible" format="boolean"/>
+        <attr name="toolbar_menu" format="reference"/>
+        <attr name="isMenuVisible" format="boolean"/>
+        <attr name="isOfflineButtonVisible" format="boolean"/>
+        <attr name="isBackArrowVisible" format="boolean"/>
+        <attr name="endText" format="string"/>
+        <attr name="isEndTextVisible" format="boolean"/>
+    </declare-styleable>
+    <!--Below portion is for custom calender view-->
+    <!-- The xml resource that is inflated and used as the day cell view, must be provided. -->
+    <attr name="cv_dayViewResource" format="reference" />
+
+    <!-- The scrolling behavior of the calendar. If `true`, the calendar will
+     snap to the nearest month or week (in the WeekCalendarView) after a scroll
+     or swipe action. If `false`, the calendar scrolls normally. -->
+    <attr name="cv_scrollPaged" format="boolean" />
+
+    <!-- Determines how the size of each day on the calendar is calculated. -->
+    <attr name="cv_daySize" format="enum">
+        <!-- Each day will have both width and height matching
+     the width of the calendar divided by 7. -->
+        <enum name="square" value="0" />
+        <!-- Each day will have its width matching the width of the calendar
+     divided by 7, and its height matching the height of the calendar divided
+     by the number of weeks in the index - could be 4, 5 or 6 for the month
+     calendar and 1 for the week calendar. Use this if you want each month or
+     week to fill the parent's width and height. -->
+        <enum name="rectangle" value="1" />
+        <!-- Each day will have its width matching the width of the calendar
+     divided by 7. The day is allowed to determine its height by
+     setting a specific value or using [ViewGroup.LayoutParams.WRAP_CONTENT]. -->
+        <enum name="seventhWidth" value="2" />
+        <!-- This day is allowed to determine its width and height by
+     setting specific values or using [ViewGroup.LayoutParams.WRAP_CONTENT]. -->
+        <enum name="freeForm" value="3" />
+    </attr>
+
+    <declare-styleable name="CalendarView">
+        <attr name="cv_dayViewResource" />
+
+        <!-- The xml resource that is inflated and used as a header for every month. -->
+        <attr name="cv_monthHeaderResource" format="reference" />
+
+        <!-- The xml resource that is inflated and used as a footer for every month. -->
+        <attr name="cv_monthFooterResource" format="reference" />
+
+        <!-- Determines how outDates are generated for each month on the calendar. -->
+        <attr name="cv_outDateStyle" format="enum">
+            <!-- The calendar will generate outDates until it reaches the end
+            of the month row. This means that if a month has 5 rows, it will
+            display 5 rows and if a month has 6 rows, it will display 6 rows. -->
+            <enum name="endOfRow" value="0" />
+            <!-- The calendar will generate outDates until it reaches the end
+            of a 6 x 7 grid on each month. This means that all months will have 6 rows. -->
+            <enum name="endOfGrid" value="1" />
+        </attr>
+
+        <!-- A ViewGroup which is instantiated and used as the container for each month.
+         This class must have a constructor which takes only a Context. You should
+         exclude the name and constructor of this class from code obfuscation if enabled. -->
+        <attr name="cv_monthViewClass" format="string" />
+
+        <!--This determines the scroll direction of the the calendar. -->
+        <attr name="cv_orientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+
+        <attr name="cv_scrollPaged" />
+        <attr name="cv_daySize" />
+    </declare-styleable>
+
+    <declare-styleable name="WeekCalendarView">
+        <attr name="cv_dayViewResource" />
+
+        <!-- The xml resource that is inflated and used as a header for every week. -->
+        <attr name="cv_weekHeaderResource" format="reference" />
+
+        <!-- The xml resource that is inflated and used as a footer for every week. -->
+        <attr name="cv_weekFooterResource" format="reference" />
+
+        <!-- A ViewGroup which is instantiated and used as the container for each week.
+         This class must have a constructor which takes only a Context. You should
+         exclude the name and constructor of this class from code obfuscation if enabled. -->
+        <attr name="cv_weekViewClass" format="string" />
+
+        <attr name="cv_scrollPaged" />
+        <attr name="cv_daySize" />
+    </declare-styleable>
+    <declare-styleable name="FullscreenAttrs">
+        <attr name="fullscreenBackgroundColor" format="color" />
+        <attr name="fullscreenTextColor" format="color" />
+    </declare-styleable>
+    <!--Above portion is for custom calender view-->
+
+    <!--Blur-->
+    <declare-styleable name="BlurView">
+        <attr name="blurOverlayColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="MxbRangeSeekBar">
+        <attr name="minValue" format="float" />
+        <attr name="prefixThumbText" format="string" />
+        <attr name="suffixThumbText" format="string"/>
+        <attr name="maxValue" format="float" />
+        <attr name="stepValue" format="float" />
+        <attr name="valueType">
+            <enum name="intType" value="6" />
+            <enum name="floatType" value="7" />
+        </attr>
+
+        <!-- ready -->
+        <attr name="enableGradient" format="boolean" />
+        <attr name="textColor" format="color" />
+
+        <attr name="showThumbsText">
+            <enum name="none" value="0" />
+            <enum name="below" value="1" />
+            <enum name="above" value="2" />
+            <enum name="center" value="3" />
+        </attr>
+
+        <attr name="thumbsTextMargin" format="dimension" />
+        <attr name="additionalTextMargin" format="dimension" />
+        <attr name="thumbTextSize" format="dimension" />
+        <attr name="showAdditionalText">
+            <enum name="none" value="0" />
+            <enum name="below" value="1" />
+            <enum name="above" value="2" />
+            <enum name="center" value="3" />
+        </attr>
+
+        <attr name="roundedCorners" format="boolean" />
+        <attr name="barHeight" format="dimension" />
+
+        <attr name="active" format="boolean" />
+
+        <attr name="textFont" format="reference" />
+
+        <attr name="centerText" format="string" />
+        <attr name="rightText" format="string" />
+        <attr name="leftText" format="string" />
+
+        <attr name="thumbsNormal" format="reference" />
+        <attr name="thumbsPressed" format="reference" />
+        <attr name="thumbsDisabled" format="reference" />
+
+        <attr name="sideColor" format="color" />
+        <attr name="transitionColor" format="color" />
+        <attr name="centerColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="SmoothBottomBar">
+        <attr name="menu" format="reference" />
+        <attr name="backgroundColor" format="color" />
+        <attr name="indicatorColor" format="color" />
+        <attr name="indicatorRadius" format="dimension" />
+        <attr name="sideMargins" format="dimension" />
+        <attr name="itemPadding" format="dimension" />
+        <attr name="itemPaddingHorizontal" format="dimension" />
+        <attr name="bottomNavigationTextColor" format="color" />
+        <attr name="badgeColor" format="color" />
+        <attr name="itemFontFamily" format="reference" />
+        <attr name="bottomBar_textSize" format="dimension" />
+        <attr name="iconSize" format="dimension" />
+        <attr name="iconMargin" format="dimension" />
+        <attr name="iconTint" format="color" />
+        <attr name="iconTintActive" format="color" />
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="activeItem" format="integer" />
+        <attr name="duration" format="integer" />
+        <attr name="corners">
+            <flag name="none" value="0" />
+            <flag name="top_left" value="1" />
+            <flag name="top_right" value="2" />
+            <flag name="bottom_right" value="4" />
+            <flag name="bottom_left" value="8" />
+            <flag name="all" value="15" />
+        </attr>
+    </declare-styleable>
+
+    <attr name="SmoothBottomBarStyle" format="reference" />
+
+    <declare-styleable name="OtpView">
+        <attr name="activeColor" format="reference|color" />
+        <attr name="passiveColor" format="reference|color" />
+        <attr name="textColorOtp" format="reference|color" />
+        <attr name="autoFocusEnabled" format="boolean" />
+        <attr name="digitsOtp" format="integer" />
+        <attr name="textSizeOtp" format="integer" />
+        <attr name="fontFamilyOtp">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="medium" value="2" />
+            <flag name="semiBold" value="3" />
+            <flag name="extraBold" value="4" />
+            <flag name="light" value="5" />
+            <flag name="extraLight" value="6" />
+        </attr>
+        <attr name="otpSymbol" format="string" />
+        <attr name="password" format="boolean" />
+        <attr name="keyboardType" format="enum">
+            <enum name="text" value="1" />
+            <enum name="number" value="0" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="MxbColoredTextView">
+        <attr name="fullText" format="string" />
+        <attr name="ctv_textStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="medium" value="2" />
+            <flag name="semiBold" value="3" />
+            <flag name="extraBold" value="4" />
+            <flag name="light" value="5" />
+            <flag name="extraLight" value="6" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="MxbTextView">
+        <attr name="textStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="medium" value="2" />
+            <flag name="semiBold" value="3" />
+            <flag name="extraBold" value="4" />
+            <flag name="light" value="5" />
+            <flag name="extraLight" value="6" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ViewDropdown">
+        <attr name="hintText" format="string" />
+        <attr name="isLabelVisible" format="boolean" />
+        <attr name="labelText" format="string" />
+    </declare-styleable>
+
+    <attr name="dampingRatio" format="float" />
+    <attr name="dotsClickable" format="boolean" />
+    <attr name="dotsColor" format="color" />
+    <attr name="dotsCornerRadius" format="dimension" />
+    <attr name="dotsSize" format="dimension" />
+    <attr name="dotsSpacing" format="dimension" />
+    <attr name="dotsStrokeColor" format="color" />
+    <attr name="dotsStrokeWidth" format="dimension" />
+    <attr name="dotsWidthFactor" format="float" />
+    <attr name="progressMode" format="boolean" />
+    <attr name="selectedDotColor" format="color" />
+    <attr name="stiffness" format="float" />
+    <declare-styleable name="DotsIndicator">
+        <attr name="dotsColor" />
+        <attr name="selectedDotColor" />
+        <attr name="dotsSize" />
+        <attr name="dotsWidthFactor" />
+        <attr name="dotsSpacing" />
+        <attr name="dotsCornerRadius" />
+        <attr name="progressMode" />
+        <attr name="dotsClickable" />
+        <attr name="dotsElevation" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="MxbNoDataFound">
+        <attr name="mndf_title" format="string"/>
+        <attr name="mndf_description" format="string"/>
+        <attr name="mndf_image" format="reference"/>
+    </declare-styleable>
+
+</resources>

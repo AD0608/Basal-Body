@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">AbcToGo-MXB</string>
+    <string name="message_no_internet_found">No internet found.Check your connection or try again</string>
+    <string name="network_connection_error">Internet connection lost, please retry again</string>
+    <string name="button_retry">Retry</string>
+    <string name="message_you_have_been_logged_out_please_log_back_in">You have been logged out, Please log back in</string>
+    <string name="default_notification_channel">notification channel</string>
+    <string name="is_running">is running</string>
+    <string name="tap_to_open">Tap to open</string>
+    <string name="message_camera_permission">Please provide camera permission</string>
+    <string name="message_storage_permission">Please provide storage permission</string>
+    <string name="message_storage_permission_please_provide_minimum_one_image_access">Please provide minimum one image access</string>
+    <string name="message_notification_permission">Please grant Notification permission to access Notification</string>
+    <string name="message_need_permission">Need Permissions</string>
+
+    <!--Button Text-->
+    <string name="button_go_to_settings">Go to settings</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_continue">Continue</string>
+    <string name="button_update_now">Update Now</string>
+    <string name="button_update">Update</string>
+    <string name="button_add">Add</string>
+    <string name="button_delete">Delete</string>
+
+    <!--Text Label or title  Text-->
+    <string name="label_text_camera">Camera</string>
+    <string name="label_text_gallery">Gallery</string>
+    <string name="label_text_files">Files</string>
+    <string name="label_term_conditions">Terms &amp; Conditions</string>
+    <string name="label_privacy_policy">Privacy Policy</string>
+    <string name="label_about_us">About Us</string>
+    <string name="label_logout">Logout</string>
+    <string name="label_delete_account">Delete Account</string>
+
+    <!--Validation Text-->
+    <string name="validation_gif_images_are_not_supported">GIF images are not supported</string>
+    <string name="validation_some_images_are_not_supported_due_to_format_or_size">Some images are not supported due to format or size issue</string>
+    <string name="validation_maximum_size_for_pdf_should_be_10_mb">Maximum size for PDF should be 10 MB</string>
+    <string name="validation_maximum_size_for_image_should_be_10_mb">Maximum size for image should be 10 MB</string>
+    <string name="dummy_lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy</string>
+    <string name="validation_empty_email">Please enter email address</string>
+    <string name="validation_invalid_email">Please enter valid email address</string>
+    <string name="validation_empty_phone">Please enter phone number</string>
+    <string name="validation_phone_min">Phone number must contain minimum 7 digits</string>
+    <string name="validation_phone_max">Phone number should not contain more than 15 digits</string>
+    <string name="validation_invalid_phone">Please enter valid phone number</string>
+    <string name="validation_empty_password">Please enter password</string>
+    <string name="validation_password_min">Password must contain minimum 8 digits</string>
+    <string name="validation_password_max">Password should not contain more than 15 digits</string>
+    <string name="validation_password_space">Password can’t start or end with a blank space.</string>
+    <string name="validation_empty_new_password">Please enter new password</string>
+    <string name="validation_new_password_min">New password must contain minimum 8 digits</string>
+    <string name="validation_new_password_max">New password should not contain more than 15 digits</string>
+    <string name="validation_new_password_space">New password can’t start or end with a blank space.</string>
+    <string name="validation_empty_confirm_password">Please enter confirm password</string>
+    <string name="validation_confirm_password_min">Confirm password must contain minimum 8 digits</string>
+    <string name="validation_confirm_password_max">Confirm password should not contain more than 15 digits</string>
+    <string name="validation_confirm_password_space">Confirm password can’t start or end with a blank space.</string>
+    <string name="validation_empty_profile">Profile image is required</string>
+    <string name="validation_empty_name">Please enter name</string>
+    <string name="validation_empty_gender">Please select your gender</string>
+    <string name="validation_empty_dob">Please select date of birth</string>
+    <string name="validation_empty_street">Please enter Street Name and Number</string>
+    <string name="validation_empty_city">Please enter City</string>
+    <string name="validation_empty_state">Please enter State / Province</string>
+    <string name="validation_empty_unit_number">Please enter Unit number / Building number</string>
+    <string name="validation_empty_postal_code">Please enter Postal code / ZIP</string>
+    <string name="validation_empty_country">Please enter Country</string>
+    <string name="validation_password_and_confirm_password_must_be_same">Password and Confirm Password must be same</string>
+    <string name="validation_password_and_confirm_password_does_not_match">Password and Confirm Password does not match</string>
+    <string name="validation_new_password_and_confirm_password_does_not_match">New Password and Confirm Password does not match</string>
+    <string name="validation_new_password_and_current_password_must_be_different">Current Password and New Password must be different</string>
+    <string name="validation_phone_verify">Please verify phone number</string>
+    <string name="validation_empty_otp">Please enter otp</string>
+    <string name="validation_invalid_otp">Please enter valid otp</string>
+    <string name="validation_empty_profile_image">Please select profile image</string>
+    <string name="validation_empty_confirm_new_password">Please enter confirm new password</string>
+    <string name="validation_confirm_new_password_min">Confirm new password must contain minimum 8 digits</string>
+    <string name="validation_confirm_new_password_space">Confirm new password can’t start or end with a blank space.</string>
+    <string name="title_no_internet">No Internet</string>
+    <string name="title_update_mxb">Update MXB</string>
+    <string name="title_application_is_under_maintenance">Application is Under Maintenance</string>
+
+ <!--Messages Text-->
+    <string name="message_this_app_have_limited_access_photos_which_you_selected">This app have limited access photos which you selected</string>
+    <string name="message_select_up_to_3_items">Select up to 3 items</string>
+    <string name="message_location_permission">Location permission is required to track your current location. Please enable it in settings.</string>
+    <string name="message_location_permission_use">We are getting your location when there is an ongoing shipment and app is running.</string>
+    <string name="message_force_update">A new version of MXB is available! This update is required to continue using the app. Please update now to access the latest features and improvements.</string>
+    <string name="message_maintenance">Service Unavailable: MXB is undergoing maintenance. We appreciate your patience and will be back shortly!</string>
+    <string name="message_normal_update">New update available! Get the best experience with the latest version of MXB. Update now or continue using the current version</string>
+    <string name="message_are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
+    <string name="message_delete_account_confirm">Are you sure you want to delete your account? This action is irreversible and will permanently remove all your data, including your profile and settings.</string>
+</resources>

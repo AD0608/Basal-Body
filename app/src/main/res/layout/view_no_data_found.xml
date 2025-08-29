@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgNoData"
+        android:layout_width="@dimen/dp_195"
+        android:layout_height="@dimen/dp_198"
+        app:layout_constraintBottom_toTopOf="@id/tvNoDataTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:src="@tools:sample/avatars" />
+
+    <com.mxb.app.utils.MxbTextView
+        android:id="@+id/tvNoDataTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_38"
+        android:layout_marginTop="@dimen/dp_16"
+        android:gravity="center"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintBottom_toTopOf="@id/tvNoDataDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgNoData"
+        app:textStyle="semiBold"
+        tools:text="No Data Found!" />
+
+    <com.mxb.app.utils.MxbTextView
+        android:id="@+id/tvNoDataDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_38"
+        android:layout_marginTop="@dimen/dp_12"
+        android:gravity="center"
+        android:textColor="@color/colorSecondary"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNoDataTitle"
+        app:textStyle="normal"
+        tools:text="@string/dummy_lorem_ipsum" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
