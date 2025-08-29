@@ -41,7 +41,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
     override fun listeners() {
         binding.apply {
             btnCallAPI onSafeClick {
-                viewModel.callInitApi()
+                //viewModel.callInitApi()
                 tvApiResponse.changeText("Calling Api")
             }
             btnTermCondition.onSafeClick {
