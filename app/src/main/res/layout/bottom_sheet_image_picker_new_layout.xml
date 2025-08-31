@@ -8,7 +8,7 @@
     android:background="@drawable/bottomsheet_bg"
     android:padding="@dimen/dp_18">
 
-    <com.mxb.app.utils.MxbTextView
+    <com.basalbody.app.utils.MxbTextView
         android:id="@+id/textViewTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
-    <com.mxb.app.utils.MxbTextView
+    <com.basalbody.app.utils.MxbTextView
         android:id="@+id/tvDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/tvDescription">
 
-        <com.mxb.app.utils.MxbTextView
+        <com.basalbody.app.utils.MxbTextView
             android:id="@+id/textViewCamera"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:textSize="@dimen/sp_14"
             app:textStyle="medium" />
 
-        <com.mxb.app.utils.MxbTextView
+        <com.basalbody.app.utils.MxbTextView
             android:id="@+id/textViewGallery"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
             android:textSize="@dimen/sp_14"
             app:textStyle="medium" />
 
-        <com.mxb.app.utils.MxbTextView
+        <com.basalbody.app.utils.MxbTextView
             android:id="@+id/textViewFiles"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

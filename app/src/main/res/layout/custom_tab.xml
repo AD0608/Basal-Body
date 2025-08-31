@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.mxb.app.utils.MxbTextView
+    <com.basalbody.app.utils.MxbTextView
         android:id="@+id/tvTabTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

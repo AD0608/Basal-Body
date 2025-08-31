@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.mxb.app.utils.MxbTextView
+    <com.basalbody.app.utils.MxbTextView
         android:id="@+id/tvApiResponse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

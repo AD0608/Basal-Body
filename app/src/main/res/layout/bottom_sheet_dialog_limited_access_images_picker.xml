@@ -10,7 +10,7 @@
         android:backgroundTint="@color/color_peach_extra_light"
         android:orientation="vertical">
 
-        <com.mxb.app.utils.MxbTextView
+        <com.basalbody.app.utils.MxbTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
@@ -41,7 +41,7 @@
             android:gravity="end"
             android:padding="@dimen/dp_15">
 
-            <com.mxb.app.utils.MxbTextView
+            <com.basalbody.app.utils.MxbTextView
                 android:id="@+id/textViewAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:srcCompat="@drawable/ic_dummy_user" />
 
-    <com.mxb.app.utils.MxbTextView
+    <com.basalbody.app.utils.MxbTextView
         android:id="@+id/textViewLabelTitle"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@id/imageViewIcon"
         app:textStyle="bold" />
 
-    <com.mxb.app.utils.MxbTextView
+    <com.basalbody.app.utils.MxbTextView
         android:id="@+id/textViewLabelDesc"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.mxb.app.utils.MxbTextView
+        <com.basalbody.app.utils.MxbTextView
             android:id="@+id/textViewCancellationFee"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
             app:layout_constraintTop_toBottomOf="@id/divider"
             app:textStyle="bold" />
 
-        <com.mxb.app.utils.MxbTextView
+        <com.basalbody.app.utils.MxbTextView
             android:id="@+id/textViewCancellationPrice"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"

@@ -47,7 +47,7 @@
                     android:layout_margin="@dimen/dp_5"
                     android:orientation="vertical">
 
-                    <com.mxb.app.utils.MxbTextView
+                    <com.basalbody.app.utils.MxbTextView
                         android:id="@+id/txtTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                         app:textStyle="medium"
                         tools:text="Title" />
 
-                    <com.mxb.app.utils.MxbTextView
+                    <com.basalbody.app.utils.MxbTextView
                         android:id="@+id/txtMessage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

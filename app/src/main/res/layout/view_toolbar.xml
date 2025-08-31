@@ -58,7 +58,7 @@
                 app:layout_goneMarginBottom="@dimen/dp_10"
                 app:layout_goneMarginTop="@dimen/dp_10" />
 
-            <com.mxb.app.utils.MxbTextView
+            <com.basalbody.app.utils.MxbTextView
                 android:id="@+id/tvTitle"
                 android:gravity="center"
                 android:layout_width="@dimen/dp_0"
@@ -86,7 +86,7 @@
                 app:layout_constraintStart_toEndOf="@id/tvTitle"
                 app:layout_constraintTop_toTopOf="@+id/ivBack"/>
 
-            <com.mxb.app.utils.MxbTextView
+            <com.basalbody.app.utils.MxbTextView
                 android:id="@+id/textViewEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

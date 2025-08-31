@@ -12,11 +12,11 @@ plugins {
 }
 
 android {
-    namespace = "com.mxb.app"
+    namespace = "com.basalbody.app"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.mxb.app"
+        applicationId = "com.basalbody.app"
         minSdk = 29
         targetSdk = 35
         versionCode = 1
