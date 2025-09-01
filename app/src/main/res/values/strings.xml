@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AbcToGo-MXB</string>
+    <string name="app_name">Basal Body</string>
     <string name="message_no_internet_found">No internet found.Check your connection or try again</string>
     <string name="network_connection_error">Internet connection lost, please retry again</string>
     <string name="button_retry">Retry</string>
