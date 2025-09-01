@@ -10,7 +10,7 @@
         android:backgroundTint="@color/color_peach_extra_light"
         android:orientation="vertical">
 
-        <com.basalbody.app.utils.MxbTextView
+        <com.basalbody.app.utils.BasalTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
@@ -41,14 +41,14 @@
             android:gravity="end"
             android:padding="@dimen/dp_15">
 
-            <com.basalbody.app.utils.MxbTextView
+            <com.basalbody.app.utils.BasalTextView
                 android:id="@+id/textViewAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:textStyle="medium"
                 android:background="@drawable/bg_white_radius_10"
                 android:backgroundTint="@color/colorSecondary"
-                android:fontFamily="@font/just_sans_medium"
+                android:fontFamily="@font/geist_medium"
                 android:paddingHorizontal="@dimen/dp_40"
                 android:paddingVertical="@dimen/dp_10"
                 android:text="@string/button_add"

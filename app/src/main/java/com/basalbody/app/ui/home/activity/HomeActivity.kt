@@ -47,7 +47,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
             btnTermCondition.onSafeClick {
                 navigateWebView()
             }
-            buttonLogout.onSafeClick {
+            /*buttonLogout.onSafeClick {
                 val logoutDialog =
                     CommonDialog.newInstance(type = EnumUtils.DialogType.LOG_OUT).apply {
                         callback = {
@@ -70,12 +70,12 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                     supportFragmentManager,
                     deleteAccountDialog::class.simpleName
                 )
-            }
+            }*/
         }
     }
 
     override fun addObservers() {
-        lifecycleScope.launch {
+        /*lifecycleScope.launch {
             viewModel.callInitApiStateFlow.collect {
                 FlowInActivity<BaseResponse<InitData>>(
                     data = it,
@@ -89,13 +89,13 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                             dialogTitle = getString(R.string.title_no_internet),
                             dialogMessage = getString(R.string.message_no_internet_found),
                             dialogButtonText = getString(R.string.button_retry),
-                            dialogImage = R.drawable.ic_no_internet,
+                            dialogImage = R.drawable.ic_back,
                             onButtonClick = {
                                 viewModel.callInitApi()
                             })
                     })
             }
-        }
+        }*/
     }
 
     private fun handleInitData(initData: BaseResponse<InitData>?) {
@@ -106,7 +106,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                         dialogTitle = getString(R.string.title_update_mxb),
                         dialogMessage = initData.message.ifEmpty { getString(R.string.message_force_update) },
                         dialogButtonText = getString(R.string.button_update_now),
-                        dialogImage = R.drawable.ic_force_update,
+                        dialogImage = R.drawable.ic_back,
                         onButtonClick = {
                             openPlayStore(packageName)
                             finish()
@@ -116,7 +116,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                         dialogTitle = getString(R.string.title_application_is_under_maintenance),
                         dialogMessage = initData.message.ifEmpty { getString(R.string.message_maintenance) },
                         dialogButtonText = getString(R.string.button_retry),
-                        dialogImage = R.drawable.ic_maintenance,
+                        dialogImage = R.drawable.ic_back,
                         onButtonClick = {
                             viewModel.callInitApi()
                         }
@@ -129,7 +129,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                         dialogMessage = initData.message.ifEmpty { getString(R.string.message_normal_update) },
                         dialogButtonText = getString(R.string.button_update),
                         needToShowBackButton = true,
-                        dialogImage = R.drawable.ic_normal_update,
+                        dialogImage = R.drawable.ic_back,
                         onButtonClick = {
                             openPlayStore(packageName)
                             finish()
@@ -157,7 +157,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
         dialogMessage: String = "",
         dialogButtonText: String = "",
         onButtonClick: () -> Unit,
-        dialogImage: Int = R.drawable.ic_no_internet,
+        dialogImage: Int = R.drawable.ic_back,
         onBackButtonClick: (() -> Unit)? = null
     ) {
         CommonBottomSheetDialog.newInstance(

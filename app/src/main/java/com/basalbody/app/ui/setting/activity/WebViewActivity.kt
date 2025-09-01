@@ -33,17 +33,18 @@ class WebViewActivity : BaseActivity<CommonViewModel, ActivityWebViewBinding>() 
                 bundle.getEnum<EnumUtils.WebView>(Constants.BUNDLE_KEY_WHICH_WEB_VIEW).withNotNull {
                         when (it) {
                             EnumUtils.WebView.TERMS_AND_CONDITIONS -> {
-                                binding.toolbar.setTitle(getString(R.string.label_term_conditions))
+                                //binding.toolbar.setTitle(getString(R.string.label_term_conditions))
                                 loadUrl(Constants.URL_TERM_CONDITION)
                             }
 
                             EnumUtils.WebView.PRIVACY_POLICY -> {
-                                binding.toolbar.setTitle(getString(R.string.label_privacy_policy))
+                                //binding.toolbar.setTitle(getString(R.string.label_privacy_policy))
                                 loadUrl(Constants.URL_PRIVACY_POLICY)
                             }
 
                             EnumUtils.WebView.ABOUT_US -> {
-                                binding.toolbar.setTitle(getString(R.string.label_about_us))
+                                //
+                                // binding.toolbar.setTitle(getString(R.string.label_about_us))
                                 loadUrl(Constants.URL_ABOUT_US)
                             }
 

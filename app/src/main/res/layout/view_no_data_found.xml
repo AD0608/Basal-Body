@@ -16,7 +16,7 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:src="@tools:sample/avatars" />
 
-    <com.basalbody.app.utils.MxbTextView
+    <com.basalbody.app.utils.BasalTextView
         android:id="@+id/tvNoDataTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         app:textStyle="semiBold"
         tools:text="No Data Found!" />
 
-    <com.basalbody.app.utils.MxbTextView
+    <com.basalbody.app.utils.BasalTextView
         android:id="@+id/tvNoDataDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

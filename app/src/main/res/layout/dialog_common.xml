@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
         app:srcCompat="@drawable/ic_dummy_user" />
 
-    <com.basalbody.app.utils.MxbTextView
+    <com.basalbody.app.utils.BasalTextView
         android:id="@+id/textViewLabelTitle"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@id/imageViewIcon"
         app:textStyle="bold" />
 
-    <com.basalbody.app.utils.MxbTextView
+    <com.basalbody.app.utils.BasalTextView
         android:id="@+id/textViewLabelDesc"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.basalbody.app.utils.MxbTextView
+        <com.basalbody.app.utils.BasalTextView
             android:id="@+id/textViewCancellationFee"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
             app:layout_constraintTop_toBottomOf="@id/divider"
             app:textStyle="bold" />
 
-        <com.basalbody.app.utils.MxbTextView
+        <com.basalbody.app.utils.BasalTextView
             android:id="@+id/textViewCancellationPrice"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
@@ -128,7 +128,6 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonPositive"
-        style="@style/BoldTextButtonStyle"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_30"
@@ -141,7 +140,6 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonNegative"
-        style="@style/BoldTextButtonStyle"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_15"

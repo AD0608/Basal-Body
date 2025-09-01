@@ -21,7 +21,7 @@ import com.basalbody.app.extensions.setEndIconInsetDrawable
 import com.basalbody.app.extensions.visible
 import com.basalbody.app.utils.CommonUtils.dpToPx
 
-class MxbTextInputLayout @JvmOverloads constructor(
+class BasalTextInputLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
 ) :
@@ -44,45 +44,45 @@ class MxbTextInputLayout @JvmOverloads constructor(
     private fun init(
         context: Context,
         attrs: AttributeSet?,
-        customTextInputLayout: MxbTextInputLayout
+        customTextInputLayout: BasalTextInputLayout
     ) {
         val a = context.obtainStyledAttributes(
             attrs,
-            R.styleable.MxbTextInputLayout
+            R.styleable.BasalTextInputLayout
         )
-        val inputType = a.getInteger(R.styleable.MxbTextInputLayout_inputType, 0x00000001)
-        val imeOptions = a.getInteger(R.styleable.MxbTextInputLayout_imeOptions, 0x00000005)
-        val maxLines = a.getInteger(R.styleable.MxbTextInputLayout_maxLines, 1)
-        val minLines = a.getInteger(R.styleable.MxbTextInputLayout_minLines, 1)
-        val lines = a.getInteger(R.styleable.MxbTextInputLayout_lines, 1)
-        val maxLength = a.getInteger(R.styleable.MxbTextInputLayout_maxLength, 50)
-        val singleLine = a.getBoolean(R.styleable.MxbTextInputLayout_singleLine, true)
-        val lineSpacing = a.getFloat(R.styleable.MxbTextInputLayout_lineSpacingExtra, 2f)
+        val inputType = a.getInteger(R.styleable.BasalTextInputLayout_inputType, 0x00000001)
+        val imeOptions = a.getInteger(R.styleable.BasalTextInputLayout_imeOptions, 0x00000005)
+        val maxLines = a.getInteger(R.styleable.BasalTextInputLayout_maxLines, 1)
+        val minLines = a.getInteger(R.styleable.BasalTextInputLayout_minLines, 1)
+        val lines = a.getInteger(R.styleable.BasalTextInputLayout_lines, 1)
+        val maxLength = a.getInteger(R.styleable.BasalTextInputLayout_maxLength, 50)
+        val singleLine = a.getBoolean(R.styleable.BasalTextInputLayout_singleLine, true)
+        val lineSpacing = a.getFloat(R.styleable.BasalTextInputLayout_lineSpacingExtra, 2f)
         //-------Text size should be in float or int, ex: 14, 18-------//
         val textSize = a.getFloat(
-            R.styleable.MxbTextInputLayout_textSize,
+            R.styleable.BasalTextInputLayout_textSize,
             14f
         ) //-------Default text size is 14-------//
-        val fontFamilyStyle = a.getInt(R.styleable.MxbTextInputLayout_fontFamilyStyle, 2)
-        val digits = a.getString(R.styleable.MxbTextInputLayout_digits)
-        val drawableEnd = a.getResourceId(R.styleable.MxbTextInputLayout_drawableEnd, 0)
+        val fontFamilyStyle = a.getInt(R.styleable.BasalTextInputLayout_fontFamilyStyle, 2)
+        val digits = a.getString(R.styleable.BasalTextInputLayout_digits)
+        val drawableEnd = a.getResourceId(R.styleable.BasalTextInputLayout_drawableEnd, 0)
         val typeface = getTypeface(context, fontFamilyStyle)
 
         //-------As of now we are not set padding, because google material textInputLayout & textInputEditText
         // is providing default padding and that is enough for us, if we have to set different padding then we can set it from here-------//
-        val padding = a.getDimensionPixelSize(R.styleable.MxbTextInputLayout_padding, 0)
+        val padding = a.getDimensionPixelSize(R.styleable.BasalTextInputLayout_padding, 0)
         val paddingHorizontal =
-            a.getDimensionPixelSize(R.styleable.MxbTextInputLayout_paddingHorizontal, 0)
+            a.getDimensionPixelSize(R.styleable.BasalTextInputLayout_paddingHorizontal, 0)
         val paddingVertical =
-            a.getDimensionPixelSize(R.styleable.MxbTextInputLayout_paddingVertical, 0)
-        val paddingTop = a.getDimensionPixelSize(R.styleable.MxbTextInputLayout_paddingTop, 0)
+            a.getDimensionPixelSize(R.styleable.BasalTextInputLayout_paddingVertical, 0)
+        val paddingTop = a.getDimensionPixelSize(R.styleable.BasalTextInputLayout_paddingTop, 0)
         val paddingBottom =
-            a.getDimensionPixelSize(R.styleable.MxbTextInputLayout_paddingBottom, 0)
-        val paddingLeft = a.getDimensionPixelSize(R.styleable.MxbTextInputLayout_paddingLeft, 0)
+            a.getDimensionPixelSize(R.styleable.BasalTextInputLayout_paddingBottom, 0)
+        val paddingLeft = a.getDimensionPixelSize(R.styleable.BasalTextInputLayout_paddingLeft, 0)
         val paddingRight =
-            a.getDimensionPixelSize(R.styleable.MxbTextInputLayout_paddingRight, 0)
+            a.getDimensionPixelSize(R.styleable.BasalTextInputLayout_paddingRight, 0)
         val textColor = a.getColor(
-            R.styleable.MxbTextInputLayout_tilTextColor,
+            R.styleable.BasalTextInputLayout_tilTextColor,
             ContextCompat.getColor(context, R.color.color_edittext_text)
         )
 
@@ -181,7 +181,7 @@ class MxbTextInputLayout @JvmOverloads constructor(
                     R.color.color_edittext_label
                 )
             ) // Orange color for label
-            this.typeface = ResourcesCompat.getFont(context, R.font.just_sans_medium)
+            this.typeface = ResourcesCompat.getFont(context, R.font.geist_medium)
             this.invisible() // Initially hidden
             this.layoutParams = LayoutParams(
                 LayoutParams.MATCH_PARENT,
@@ -202,7 +202,7 @@ class MxbTextInputLayout @JvmOverloads constructor(
 
     private fun createEditBox(
         customTextInputEditText: TextInputEditText,
-        customTextInputLayout: MxbTextInputLayout
+        customTextInputLayout: BasalTextInputLayout
     ) {
         val layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
 //        editText.setPadding(50, 0, 0, 0)
@@ -289,42 +289,42 @@ class MxbTextInputLayout @JvmOverloads constructor(
     private fun getTypeface(context: Context, textStyle: Int): Typeface? {
         when (textStyle) {
             0 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_regular)
+                return ResourcesCompat.getFont(context, R.font.geist_regular)
             }
 
             1 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_bold)
+                return ResourcesCompat.getFont(context, R.font.geist_bold)
             }
 
             2 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_medium)
+                return ResourcesCompat.getFont(context, R.font.geist_medium)
             }
 
             3 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_semi_bold)
+                return ResourcesCompat.getFont(context, R.font.geist_semi_bold)
             }
 
             4 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_extra_bold)
+                return ResourcesCompat.getFont(context, R.font.geist_extra_bold)
             }
 
             5 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_extra_light)
+                return ResourcesCompat.getFont(context, R.font.geist_extra_light)
             }
 
             6 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_extra_light)
+                return ResourcesCompat.getFont(context, R.font.geist_extra_light)
             }
         }
-        return ResourcesCompat.getFont(context, R.font.just_sans_medium)
+        return ResourcesCompat.getFont(context, R.font.geist_medium)
     }
 }
 
-fun MxbTextInputLayout.setText(text: String?) {
+fun BasalTextInputLayout.setText(text: String?) {
     this.editText?.setText(text?.takeIf { it.isNotEmpty() || it != "null" }.orEmpty())
 }
 
-fun MxbTextInputLayout.getText(): String? {
+fun BasalTextInputLayout.getText(): String? {
     return this.editText?.text?.toString()
 }
 

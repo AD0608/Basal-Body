@@ -216,34 +216,34 @@ class OtpView : FrameLayout {
     private fun getTypeface(context: Context, textStyle: Int): Typeface? {
         when (textStyle) {
             0 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_regular)
+                return ResourcesCompat.getFont(context, R.font.geist_regular)
             }
 
             1 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_bold)
+                return ResourcesCompat.getFont(context, R.font.geist_bold)
             }
 
             2 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_medium)
+                return ResourcesCompat.getFont(context, R.font.geist_medium)
             }
 
             3 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_semi_bold)
+                return ResourcesCompat.getFont(context, R.font.geist_semi_bold)
             }
 
             4 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_extra_bold)
+                return ResourcesCompat.getFont(context, R.font.geist_extra_bold)
             }
 
             5 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_extra_light)
+                return ResourcesCompat.getFont(context, R.font.geist_extra_light)
             }
 
             6 -> {
-                return ResourcesCompat.getFont(context, R.font.just_sans_extra_light)
+                return ResourcesCompat.getFont(context, R.font.geist_extra_light)
             }
         }
-        return ResourcesCompat.getFont(context, R.font.just_sans_regular)
+        return ResourcesCompat.getFont(context, R.font.geist_regular)
     }
 
 }

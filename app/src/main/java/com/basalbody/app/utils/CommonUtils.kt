@@ -11,6 +11,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Canvas
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.location.LocationManager
 import android.net.ConnectivityManager
@@ -26,6 +27,7 @@ import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.createBitmap
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -175,67 +177,36 @@ object CommonUtils {
         return imageSize <= maxSizeBytes //If image size is greater than 20 MB then show snackBar and return false
     }
 
-    fun Context.isLocationPermissionGranted(): Boolean {
-        return ActivityCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-    }
+    fun getTypeface(context: Context, textStyle: Int): Typeface? {
+        when (textStyle) {
+            0 -> {
+                return ResourcesCompat.getFont(context, R.font.geist_regular)
+            }
 
-    fun getDirectionsUrl(
-        origin: LatLng,
-        dest: LatLng,
-        markerPoints: java.util.ArrayList<LatLng> = arrayListOf(),
-    ): String {
-        val strOrigin = "origin=" + origin.latitude + "," + origin.longitude
-        val strDestination = "destination=" + dest.latitude + "," + dest.longitude
-        val sensor = "mode=driving&alternatives=false"
-        val waypoints = if (markerPoints.isNotEmpty()) {
-            "&waypoints=optimize:false|" + markerPoints.joinToString(separator = "|") { "${it.latitude},${it.longitude}" }
-        } else {
-            ""
+            1 -> {
+                return ResourcesCompat.getFont(context, R.font.geist_bold)
+            }
+
+            2 -> {
+                return ResourcesCompat.getFont(context, R.font.geist_medium)
+            }
+
+            3 -> {
+                return ResourcesCompat.getFont(context, R.font.geist_semi_bold)
+            }
+
+            4 -> {
+                return ResourcesCompat.getFont(context, R.font.geist_extra_bold)
+            }
+
+            5 -> {
+                return ResourcesCompat.getFont(context, R.font.geist_extra_light)
+            }
+
+            6 -> {
+                return ResourcesCompat.getFont(context, R.font.geist_extra_light)
+            }
         }
-        val parameters: String = "$strOrigin$waypoints&$strDestination&$sensor"
-        val output = "json"
-        val key =
-            "&key=${BuildConfig.MAPS_API_KEY}"
-        //return url
-        return "https://maps.googleapis.com/maps/api/directions/$output?$parameters$key"
-    }
-
-
-    fun distance(start: LatLng, end: LatLng): Float {
-
-        val locationA = android.location.Location("point A")
-        locationA.latitude = start.latitude
-        locationA.longitude = start.longitude
-
-        val locationB = android.location.Location("point B")
-        locationB.latitude = end.latitude
-        locationB.longitude = end.longitude
-        return locationA.distanceTo(locationB)
-
-    }
-
-    fun getMarkerIconFromDrawable(drawable: Drawable): BitmapDescriptor {
-        val canvas = Canvas()
-        val bitmap = createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight)
-        canvas.setBitmap(bitmap)
-        drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
-        drawable.draw(canvas)
-        return BitmapDescriptorFactory.fromBitmap(bitmap)
-    }
-
-    fun getBearingMap(begin: LatLng, end: LatLng): Float {
-        val beginLatRadians = Math.toRadians(begin.latitude)
-        val endLatRadians = Math.toRadians(end.latitude)
-        val deltaLongitude = Math.toRadians(end.longitude - begin.longitude)
-
-        val y = sin(deltaLongitude) * cos(endLatRadians)
-        val x = (cos(beginLatRadians) * sin(endLatRadians)) -
-                (sin(beginLatRadians) * cos(endLatRadians) * cos(deltaLongitude))
-        var bearing = atan2(y, x)
-        bearing = Math.toDegrees(bearing)
-        return ((bearing + 360) % 360).toFloat()
+        return ResourcesCompat.getFont(context, R.font.geist_regular)
     }
 }

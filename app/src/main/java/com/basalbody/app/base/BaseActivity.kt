@@ -6,6 +6,14 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.LinearGradient
+import android.graphics.Paint
+import android.graphics.PixelFormat
+import android.graphics.Shader
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -36,6 +44,8 @@ import com.basalbody.app.utils.ValidationStatus
 import com.basalbody.app.utils.language.LocaleHelper
 import com.basalbody.app.utils.showSnackBar
 import javax.inject.Inject
+import androidx.core.graphics.toColorInt
+import com.basalbody.app.utils.dotsindicator.setBackgroundCompat
 
 abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActivity() {
     enum class ScreenType {
@@ -115,12 +125,43 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
         activity = this
         binding = getViewBinding()
         setContentView(binding.root)
+        binding.root.background = gradientDrawable
         setupEdgeToEdge()
         initSetup()
         listeners()
         addObservers()
         addValidationObserver()
     }
+
+    private val gradientDrawable = object : Drawable() {
+        private val paint = Paint()
+
+        override fun draw(canvas: Canvas) {
+            val shader = LinearGradient(
+                0f, 0f, 0f, bounds.height().toFloat(),
+                intArrayOf(
+                    "#FFD4E0".toColorInt(),
+                    "#FFFFFF".toColorInt(),
+                    "#FFFFFF".toColorInt(),
+                    "#FFE6D9".toColorInt()
+                ),
+                floatArrayOf(0f, 0.33f, 0.66f, 1f), // positions of colors
+                Shader.TileMode.CLAMP
+            )
+            paint.shader = shader
+            canvas.drawRect(bounds, paint)
+        }
+
+        override fun setAlpha(alpha: Int) {
+            paint.alpha = alpha
+        }
+
+        override fun setColorFilter(colorFilter: ColorFilter?) {
+            paint.colorFilter = colorFilter
+        }
+        override fun getOpacity(): Int = PixelFormat.OPAQUE
+    }
+
 
     private fun setupEdgeToEdge() {
         enableEdgeToEdge()

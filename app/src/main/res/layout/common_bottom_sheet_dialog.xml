@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.basalbody.app.utils.MxbTextView
+    <com.basalbody.app.utils.BasalTextView
         android:id="@+id/textViewTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
-    <com.basalbody.app.utils.MxbTextView
+    <com.basalbody.app.utils.BasalTextView
         android:id="@+id/tvDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_40"
         android:layout_marginEnd="@dimen/dp_8"
-        android:src="@drawable/ic_back_secondary_border_60_48"
+        android:src="@drawable/ic_back"
         android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@id/btnProceed"
         app:layout_constraintStart_toStartOf="parent"

@@ -9,14 +9,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.withStyledAttributes
 import com.basalbody.app.R
 
-class MxbNoDataFound @JvmOverloads constructor(
+class BasalNoDataFound @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
     private val imageView: AppCompatImageView
-    private val titleView: MxbTextView
-    private val descriptionView: MxbTextView
+    private val titleView: BasalTextView
+    private val descriptionView: BasalTextView
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_no_data_found, this, true)
@@ -26,13 +26,13 @@ class MxbNoDataFound @JvmOverloads constructor(
         descriptionView = findViewById(R.id.tvNoDataDescription)
 
         attrs?.let {
-            context.withStyledAttributes(it, R.styleable.MxbNoDataFound, 0, 0) {
-                titleView.text = getString(R.styleable.MxbNoDataFound_mndf_title) ?: ""
+            context.withStyledAttributes(it, R.styleable.BasalNoDataFound, 0, 0) {
+                titleView.text = getString(R.styleable.BasalNoDataFound_bndf_title) ?: ""
                 descriptionView.text =
-                    getString(R.styleable.MxbNoDataFound_mndf_description) ?: ""
+                    getString(R.styleable.BasalNoDataFound_bndf_description) ?: ""
                 imageView.setImageResource(
                     getResourceId(
-                        R.styleable.MxbNoDataFound_mndf_image,
+                        R.styleable.BasalNoDataFound_bndf_image,
                         R.drawable.ic_launcher_background
                     )
                 )
