@@ -81,7 +81,7 @@
     <string name="title_update_mxb">Update MXB</string>
     <string name="title_application_is_under_maintenance">Application is Under Maintenance</string>
 
- <!--Messages Text-->
+    <!--Messages Text-->
     <string name="message_this_app_have_limited_access_photos_which_you_selected">This app have limited access photos which you selected</string>
     <string name="message_select_up_to_3_items">Select up to 3 items</string>
     <string name="message_location_permission">Location permission is required to track your current location. Please enable it in settings.</string>

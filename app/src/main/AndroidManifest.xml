@@ -35,7 +35,13 @@
         android:theme="@style/Theme.AbcToGoMXB"
         tools:targetApi="31">
         <activity
+            android:name=".ui.intro.activity.IntroActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.activity.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.splash.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +49,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.setting.activity.WebViewActivity"/>
+        <activity android:name=".ui.setting.activity.WebViewActivity" />
+
         <service
             android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
             android:enabled="false">
@@ -55,7 +62,6 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorSecondary" />
@@ -73,7 +79,6 @@
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="${crashlyticsEnabled}" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
