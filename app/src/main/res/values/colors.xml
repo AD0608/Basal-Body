@@ -5,6 +5,10 @@
     <color name="red">#EB4755</color>
     <color name="colorPrimary">#FFBBCE</color>
     <color name="colorButtonText">#303030</color>
+    <color name="color_bg_edittext">#716569</color>
+    <color name="colorDivider">#9A9A9A</color>
+    <color name="color_edittext_hint">#9A9A9A</color>
+    <color name="color_edittext_text">#000000</color>
 
 
 
@@ -14,11 +18,7 @@
     <color name="textColor">#010D15</color>
     <color name="textColorGray">#6601021B</color>
     <color name="transparent">#00000000</color>
-    <color name="colorDivider">#D0DAE2</color>
     <color name="color_bg_custom_edittext">#99D0DAE2</color>
-    <color name="color_bg_custom_border_edittext">#010D15</color>
-    <color name="color_edittext_hint">#6601021B</color>
-    <color name="color_edittext_text">#01021B</color>
     <color name="color_edittext_label">#EF5C0A</color>
     <color name="color_peach_extra_light">#fff8f6</color>
     <color name="colorSecondary3_op40">#66D0DAE2</color>
