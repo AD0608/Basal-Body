@@ -232,7 +232,7 @@ class BasalTextInputLayout @JvmOverloads constructor(
 
         customTextInputEditText.addTextChangedListener {
             if (it.toString().isNotEmpty() && !customTextInputEditText.hasFocus()) {
-                this.boxStrokeColor = context.getColor(R.color.color_bg_custom_border_edittext)
+                this.boxStrokeColor = context.getColor(R.color.color_bg_custom_edittext)
                 this.boxStrokeWidth = 0
                 this.boxBackgroundColor = context.getColor(R.color.color_bg_custom_edittext)
                 this.hint = ""
@@ -242,7 +242,7 @@ class BasalTextInputLayout @JvmOverloads constructor(
         customTextInputEditText.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 customTextInputLayout.boxStrokeColor =
-                    context.getColor(R.color.color_bg_custom_border_edittext)
+                    context.getColor(R.color.color_bg_custom_edittext)
                 customTextInputLayout.boxStrokeWidth = 1
                 customTextInputLayout.boxBackgroundColor =
                     context.getColor(R.color.color_bg_custom_edittext)
@@ -268,14 +268,14 @@ class BasalTextInputLayout @JvmOverloads constructor(
                 }
                 if (customTextInputEditText.text!!.isEmpty()) {
                     customTextInputLayout.boxStrokeColor =
-                        context.getColor(R.color.color_bg_custom_border_edittext)
+                        context.getColor(R.color.color_bg_custom_edittext)
                     customTextInputLayout.boxStrokeWidth = 0
                     customTextInputLayout.boxBackgroundColor =
                         context.getColor(R.color.color_bg_custom_edittext)
                     customTextInputLayout.hint = currentHint
                 } else {
                     customTextInputLayout.boxStrokeColor =
-                        context.getColor(R.color.color_bg_custom_border_edittext)
+                        context.getColor(R.color.color_bg_custom_edittext)
                     customTextInputLayout.boxStrokeWidth = 0
                     customTextInputLayout.boxBackgroundColor =
                         context.getColor(R.color.color_bg_custom_edittext)
@@ -326,23 +326,4 @@ fun BasalTextInputLayout.setText(text: String?) {
 
 fun BasalTextInputLayout.getText(): String? {
     return this.editText?.text?.toString()
-}
-
-class CustomPasswordTransformation : PasswordTransformationMethod() {
-    override fun getTransformation(source: CharSequence, view: View?): CharSequence {
-        return StarPasswordCharSequence(source)
-    }
-
-    private class StarPasswordCharSequence(private val source: CharSequence) : CharSequence {
-        override val length: Int
-            get() = source.length
-
-        override fun get(index: Int): Char {
-            return '*' // Replace dot with star
-        }
-
-        override fun subSequence(startIndex: Int, endIndex: Int): CharSequence {
-            return StarPasswordCharSequence(source.subSequence(startIndex, endIndex))
-        }
-    }
 }
