@@ -1,18 +1,19 @@
 package com.basalbody.app.ui.splash.activity
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
+import com.basalbody.app.common.CommonBottomSheetDialog
 import com.basalbody.app.databinding.ActivitySplashBinding
-import com.basalbody.app.ui.home.activity.HomeActivity
+import com.basalbody.app.extensions.notNull
+import com.basalbody.app.extensions.openPlayStore
+import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.response.InitData
 import com.basalbody.app.ui.intro.activity.IntroActivity
 import com.basalbody.app.ui.splash.viewmodel.SplashViewModel
+import com.basalbody.app.utils.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,11 +35,118 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
 
     override fun listeners() {
         Log.e(TAG, "listeners()")
+        //viewModel.callInitApi()
 
         lifecycleScope.launch {
             delay(3000L)
             startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
             finish()
         }
+    }
+
+    override fun addObservers() {
+        /*lifecycleScope.launch {
+            viewModel.callInitApiStateFlow.collect {
+                FlowInActivity<BaseResponse<InitData>>(
+                    data = it,
+                    context = this@HomeActivity,
+                    shouldShowErrorMessage = false,
+                    shouldShowLoader = true,
+                    onSuccess = ::handleInitData,
+                    onError = ::handleInitData,
+                    noInternet = {
+                        handleInitError(
+                            dialogTitle = getString(R.string.title_no_internet),
+                            dialogMessage = getString(R.string.message_no_internet_found),
+                            dialogButtonText = getString(R.string.button_retry),
+                            dialogImage = R.drawable.ic_back,
+                            onButtonClick = {
+                                viewModel.callInitApi()
+                            })
+                    })
+            }
+        }*/
+    }
+
+    private fun handleInitData(initData: BaseResponse<InitData>?) {
+        if (initData.notNull()) {
+            if (initData?.status == false) {
+                if (initData.data?.forceUpdate == true) {
+                    handleInitError(
+                        dialogTitle = getString(R.string.title_update_mxb),
+                        dialogMessage = initData.message.ifEmpty { getString(R.string.message_force_update) },
+                        dialogButtonText = getString(R.string.button_update_now),
+                        dialogImage = R.drawable.ic_back,
+                        onButtonClick = {
+                            openPlayStore(packageName)
+                            finish()
+                        })
+                } else if (initData.data?.maintenance == true) {
+                    handleInitError(
+                        dialogTitle = getString(R.string.title_application_is_under_maintenance),
+                        dialogMessage = initData.message.ifEmpty { getString(R.string.message_maintenance) },
+                        dialogButtonText = getString(R.string.button_retry),
+                        dialogImage = R.drawable.ic_back,
+                        onButtonClick = {
+                            viewModel.callInitApi()
+                        }
+                    )
+                }
+            } else {
+                if (initData?.data?.update == true) {
+                    handleInitError(
+                        dialogTitle = getString(R.string.title_update_mxb),
+                        dialogMessage = initData.message.ifEmpty { getString(R.string.message_normal_update) },
+                        dialogButtonText = getString(R.string.button_update),
+                        needToShowBackButton = true,
+                        dialogImage = R.drawable.ic_back,
+                        onButtonClick = {
+                            openPlayStore(packageName)
+                            finish()
+                        },
+                        onBackButtonClick = {
+                            localDataRepository.saveInitData(initData.data)
+                            Logger.e("Init Success")
+                            handleInitSuccess()
+                        }
+                    )
+                } else {
+                    localDataRepository.saveInitData(initData?.data)
+                    Logger.e("Init Success")
+                    handleInitSuccess()
+                }
+            }
+
+        }
+    }
+
+    private fun handleInitError(
+        needToShowBackButton: Boolean = false,
+        dialogNeedToDismiss: Boolean = false,
+        dialogTitle: String = "",
+        dialogMessage: String = "",
+        dialogButtonText: String = "",
+        onButtonClick: () -> Unit,
+        dialogImage: Int = R.drawable.ic_back,
+        onBackButtonClick: (() -> Unit)? = null
+    ) {
+        CommonBottomSheetDialog.newInstance(
+            this,
+            binding.main,
+            isPreventBackButton = !dialogNeedToDismiss,
+            isCancel = dialogNeedToDismiss,
+            isBackButtonVisible = needToShowBackButton
+        ).apply {
+            title = dialogTitle
+            description = dialogMessage
+            buttonText = dialogButtonText
+            image = dialogImage
+            onClick = onButtonClick
+            onBackClick = onBackButtonClick
+        }.show(supportFragmentManager, "handleInitError")
+    }
+
+    private fun handleInitSuccess() {
+
     }
 }
