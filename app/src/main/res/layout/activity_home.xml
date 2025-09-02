@@ -7,53 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.activity.HomeActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnCallAPI"
-        style="@style/FilledButtonTheme"
-        android:layout_width="wrap_content"
-        android:text="Next"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_32"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.basalbody.app.utils.BasalTextView
-        android:id="@+id/tvApiResponse"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_15"
-        android:textColor="@color/textColor"
-        android:textSize="@dimen/sp_14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCallAPI"
-        app:textStyle="medium"
-        tools:text="Api Response" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnTermCondition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_15"
-        android:text="Terms &amp; Conditions"
-        style="@style/OutlinedButtonTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvApiResponse" />
-
-    <com.basalbody.app.utils.BasalTextField
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btnTermCondition"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:btf_drawableStart="@drawable/ic_email"
-        app:btf_labelText="Email"
-        app:btf_inputType="textEmailAddress"
-        app:btf_imeOptions="actionSearch"
-        app:btf_hint="Enter your email here"
-        />
+        app:backgroundTint="@color/white"
+        app:elevation="@dimen/dp_5"
+        app:itemIconSize="@dimen/dp_24"
+        app:itemPaddingTop="@dimen/dp_18"
+        app:itemPaddingBottom="@dimen/dp_18"
+        app:itemRippleColor="@color/transparent"
+        app:itemActiveIndicatorStyle="@null"
+        app:itemTextAppearanceActive="@style/BNVTextStyleActive"
+        app:itemTextAppearanceInactive="@style/BNVTextStyleInactive"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_menu"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

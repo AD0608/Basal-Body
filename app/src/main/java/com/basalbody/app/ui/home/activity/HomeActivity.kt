@@ -1,84 +1,90 @@
 package com.basalbody.app.ui.home.activity
 
-import android.os.Bundle
-import androidx.lifecycle.lifecycleScope
+import android.os.Handler
+import android.os.Looper
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+import androidx.fragment.app.Fragment
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
-import com.basalbody.app.base.FlowInActivity
-import com.basalbody.app.common.CommonBottomSheetDialog
 import com.basalbody.app.databinding.ActivityHomeBinding
-import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.notNull
-import com.basalbody.app.extensions.onSafeClick
-import com.basalbody.app.extensions.openPlayStore
-import com.basalbody.app.extensions.putEnum
-import com.basalbody.app.extensions.startNewActivity
-import com.basalbody.app.model.BaseResponse
-import com.basalbody.app.model.response.InitData
-import com.basalbody.app.ui.common.CommonDialog
+import com.basalbody.app.ui.home.fragment.BluetoothFragment
+import com.basalbody.app.ui.home.fragment.CalenderFragment
+import com.basalbody.app.ui.home.fragment.HomeFragment
+import com.basalbody.app.ui.home.fragment.ProfileFragment
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
-import com.basalbody.app.ui.setting.activity.WebViewActivity
-import com.basalbody.app.utils.Constants
-import com.basalbody.app.utils.EnumUtils
-import com.basalbody.app.utils.Logger
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
+
     override fun getViewBinding(): ActivityHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
+
+    private val fragmentMap = mutableMapOf<Int, Fragment>()
 
     override fun initSetup() {
         setupUI()
+        getDataFromIntent()
     }
 
     private fun setupUI() {
         binding.apply {
-            tvApiResponse.changeText("Press button to call Api")
+            bottomNavigationView.itemIconTintList = null
+            ViewCompat.setOnApplyWindowInsetsListener(main) { v, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                v.setPaddingRelative(0,systemBars.top,0,0)
+                bottomNavigationView.updatePadding(bottom = systemBars.bottom)
+                insets
+            }
         }
     }
 
     override fun listeners() {
         binding.apply {
-            btnCallAPI onSafeClick {
-                tvApiResponse.changeText("Calling Api")
+            bottomNavigationView.setOnItemSelectedListener { item ->
+                val fragment = fragmentMap[item.itemId] ?: when (item.itemId) {
+                    R.id.itemHome -> HomeFragment()
+                    R.id.itemBluetooth -> BluetoothFragment()
+                    R.id.itemCalender -> CalenderFragment()
+                    R.id.itemProfile -> ProfileFragment()
+                    else -> null
+                }
+                fragment?.let { loadFragment(it, item.itemId) }
+                true
             }
-            btnTermCondition.onSafeClick {
-                navigateWebView()
-            }
-            /*buttonLogout.onSafeClick {
-                val logoutDialog =
-                    CommonDialog.newInstance(type = EnumUtils.DialogType.LOG_OUT).apply {
-                        callback = {
-                           //------Here need to call api---//
-                        }
-                    }
-                logoutDialog.show(
-                    supportFragmentManager,
-                    logoutDialog::class.simpleName
-                )
-            }
-            buttonDeleteAccount.onSafeClick {
-                val deleteAccountDialog =
-                    CommonDialog.newInstance(type = EnumUtils.DialogType.DELETE_ACCOUNT).apply {
-                        callback = {
-                            //------Here need to call api---//
-                        }
-                    }
-                deleteAccountDialog.show(
-                    supportFragmentManager,
-                    deleteAccountDialog::class.simpleName
-                )
-            }*/
         }
     }
 
-    private fun navigateWebView(){
-        startNewActivity(className = WebViewActivity::class.java, bundle = Bundle().apply {
-            putEnum(
-                Constants.BUNDLE_KEY_WHICH_WEB_VIEW,
-                EnumUtils.WebView.TERMS_AND_CONDITIONS
-            )
-        })
+    private fun getDataFromIntent() {
+        if (intent.notNull() && intent.extras.notNull()) {
+            val userFrom = intent.extras?.getString("User_From")
+            if (userFrom == "Profile") {
+                loadFragment(ProfileFragment(), R.id.itemProfile)
+                binding.bottomNavigationView.selectedItemId = R.id.itemProfile
+            } else {
+                loadFragment(HomeFragment(), R.id.itemHome)
+                binding.bottomNavigationView.selectedItemId = R.id.itemHome
+            }
+        } else {
+            loadFragment(HomeFragment(), R.id.itemHome)
+            binding.bottomNavigationView.selectedItemId = R.id.itemHome
+        }
+    }
+
+    private fun loadFragment(fragment: Fragment, itemId: Int) {
+        val transaction = supportFragmentManager.beginTransaction()
+        fragmentMap.values.forEach { transaction.hide(it) }
+        if (!fragmentMap.containsKey(itemId)) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                transaction.add(R.id.fragmentContainer, fragment)
+                fragmentMap[itemId] = fragment
+                transaction.commitAllowingStateLoss()
+            }, 300)
+        } else {
+            transaction.show(fragment)
+            transaction.commitAllowingStateLoss()
+        }
     }
 }

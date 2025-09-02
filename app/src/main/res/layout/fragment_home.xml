@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.home.fragment.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dp_24" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/dp_24" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/dp_10" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/dp_24" />
+
+        <com.basalbody.app.utils.BasalTextView
+            android:id="@+id/tvWelcomeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/label_welcome_sarah"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toTopOf="@id/glTop"
+            app:textStyle="bold" />
+
+        <com.basalbody.app.utils.BasalTextView
+            android:id="@+id/tvSelectedDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:drawableStart="@drawable/ic_calender_home"
+            android:drawableEnd="@drawable/ic_dropdown_18"
+            android:drawablePadding="@dimen/dp_10"
+            android:padding="@dimen/dp_5"
+            android:text="Today"
+            android:textColor="@color/colorGray716569"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/tvWelcomeText"
+            app:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgNotifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_7"
+            android:src="@drawable/ic_notifications"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintTop_toTopOf="@id/tvWelcomeText" />
+
+        <View
+            android:id="@+id/notificationDot"
+            android:layout_width="@dimen/dp_12"
+            android:layout_height="@dimen/dp_12"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/ic_notification_dot"
+            app:layout_constraintEnd_toEndOf="@id/imgNotifications"
+            app:layout_constraintTop_toTopOf="@id/imgNotifications" />
+
+        <com.basalbody.app.utils.BasalTextView
+            android:id="@+id/tvDailySummary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_11"
+            android:text="@string/label_daily_summary"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/tvSelectedDate"
+            app:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLatestTemp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/dp_21"
+            android:background="@drawable/bg_rounded_corners_12"
+            android:padding="@dimen/dp_9"
+            app:layout_constraintBottom_toBottomOf="@id/clLastActivityLogged"
+            app:layout_constraintEnd_toStartOf="@id/clLastActivityLogged"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toTopOf="@id/clLastActivityLogged">
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvLatestTempReadingLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:gravity="center"
+                android:text="@string/label_latest_temperature_reading"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:textStyle="normal" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvLatestTemp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_9"
+                android:gravity="center"
+                android:text="36.5°C"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLatestTempReadingLabel"
+                app:textStyle="semiBold" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLastActivityLogged"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_14"
+            android:background="@drawable/bg_rounded_corners_12"
+            android:backgroundTint="#DBE5FB"
+            android:padding="@dimen/dp_9"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toEndOf="@id/clLatestTemp"
+            app:layout_constraintTop_toBottomOf="@id/tvDailySummary">
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvLastActivityLoggedLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:gravity="center"
+                android:text="@string/label_last_activity_logged"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:textStyle="normal" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvLastActivityLogged"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_9"
+                android:layout_marginBottom="@dimen/dp_11"
+                android:gravity="center"
+                android:text="@string/menstruation_nday_2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLastActivityLoggedLabel"
+                app:textStyle="semiBold" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.basalbody.app.utils.BasalTextView
+            android:id="@+id/tvQuickStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_15"
+            android:text="@string/label_quick_status"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/clLastActivityLogged"
+            app:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clMenstruation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_14"
+            android:background="@drawable/bg_rounded_corners_12"
+            android:backgroundTint="#FFE8EE"
+            android:padding="@dimen/dp_12"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/tvQuickStatus">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgMenstruation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_menstruation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvQueMenstruation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_11"
+                android:text="Are you doing today Menstruation?"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintBottom_toBottomOf="@id/imgMenstruation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgMenstruation"
+                app:layout_constraintTop_toTopOf="@id/imgMenstruation"
+                app:textStyle="medium" />
+
+            <LinearLayout
+                android:id="@+id/llMenstruationAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:background="@drawable/bg_rounded_corners"
+                android:backgroundTint="@color/white"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_2"
+                app:layout_constraintStart_toStartOf="@id/tvQueMenstruation"
+                app:layout_constraintTop_toBottomOf="@id/imgMenstruation">
+
+                <com.basalbody.app.utils.BasalTextView
+                    android:id="@+id/btnYesMenstruation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_rounded_corners"
+                    android:backgroundTint="@color/colorPinkDC3556"
+                    android:paddingHorizontal="@dimen/dp_12"
+                    android:paddingVertical="@dimen/dp_5"
+                    android:text="Yes"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12"
+                    app:textStyle="normal" />
+
+                <com.basalbody.app.utils.BasalTextView
+                    android:id="@+id/btnNoMenstruation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_rounded_corners"
+                    android:paddingHorizontal="@dimen/dp_12"
+                    android:paddingVertical="@dimen/dp_5"
+                    android:text="No"
+                    android:textColor="@color/colorPinkDC3556"
+                    android:textSize="@dimen/sp_12"
+                    app:textStyle="normal" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clIntercourse"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_14"
+            android:background="@drawable/bg_rounded_corners_12"
+            android:backgroundTint="#FFEBE1"
+            android:padding="@dimen/dp_12"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/clMenstruation">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgIntercourse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_intercourse"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvQueIntercourse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_11"
+                android:text="Are you doing today Intercourse?"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintBottom_toBottomOf="@id/imgIntercourse"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgIntercourse"
+                app:layout_constraintTop_toTopOf="@id/imgIntercourse"
+                app:textStyle="medium" />
+
+            <LinearLayout
+                android:id="@+id/llIntercourseAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:background="@drawable/bg_rounded_corners"
+                android:backgroundTint="@color/white"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_2"
+                app:layout_constraintStart_toStartOf="@id/tvQueIntercourse"
+                app:layout_constraintTop_toBottomOf="@id/imgIntercourse">
+
+                <com.basalbody.app.utils.BasalTextView
+                    android:id="@+id/btnYesIntercourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_rounded_corners"
+                    android:backgroundTint="@color/colorPinkDC3556"
+                    android:paddingHorizontal="@dimen/dp_12"
+                    android:paddingVertical="@dimen/dp_5"
+                    android:text="Yes"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12"
+                    app:textStyle="normal" />
+
+                <com.basalbody.app.utils.BasalTextView
+                    android:id="@+id/btnNoIntercourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_rounded_corners"
+                    android:paddingHorizontal="@dimen/dp_12"
+                    android:paddingVertical="@dimen/dp_5"
+                    android:text="No"
+                    android:textColor="@color/colorPinkDC3556"
+                    android:textSize="@dimen/sp_12"
+                    app:textStyle="normal" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.basalbody.app.utils.BasalTextView
+            android:id="@+id/tvConnectBluetooth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_28"
+            android:text="@string/label_connect_bluetooth"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintEnd_toStartOf="@id/btnTapToScan"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/clIntercourse"
+            app:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTapToScan"
+            style="@style/FilledButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/geist_regular"
+            android:paddingHorizontal="@dimen/dp_10"
+            android:paddingVertical="@dimen/dp_5"
+            android:text="@string/btn_tap_to_scan"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_15"
+            app:layout_constraintBottom_toBottomOf="@id/tvConnectBluetooth"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintTop_toTopOf="@id/tvConnectBluetooth" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clBluetoothDevice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_19"
+            android:background="@drawable/bg_connect_bluetooth"
+            android:padding="@dimen/dp_10"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/tvConnectBluetooth">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgBluetoothIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bluetooth_blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTapToScanDevice"
+                style="@style/FilledButtonTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/geist_regular"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/dp_5"
+                android:text="@string/btn_tap_to_scan"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@id/imgBluetoothIcon"
+                app:layout_constraintTop_toTopOf="@id/imgBluetoothIcon"
+                app:layout_constraintBottom_toBottomOf="@id/imgBluetoothIcon"
+                android:layout_marginStart="@dimen/dp_11"
+                android:backgroundTint="@color/white"/>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/grpConnectedDevice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="tvBluetoothDeviceName, tvBluetoothDeviceStatus, tvBluetoothDeviceType"/>
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvBluetoothDeviceName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_13"
+                android:text="BBT Sensor 01"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toTopOf="@id/tvBluetoothDeviceType"
+                app:layout_constraintStart_toEndOf="@id/imgBluetoothIcon"
+                app:layout_constraintTop_toTopOf="@id/imgBluetoothIcon"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:textStyle="bold" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvBluetoothDeviceType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_13"
+                android:layout_marginTop="@dimen/dp_4"
+                android:text="BBT Sensor 01"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/imgBluetoothIcon"
+                app:layout_constraintStart_toEndOf="@id/imgBluetoothIcon"
+                app:layout_constraintTop_toBottomOf="@id/tvBluetoothDeviceName"
+                app:textStyle="normal" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvBluetoothDeviceStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_13"
+                android:layout_marginTop="@dimen/dp_4"
+                android:background="@drawable/bg_rounded_corners"
+                android:backgroundTint="@color/white"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/dp_5"
+                android:text="Connected"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:textStyle="normal" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.basalbody.app.utils.BasalTextView
+            android:id="@+id/tvCalenderLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_24"
+            android:text="@string/label_calender"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintEnd_toStartOf="@id/btnViewAll"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/clBluetoothDevice"
+            app:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnViewAll"
+            style="@style/FilledButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/geist_regular"
+            android:paddingHorizontal="@dimen/dp_10"
+            android:paddingVertical="@dimen/dp_5"
+            android:text="@string/btn_view_all"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_15"
+            app:layout_constraintBottom_toBottomOf="@id/tvCalenderLabel"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintTop_toTopOf="@id/tvCalenderLabel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

@@ -91,4 +91,20 @@
     <string name="message_normal_update">New update available! Get the best experience with the latest version of MXB. Update now or continue using the current version</string>
     <string name="message_are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="message_delete_account_confirm">Are you sure you want to delete your account? This action is irreversible and will permanently remove all your data, including your profile and settings.</string>
+    <string name="item_home">Home</string>
+    <string name="item_bluetooth">Bluetooth</string>
+    <string name="item_calender">Calender</string>
+    <string name="item_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_daily_summary">Daily Summary</string>
+    <string name="label_welcome_sarah">Welcome Sarah!</string>
+    <string name="label_latest_temperature_reading">Latest Temperature Reading</string>
+    <string name="label_last_activity_logged">Last Activity\nLogged</string>
+    <string name="menstruation_nday_2">Menstruation\nDay 2</string>
+    <string name="label_quick_status">Quick status</string>
+    <string name="label_connect_bluetooth">Connect Bluetooth</string>
+    <string name="btn_tap_to_scan">Tap to scan</string>
+    <string name="label_calender">Calender</string>
+    <string name="btn_view_all">View all</string>
 </resources>
