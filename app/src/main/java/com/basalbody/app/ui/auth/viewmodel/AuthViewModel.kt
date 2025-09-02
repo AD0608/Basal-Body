@@ -1,16 +1,16 @@
-package com.basalbody.app.ui.splash.viewmodel
+package com.basalbody.app.ui.auth.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.basalbody.app.base.BaseViewModel
 import com.basalbody.app.model.Resource
-import com.basalbody.app.ui.splash.repository.SplashRepository
+import com.basalbody.app.ui.auth.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SplashViewModel @Inject constructor(
-    private var splashRepository: SplashRepository,
+class AuthViewModel @Inject constructor(
+    private var splashRepository: AuthRepository,
 ) : BaseViewModel() {
 
     //-------Init Api-------//

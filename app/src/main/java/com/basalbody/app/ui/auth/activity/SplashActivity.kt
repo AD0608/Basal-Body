@@ -1,4 +1,4 @@
-package com.basalbody.app.ui.splash.activity
+package com.basalbody.app.ui.auth.activity
 
 import android.content.Intent
 import android.util.Log
@@ -11,15 +11,14 @@ import com.basalbody.app.extensions.notNull
 import com.basalbody.app.extensions.openPlayStore
 import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.response.InitData
-import com.basalbody.app.ui.intro.activity.IntroActivity
-import com.basalbody.app.ui.splash.viewmodel.SplashViewModel
+import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
 import com.basalbody.app.utils.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
+class SplashActivity : BaseActivity<AuthViewModel, ActivitySplashBinding>() {
 
     private var TAG = "SplashActivity"
 
