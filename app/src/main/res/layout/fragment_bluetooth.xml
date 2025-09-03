@@ -1,14 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.fragment.BluetoothFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/dp_24" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/dp_24" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/dp_10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="@dimen/dp_24" />
+
+    <com.basalbody.app.utils.BasalTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_back"
+        android:gravity="center"
+        android:paddingVertical="@dimen/dp_5"
+        android:text="Bluetooth"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toTopOf="@id/glTop"
+        app:textStyle="semiBold" />
+
+    <FrameLayout
+        android:id="@+id/frameBluetooth"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_300"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgBluetooth"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_bluetooth_blue" />
+
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnTapToScan"
+        style="@style/FilledButtonTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        android:backgroundTint="@color/color070707"
+        android:drawableTint="@color/white"
+        android:fontFamily="@font/geist_regular"
+        android:paddingHorizontal="@dimen/dp_10"
+        android:paddingVertical="@dimen/dp_5"
+        android:text="@string/btn_scan_for_devices"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/frameBluetooth" />
+
+    <com.basalbody.app.utils.BasalTextView
+        android:id="@+id/tvLabelAvailableDevices"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_36"
+        android:text="@string/label_list_of_available_devices"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/btnTapToScan"
+        app:textStyle="semiBold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAvailableDevices"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_15"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@id/glBottom"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/tvLabelAvailableDevices"
+        tools:itemCount="3"
+        tools:listitem="@layout/each_row_available_bluetooth_devices" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

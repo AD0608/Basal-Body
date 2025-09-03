@@ -1,6 +1,5 @@
 [versions]
 agp = "8.6.0"
-compiler = "4.14.2"
 datastorePreferencesCore = "1.1.7"
 datastorePreferences = "1.1.7"
 dexter = "6.2.3"
@@ -41,6 +40,7 @@ socketIoClient = "2.1.0"
 swiperefreshlayout = "1.1.0"
 ui = "1.9.0"
 ksp = "2.2.10-2.0.2"
+view = "2.8.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,7 +53,6 @@ androidx-material3 = { module = "androidx.compose.material3:material3", version.
 androidx-foundation-android = { module = "androidx.compose.foundation:foundation-android", version.ref = "foundationAndroid" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 androidx-ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 dexter = { module = "com.karumi:dexter", version.ref = "dexter" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics", version.ref = "firebaseCrashlytics" }
@@ -83,6 +82,7 @@ play-services-maps = { module = "com.google.android.gms:play-services-maps", ver
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 socket-io-client = { module = "io.socket:socket.io-client", version.ref = "socketIoClient" }
+calender-view = { module = "com.kizitonwose.calendar:view", version.ref = "view" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

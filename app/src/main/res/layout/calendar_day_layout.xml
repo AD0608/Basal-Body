@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:padding="@dimen/dp_5"
+    android:layout_height="wrap_content">
+
+    <com.basalbody.app.utils.BasalTextView
+        android:id="@+id/tvDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lineHeight="@dimen/dp_26"
+        android:text="22"
+        android:textColor="#1E293B"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:textStyle="semiBold" />
+
+    <com.basalbody.app.utils.BasalTextView
+        android:id="@+id/tvWeekDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_2"
+        android:gravity="center"
+        android:lineHeight="@dimen/dp_26"
+        android:text="Wed"
+        android:textColor="#1E293B"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDate"
+        app:textStyle="medium" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDayMenstruation"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_5"
+        android:src="@drawable/ic_menstruation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/dp_9"
+        app:layout_constraintEnd_toStartOf="@id/imgDayIntercourse"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWeekDay" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDayIntercourse"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:layout_marginStart="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginBottom="@dimen/dp_9"
+        android:src="@drawable/ic_intercourse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgDayMenstruation"
+        app:layout_constraintTop_toBottomOf="@id/tvWeekDay" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -153,4 +153,5 @@ dependencies {
     implementation(libs.lottie)
     implementation(libs.androidx.datastore.preferences.core)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.calender.view)
 }

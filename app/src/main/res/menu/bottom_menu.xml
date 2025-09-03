@@ -13,8 +13,8 @@
     <item
         android:id="@+id/itemCalender"
         android:enabled="true"
-        android:icon="@drawable/ic_calender"
-        android:title="@string/item_calender"/>
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/item_calendar"/>
     <item
         android:id="@+id/itemProfile"
         android:enabled="true"

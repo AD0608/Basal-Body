@@ -11,7 +11,10 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.annotation.CheckResult
+import com.basalbody.app.utils.RippleWaveView
 import com.google.android.material.textfield.TextInputLayout
 import com.basalbody.app.utils.blur.BlurView
 import com.basalbody.app.utils.blur.RenderScriptBlur
@@ -48,6 +51,14 @@ fun View.visibleIfOrGone(isShown: Boolean) {
         visible()
     } else {
         gone()
+    }
+}
+
+fun View.visibleIfOrInvisible(isShown: Boolean) {
+    if (isShown) {
+        visible()
+    } else {
+        invisible()
     }
 }
 
@@ -143,4 +154,43 @@ fun EditText.textChanges(): Flow<CharSequence?> {
         addTextChangedListener(listener)
         awaitClose { removeTextChangedListener(listener) }
     }.onStart { emit(text) }
+}
+
+fun ImageView.addRippleWaves(
+    color: Int = 0xFF407FFF.toInt(),
+    waveCount: Int = 8,
+    duration: Long = 3000L
+) {
+    val parent = this.parent
+    if (parent is FrameLayout) {
+        // Already inside a FrameLayout → add waves behind
+        val waveView = RippleWaveView(this, color, waveCount, duration)
+        parent.addView(
+            waveView,
+            0,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+    } else {
+        // Wrap inside FrameLayout
+        val index = (parent as ViewGroup).indexOfChild(this)
+        parent.removeView(this)
+
+        val frame = FrameLayout(context)
+        frame.layoutParams = this.layoutParams
+
+        val waveView = RippleWaveView(this, color, waveCount, duration)
+        frame.addView(
+            waveView,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+        frame.addView(this)
+
+        parent.addView(frame, index)
+    }
 }
