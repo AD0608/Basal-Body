@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.intro.activity.IntroActivity">
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpIntro"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
+        android:layout_marginBottom="@dimen/dp_32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNext"
+        style="@style/FilledButtonTheme"
+        android:layout_width="wrap_content"
+        android:text="Next"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnSkip" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSkip"
+        style="@style/OutlinedButtonTheme"
+        android:layout_width="wrap_content"
+        android:text="Skip"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_44"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Image at the top -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivIntro"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        tools:src="@drawable/intro_1"
+        android:adjustViewBounds="true"
+        android:layout_marginHorizontal="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_150"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- First Text below Image -->
+    <com.basalbody.app.utils.BasalTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        tools:text="@string/app_name"
+        app:textStyle="bold"
+        android:textColor="@color/colorText_263238"
+        android:textSize="@dimen/sp_26"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/dp_71"
+        app:layout_constraintTop_toBottomOf="@id/ivIntro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Second Text below First Text -->
+    <com.basalbody.app.utils.BasalTextView
+        android:id="@+id/tvDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="@string/app_name"
+        android:textColor="@color/colorText_4B4B4B"
+        android:textSize="@dimen/sp_18"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/dp_48"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

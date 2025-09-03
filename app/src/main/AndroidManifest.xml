@@ -31,10 +31,28 @@
         android:theme="@style/Theme.AbcToGoMXB"
         tools:targetApi="31">
         <activity
-            android:name=".ui.intro.activity.IntroActivity"
+            android:name=".ui.auth.activity.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.activity.SetNewPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.activity.VerificationCodeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.activity.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.activity.IntroActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.activity.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,9 +60,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.splash.activity.SplashActivity"
-            android:exported="false" />
         <activity android:name=".ui.setting.activity.WebViewActivity" />
 
         <service

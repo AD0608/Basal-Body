@@ -1,4 +1,4 @@
-package com.basalbody.app.ui.intro.repository
+package com.basalbody.app.ui.auth.repository
 
 import android.content.Context
 import com.basalbody.app.BuildConfig
@@ -9,7 +9,7 @@ import com.basalbody.app.network.ApiService
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class IntroRepository @Inject constructor(
+class AuthRepository @Inject constructor(
     var context: Context,
     private val apiService: ApiService,
 ) : BaseRepository() {

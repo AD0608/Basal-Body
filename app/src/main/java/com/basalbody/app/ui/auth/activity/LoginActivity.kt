@@ -1,4 +1,4 @@
-package com.basalbody.app.ui.intro.activity
+package com.basalbody.app.ui.auth.activity
 
 import android.os.Bundle
 import android.util.Log
@@ -8,24 +8,22 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
-import com.basalbody.app.databinding.ActivityIntroBinding
-import com.basalbody.app.ui.intro.viewmodel.IntroViewModel
+import com.basalbody.app.databinding.ActivityLoginBinding
+import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class IntroActivity : BaseActivity<IntroViewModel, ActivityIntroBinding>() {
+class LoginActivity : BaseActivity<AuthViewModel, ActivityLoginBinding>() {
 
-    private val TAG = "IntroActivity"
+    private val TAG = "LoginActivity"
 
-    override fun getViewBinding(): ActivityIntroBinding  = ActivityIntroBinding.inflate(layoutInflater)
+    override fun getViewBinding(): ActivityLoginBinding = ActivityLoginBinding.inflate(layoutInflater)
 
     override fun initSetup() {
-        setupUI()
-    }
+        Log.e(TAG, "initSetup")
+        binding.apply {
 
-    private fun setupUI() {
-
-        Log.e(TAG, "setupUI()")
+        }
     }
 
     override fun listeners() {
