@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/dp_25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/dp_25" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/lblLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_58"
+                android:text="Login"
+                android:textColor="@color/colorText_4B4B4B"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toTopOf="parent"
+                app:textStyle="semiBold" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/lblWelcome"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_58"
+                android:text="Welcome"
+                android:textColor="@color/colorText_4B4B4B"
+                android:textSize="@dimen/sp_24"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@id/lblLogin"
+                app:textStyle="bold" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvWelcomeMessage"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:text="Sign in to continue!"
+                android:textColor="@color/colorText_989898"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@id/lblWelcome" />
+
+            <com.basalbody.app.utils.BasalTextField
+                android:id="@+id/etEmail"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_29"
+                app:btf_drawableStart="@drawable/ic_email"
+                app:btf_hint="Enter your email here"
+                app:btf_imeOptions="actionNext"
+                app:btf_inputType="textEmailAddress"
+                app:btf_labelText="Email"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@+id/tvWelcomeMessage" />
+
+            <com.basalbody.app.utils.BasalTextField
+                android:id="@+id/etPass"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:btf_drawableStart="@drawable/ic_password_lock"
+                app:btf_drawableEnd="@drawable/ic_password_eye_close"
+                app:btf_hint="Enter password here"
+                app:btf_imeOptions="actionDone"
+                app:btf_inputType="textPassword"
+                app:btf_labelText="Password"
+                app:btf_isPassword="true"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvForgotPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_15"
+                android:text="Frogot Password?"
+                app:textStyle="semiBold"
+                android:textColor="@color/colorText_4B4B4B"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintTop_toBottomOf="@id/etPass"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/FilledButtonTheme"
+                android:text="Login"
+                android:layout_marginTop="@dimen/dp_43"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintTop_toBottomOf="@id/tvForgotPass"/>
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/lblOrSignWith"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_43"
+                android:text="Or sign in with"
+                android:textColor="@color/colorText_DC3556"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintTop_toBottomOf="@id/btnLogin"/>
+
+            <View
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/black"
+                android:layout_marginEnd="@dimen/dp_10"
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintEnd_toStartOf="@+id/lblOrSignWith"
+                app:layout_constraintTop_toTopOf="@+id/lblOrSignWith"
+                app:layout_constraintBottom_toBottomOf="@+id/lblOrSignWith"/>
+
+            <View
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/dp_10"
+                app:layout_constraintStart_toEndOf="@+id/lblOrSignWith"
+                app:layout_constraintEnd_toEndOf="@id/glEnd"
+                app:layout_constraintTop_toTopOf="@+id/lblOrSignWith"
+                app:layout_constraintBottom_toBottomOf="@+id/lblOrSignWith"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_g_login"
+                android:layout_marginTop="@dimen/dp_25"
+                app:layout_constraintTop_toBottomOf="@+id/lblOrSignWith"
+                app:layout_constraintStart_toStartOf="@+id/glStart"
+                app:layout_constraintEnd_toEndOf="@+id/glEnd"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

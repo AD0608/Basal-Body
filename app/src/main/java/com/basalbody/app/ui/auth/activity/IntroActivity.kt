@@ -11,7 +11,6 @@ import com.basalbody.app.extensions.visible
 import com.basalbody.app.model.dummy.DummyData
 import com.basalbody.app.ui.auth.adapter.IntroPagerAdapter
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
-import com.basalbody.app.ui.home.activity.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -72,7 +71,7 @@ class IntroActivity : BaseActivity<AuthViewModel, ActivityIntroBinding>() {
 
     fun goToHome() {
         Log.e(TAG, "goToHome()")
-        startActivity(Intent(this@IntroActivity, HomeActivity::class.java))
+        startActivity(Intent(this@IntroActivity, LoginActivity::class.java))
         finish()
     }
 
