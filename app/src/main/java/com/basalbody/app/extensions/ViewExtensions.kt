@@ -161,27 +161,34 @@ fun ImageView.addRippleWaves(
     waveCount: Int = 8,
     duration: Long = 3000L
 ) {
+    val tagKey = "RippleWaveViewTag"
+
     val parent = this.parent
     if (parent is FrameLayout) {
-        // Already inside a FrameLayout → add waves behind
-        val waveView = RippleWaveView(this, color, waveCount, duration)
-        parent.addView(
-            waveView,
-            0,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
+        // Prevent adding multiple ripple views
+        if (parent.findViewWithTag<RippleWaveView>(tagKey) == null) {
+            val waveView = RippleWaveView(this, color, waveCount, duration).apply {
+                tag = tagKey
+            }
+            parent.addView(
+                waveView,
+                0,
+                FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
             )
-        )
+        }
     } else {
-        // Wrap inside FrameLayout
         val index = (parent as ViewGroup).indexOfChild(this)
         parent.removeView(this)
 
         val frame = FrameLayout(context)
         frame.layoutParams = this.layoutParams
 
-        val waveView = RippleWaveView(this, color, waveCount, duration)
+        val waveView = RippleWaveView(this, color, waveCount, duration).apply {
+            tag = tagKey
+        }
         frame.addView(
             waveView,
             FrameLayout.LayoutParams(
@@ -192,5 +199,13 @@ fun ImageView.addRippleWaves(
         frame.addView(this)
 
         parent.addView(frame, index)
+    }
+}
+
+fun ImageView.removeRippleWaves() {
+    val parent = this.parent
+    if (parent is FrameLayout) {
+        val waveView = parent.findViewWithTag<RippleWaveView>("RippleWaveViewTag")
+        waveView?.let { parent.removeView(it) }
     }
 }

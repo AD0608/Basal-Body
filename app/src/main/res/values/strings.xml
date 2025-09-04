@@ -110,4 +110,12 @@
     <string name="label_list_of_available_devices">List of Available Devices</string>
     <string name="btn_scan_for_devices">Scan for Devices</string>
     <string name="btn_connect">Connect</string>
+    <string name="label_connection_status">Connection Status</string>
+    <string name="label_connected">Connected</string>
+    <string name="btn_disconnect">Disconnect</string>
+    <string name="label_menstruation">Menstruation</string>
+    <string name="label_intercourse">Intercourse</string>
+    <string name="label_temperature_trend">Temperature trend</string>
+    <string name="label_today">Today</string>
+    <string name="label_add_activity">Add Activity</string>
 </resources>

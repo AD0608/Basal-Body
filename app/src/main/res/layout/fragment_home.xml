@@ -28,13 +28,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="@dimen/dp_10" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glBottomMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="@dimen/dp_24" />
-
     <com.basalbody.app.utils.BasalTextView
         android:id="@+id/tvWelcomeText"
         android:layout_width="0dp"
@@ -85,8 +78,10 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/dp_11"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="@id/glBottomMain"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/glEndMain"
+        android:paddingBottom="@dimen/dp_24"
+        android:clipToPadding="false"
         app:layout_constraintStart_toStartOf="@id/glStartMain"
         app:layout_constraintTop_toBottomOf="@id/tvSelectedDate">
 
@@ -513,7 +508,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_15"
-                app:cv_dayViewResource="@layout/calendar_day_layout"
+                app:cv_dayViewResource="@layout/week_calendar_day_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:cv_daySize="rectangle"
                 app:layout_constraintStart_toStartOf="parent"

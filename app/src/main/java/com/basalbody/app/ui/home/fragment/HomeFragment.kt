@@ -4,24 +4,20 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorInt
-import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseFragment
 import com.basalbody.app.databinding.FragmentHomeBinding
+import com.basalbody.app.databinding.WeekCalendarDayViewBinding
 import com.basalbody.app.extensions.gone
 import com.basalbody.app.extensions.visible
 import com.basalbody.app.extensions.visibleIfOrGone
-import com.basalbody.app.extensions.visibleIfOrInvisible
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
 import com.basalbody.app.utils.BasalTextView
-import com.basalbody.app.utils.Logger
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import com.kizitonwose.calendar.view.ViewContainer
 import com.kizitonwose.calendar.view.WeekDayBinder
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.TextStyle
@@ -64,10 +60,10 @@ class HomeFragment :
             weekCalendarView.setup(startDate, endDate, firstDayOfWeek)
             weekCalendarView.scrollToWeek(currentDate)
 
-            weekCalendarView.dayBinder = object : WeekDayBinder<DayViewContainer> {
-                override fun create(view: View) = DayViewContainer(view)
+            weekCalendarView.dayBinder = object : WeekDayBinder<WeekdayViewContainer> {
+                override fun create(view: View) = WeekdayViewContainer(view)
 
-                override fun bind(container: DayViewContainer, day: WeekDay) {
+                override fun bind(container: WeekdayViewContainer, day: WeekDay) {
                     val date = day.date
                     val tvDate = container.tvDate
                     val tvWeekDay = container.tvWeekDay
@@ -121,9 +117,9 @@ class HomeFragment :
 
 }
 
-class DayViewContainer(view: View) : ViewContainer(view) {
-    val tvDate: BasalTextView = view.findViewById(R.id.tvDate)
-    val tvWeekDay: BasalTextView = view.findViewById(R.id.tvWeekDay)
-    val imgMenstruation: AppCompatImageView = view.findViewById(R.id.imgDayMenstruation)
-    val imgIntercourse: AppCompatImageView = view.findViewById(R.id.imgDayIntercourse)
+class WeekdayViewContainer(view: View) : ViewContainer(view) {
+    val tvDate = WeekCalendarDayViewBinding.bind(view).tvDate
+    val tvWeekDay: BasalTextView = WeekCalendarDayViewBinding.bind(view).tvWeekDay
+    val imgMenstruation: AppCompatImageView = WeekCalendarDayViewBinding.bind(view).imgDayMenstruation
+    val imgIntercourse: AppCompatImageView = WeekCalendarDayViewBinding.bind(view).imgDayIntercourse
 }

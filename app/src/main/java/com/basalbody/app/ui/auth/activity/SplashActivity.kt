@@ -12,6 +12,7 @@ import com.basalbody.app.extensions.openPlayStore
 import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.response.InitData
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
+import com.basalbody.app.ui.home.activity.HomeActivity
 import com.basalbody.app.utils.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -38,7 +39,7 @@ class SplashActivity : BaseActivity<AuthViewModel, ActivitySplashBinding>() {
 
         lifecycleScope.launch {
             delay(3000L)
-            startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
+            startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
             finish()
         }
     }
