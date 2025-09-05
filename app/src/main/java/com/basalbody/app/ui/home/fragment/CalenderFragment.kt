@@ -14,6 +14,7 @@ import com.basalbody.app.extensions.onNoSafeClick
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.visible
 import com.basalbody.app.ui.home.adapter.TodaysActivityListAdapter
+import com.basalbody.app.ui.home.bottomsheet.ActivityDetailsBottomSheetDialog
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
 import com.basalbody.app.utils.BasalTextView
 import com.kizitonwose.calendar.core.CalendarDay
@@ -135,7 +136,9 @@ class CalenderFragment :
     }
 
     private fun onItemClick(item : String) {
+        ActivityDetailsBottomSheetDialog.newInstance(binding.root, requireActivity(), callBack = {
 
+        }).show(requireActivity().supportFragmentManager, "ActivityDetailsBottomSheetDialog")
     }
 }
 

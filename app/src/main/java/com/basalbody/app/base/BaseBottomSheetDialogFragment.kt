@@ -142,7 +142,7 @@ abstract class BaseBottomSheetDialogFragment<V : BaseViewModel, B : ViewBinding>
             )
         )
         if (::rootView.isInitialized) {
-            frameLayout?.let { blurRadius(rootView, context = mActivity, it, 8f) }
+            frameLayout?.let { blurRadius(rootView, context = mActivity, it, 15f) }
         }
 
         val blurViewLayoutParams = FrameLayout.LayoutParams(
@@ -153,8 +153,6 @@ abstract class BaseBottomSheetDialogFragment<V : BaseViewModel, B : ViewBinding>
             ConstraintLayout.LayoutParams.MATCH_PARENT,
             ConstraintLayout.LayoutParams.WRAP_CONTENT
         )
-        layoutParam.rightMargin = CommonUtils.dpToPx(mActivity, 24)
-        layoutParam.leftMargin = CommonUtils.dpToPx(mActivity, 24)
         binding.root.layoutParams = layoutParam
 
         requireActivity().addContentView(frameLayout, blurViewLayoutParams)

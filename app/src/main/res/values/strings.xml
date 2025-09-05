@@ -118,4 +118,5 @@
     <string name="label_temperature_trend">Temperature trend</string>
     <string name="label_today">Today</string>
     <string name="label_add_activity">Add Activity</string>
+    <string name="btn_back">Back</string>
 </resources>

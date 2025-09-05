@@ -14,12 +14,13 @@
     <color name="colorPinkDC3556">#DC3556</color>
     <color name="color070707">#070707</color>
     <color name="colorB3B3B3">#B3B3B3</color>
+    <color name="color737373">#737373</color>
 
 
 
     <color name="colorSecondary">#204F70</color>
     <color name="colorSecondary4">#E9EDF1</color>
-    <color name="blurColor">#804C708C</color>
+    <color name="blurColor">#91000000</color>
     <color name="textColor">#010D15</color>
     <color name="textColorGray">#6601021B</color>
     <color name="transparent">#00000000</color>
