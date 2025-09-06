@@ -1,5 +1,6 @@
 package com.basalbody.app.ui.auth.viewmodel
 
+import android.os.CountDownTimer
 import androidx.lifecycle.viewModelScope
 import com.basalbody.app.base.BaseViewModel
 import com.basalbody.app.model.Resource
@@ -12,6 +13,9 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private var splashRepository: AuthRepository,
 ) : BaseViewModel() {
+
+    var isSelectEmail : Boolean = false
+    var countDownTimer: CountDownTimer? = null
 
     //-------Init Api-------//
     /**Always set Initial state of flow is Show loading [false]*/

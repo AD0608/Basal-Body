@@ -16,6 +16,7 @@ import com.basalbody.app.R
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.onNoSafeClick
 import com.basalbody.app.extensions.setEndIconInsetDrawable
+import com.basalbody.app.extensions.visible
 import com.google.android.material.textfield.TextInputLayout
 
 class BasalTextField @JvmOverloads constructor(
@@ -84,6 +85,7 @@ class BasalTextField @JvmOverloads constructor(
             }
         }
         if (drawableEnd != 0) {
+            endDrawableImage.visible()
             endDrawableImage.setImageDrawable(ContextCompat.getDrawable(context, drawableEnd))
         }
         if (drawableStart != 0) {

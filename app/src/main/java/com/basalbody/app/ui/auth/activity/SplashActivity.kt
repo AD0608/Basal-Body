@@ -9,6 +9,7 @@ import com.basalbody.app.common.CommonBottomSheetDialog
 import com.basalbody.app.databinding.ActivitySplashBinding
 import com.basalbody.app.extensions.notNull
 import com.basalbody.app.extensions.openPlayStore
+import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.response.InitData
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
@@ -38,8 +39,7 @@ class SplashActivity : BaseActivity<AuthViewModel, ActivitySplashBinding>() {
 
         lifecycleScope.launch {
             delay(3000L)
-            startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
-            finish()
+            startNewActivity(IntroActivity::class.java, isFinish = true)
         }
     }
 

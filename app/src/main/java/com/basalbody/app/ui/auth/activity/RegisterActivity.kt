@@ -4,7 +4,9 @@ import android.util.Log
 import com.basalbody.app.base.BaseActivity
 import com.basalbody.app.databinding.ActivityRegisterBinding
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterActivity : BaseActivity<AuthViewModel, ActivityRegisterBinding>() {
 
     private val TAG = "RegisterActivity"
