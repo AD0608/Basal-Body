@@ -48,8 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_20"
-                android:paddingHorizontal="@dimen/dp_5"
-                android:paddingVertical="@dimen/dp_10"
+                android:padding="@dimen/dp_4"
                 android:src="@drawable/ic_back"
                 app:layout_constraintBottom_toBottomOf="@id/tvTitle"
                 app:layout_constraintStart_toStartOf="parent"
@@ -61,44 +60,28 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/dp_16"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp_17"
+                android:padding="@dimen/dp_4"
+                android:textSize="@dimen/sp_18"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.72"
-                app:textStyle="bold"
+                app:layout_constraintWidth_percent="0.73"
+                app:textStyle="semiBold"
                 tools:text="Title" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dp_10"
-                android:padding="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:padding="@dimen/dp_4"
                 app:layout_constraintBottom_toBottomOf="@+id/ivBack"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tvTitle"
                 app:layout_constraintTop_toTopOf="@+id/ivBack" />
-
-            <com.basalbody.app.utils.BasalTextView
-                android:id="@+id/textViewEnd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dp_25"
-                android:includeFontPadding="false"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/sp_15"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/ivBack"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/ivBack"
-                app:textStyle="medium"
-                tools:text="Skip" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

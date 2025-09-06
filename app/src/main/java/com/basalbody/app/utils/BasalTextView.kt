@@ -9,7 +9,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.textview.MaterialTextView
 import com.basalbody.app.R
 
-class BasalTextView @JvmOverloads constructor(
+class   BasalTextView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0,

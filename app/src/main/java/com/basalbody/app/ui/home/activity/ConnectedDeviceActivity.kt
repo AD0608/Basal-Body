@@ -25,11 +25,11 @@ class ConnectedDeviceActivity : BaseActivity<HomeViewModel, ActivityConnectedDev
     override fun listeners() {
         binding.apply {
             toolBar.ivBack onSafeClick {
-                finish()
+                onBackPressedDispatcher.onBackPressed()
             }
 
             btnChangeConnectionStatus onSafeClick {
-                finish()
+                onBackPressedDispatcher.onBackPressed()
             }
         }
     }

@@ -8,11 +8,14 @@ import com.basalbody.app.databinding.FragmentCalenderBinding
 import com.basalbody.app.databinding.MonthCalenderDayViewBinding
 import com.basalbody.app.extensions.changeBackground
 import com.basalbody.app.extensions.changeColor
+import com.basalbody.app.extensions.changeDrawableImage
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.gone
 import com.basalbody.app.extensions.onNoSafeClick
 import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.extensions.visible
+import com.basalbody.app.ui.home.activity.AddNewActivityActivity
 import com.basalbody.app.ui.home.adapter.TodaysActivityListAdapter
 import com.basalbody.app.ui.home.bottomsheet.ActivityDetailsBottomSheetDialog
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
@@ -49,6 +52,11 @@ class CalenderFragment :
 
     private fun setupUI() {
         binding.apply {
+            with(toolBar) {
+                tvTitle.changeText(getString(R.string.label_calendar))
+                ivBack.gone()
+                ivMenu.changeDrawableImage(R.drawable.ic_search_calender)
+            }
             rvTodaysActivity.adapter = todaysActivityListAdapter
         }
     }
@@ -69,6 +77,10 @@ class CalenderFragment :
                 calendarView.findFirstVisibleMonth()?.let {
                     calendarView.smoothScrollToMonth(it.yearMonth.nextMonth)
                 }
+            }
+
+            fabAddActivity onSafeClick {
+                startNewActivity(AddNewActivityActivity::class.java)
             }
         }
     }

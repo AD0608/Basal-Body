@@ -1,11 +1,5 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="Base.Theme.AbcToGoMXB" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
-
-    <style name="Theme.AbcToGoMXB" parent="Base.Theme.AbcToGoMXB">
+    <style name="Theme.BasalBody" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
@@ -54,13 +48,13 @@
     </style>
 
     <style name="BNVTextStyleActive">
-        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/geist_semi_bold</item>
         <item name="android:textSize">@dimen/sp_12</item>
     </style>
 
     <style name="BNVTextStyleInactive">
-        <item name="android:textColor">@color/textColorGray</item>
+        <item name="android:textColor">@color/color888888</item>
         <item name="android:fontFamily">@font/geist_regular</item>
         <item name="android:textSize">@dimen/sp_12</item>
     </style>
@@ -68,11 +62,6 @@
     <style name="Rounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item> <!-- 50% makes it perfectly circular -->
-    </style>
-
-    <style name="RadioButtonTheme" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:minHeight">@dimen/dp_0</item>
-        <item name="android:minWidth">@dimen/dp_0</item>"
     </style>
 
 </resources>

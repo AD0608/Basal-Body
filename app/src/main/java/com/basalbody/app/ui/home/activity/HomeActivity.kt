@@ -36,6 +36,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
                 v.setPaddingRelative(0,systemBars.top,0,0)
                 bottomNavigationView.updatePadding(bottom = systemBars.bottom)
+                bottomNavigationView.layoutParams.height = systemBars.bottom + resources.getDimension(R.dimen.dp_80).toInt()
                 insets
             }
         }

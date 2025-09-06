@@ -9,8 +9,11 @@ import com.basalbody.app.base.BaseFragment
 import com.basalbody.app.databinding.FragmentHomeBinding
 import com.basalbody.app.databinding.WeekCalendarDayViewBinding
 import com.basalbody.app.extensions.gone
+import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.extensions.visible
 import com.basalbody.app.extensions.visibleIfOrGone
+import com.basalbody.app.ui.home.activity.NotificationsActivity
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
 import com.basalbody.app.utils.BasalTextView
 import com.kizitonwose.calendar.core.WeekDay
@@ -111,6 +114,10 @@ class HomeFragment :
                 btnTapToScanDevice.gone()
                 grpConnectedDevice.visible()
                 btnTapToScan.visible()
+            }
+
+            imgNotifications onSafeClick {
+                startNewActivity(NotificationsActivity::class.java)
             }
         }
     }

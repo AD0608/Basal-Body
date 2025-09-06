@@ -127,7 +127,7 @@ fun AppCompatImageView.applyColorFilter(@ColorRes color: Int) {
 }
 
 /**
- * Change background tint of AppCompact ImageView.
+ * Change image of AppCompact ImageView.
  */
 fun AppCompatImageView.changeDrawableImage(@DrawableRes drawable: Int) {
     setImageResource(drawable)

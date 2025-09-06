@@ -157,4 +157,12 @@
     <string name="lbl_gender">Gender</string>
     <string name="label_bluetooth">Bluetooth</string>
     <string name="label_connected_device">Connected Device</string>
+    <string name="label_temperature">Temperature</string>
+    <string name="hint_enter_temperature">Enter Temperature</string>
+    <string name="hint_select_date">Select Date</string>
+    <string name="label_date">Date</string>
+    <string name="label_note">Notes</string>
+    <string name="hint_enter_note">Enter here...</string>
+    <string name="btn_add">Add</string>
+    <string name="label_notification">Notification</string>
 </resources>
