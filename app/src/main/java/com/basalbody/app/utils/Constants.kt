@@ -45,7 +45,7 @@ object Constants {
 
     //-----------Otp verification--------//
     const val EXPIRE_OTP_TIMER = 30 * 1000L
-    const val OTP_TIMER_INTERVAL = 1000L
+    const val OTP_TIMER_INTERVAL = 8000L
 
     //-----------Validation--------//
     const val EMAIL_PATTERN =
@@ -64,6 +64,9 @@ object Constants {
     //--------BUNDLE KEYS------//
     const val BUNDLE_KEY_IS_FROM_LOGIN = "is_from_login"
     const val BUNDLE_KEY_WHICH_WEB_VIEW = "bundle_key_which_web_view"
+
+    //---------------Intent Key---------------//
+    const val INTENT_IS_EMAIL = "isEmail"
 
 
     //---------------Button Tags---------------//

@@ -1,14 +1,15 @@
 package com.basalbody.app.ui.auth.activity
 
-import android.os.Bundle
+import android.content.Intent
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
 import com.basalbody.app.databinding.ActivityLoginBinding
+import com.basalbody.app.extensions.changeText
+import com.basalbody.app.extensions.gone
+import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.extensions.setTextDecorator
+import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,13 +22,34 @@ class LoginActivity : BaseActivity<AuthViewModel, ActivityLoginBinding>() {
 
     override fun initSetup() {
         Log.e(TAG, "initSetup")
+        setupUI()
+    }
+
+    private fun setupUI() {
         binding.apply {
+            llToolBar.ivBack.gone()
+            llToolBar.tvTitle.changeText(R.string.lbl_login)
+            tvRegisterNow.setTextDecorator(
+                resources.getString(R.string.register_now),
+                R.color.colorText_DC3556,
+                textFont = R.font.geist_bold,
+                allowCallback = true,
+                callBack = {
+                    startNewActivity(RegisterActivity::class.java)
+                },
+            )
 
         }
     }
 
     override fun listeners() {
         Log.e(TAG, "listeners()")
+        binding.apply {
+
+            tvForgotPass.onSafeClick {
+                startActivity(Intent(this@LoginActivity, ForgotPasswordOptionActivity::class.java))
+            }
+        }
     }
 
 }

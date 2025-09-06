@@ -5,7 +5,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.AbcToGoMXB" parent="Base.Theme.AbcToGoMXB" />
+    <style name="Theme.AbcToGoMXB" parent="Base.Theme.AbcToGoMXB">
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
 
     <style name="BottomSheetDialogStyle" parent="Theme.MaterialComponents.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
