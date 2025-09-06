@@ -6,6 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/llToolBar"
+        layout="@layout/view_toolbar"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="@dimen/dp_0"
         android:layout_height="@dimen/dp_0"
@@ -14,7 +23,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/llToolBar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -34,14 +43,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="@dimen/dp_25" />
 
-            <include
-                android:id="@+id/llToolBar"
-                layout="@layout/view_toolbar"
-                android:layout_width="@dimen/dp_0"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
 
             <com.basalbody.app.utils.BasalTextView
                 android:id="@+id/tvLabel"
@@ -53,7 +54,7 @@
                 android:textSize="@dimen/sp_24"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
-                app:layout_constraintTop_toBottomOf="@id/llToolBar"
+                app:layout_constraintTop_toTopOf="parent"
                 app:textStyle="bold" />
 
             <com.basalbody.app.utils.BasalTextView

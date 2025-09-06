@@ -7,6 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/llToolBar"
+        layout="@layout/view_toolbar"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="@dimen/dp_0"
         android:layout_height="@dimen/dp_0"
@@ -15,11 +24,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/llToolBar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp_30">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/glStart"
@@ -35,15 +45,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="@dimen/dp_25" />
 
-            <include
-                android:id="@+id/llToolBar"
-                layout="@layout/view_toolbar"
-                android:layout_width="@dimen/dp_0"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
             <com.basalbody.app.utils.BasalTextView
                 android:id="@+id/tvLabel"
                 android:layout_width="@dimen/dp_0"
@@ -54,7 +55,7 @@
                 android:textSize="@dimen/sp_24"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
-                app:layout_constraintTop_toBottomOf="@id/llToolBar"
+                app:layout_constraintTop_toTopOf="parent"
                 app:textStyle="bold" />
 
             <com.basalbody.app.utils.BasalTextView
@@ -103,9 +104,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
                 app:btf_drawableStart="@drawable/ic_gender"
+                app:btf_drawableEnd="@drawable/ic_dropdown_18"
                 app:btf_hint="@string/hint_select_your_gender"
                 app:btf_imeOptions="actionNext"
-                app:btf_inputType="textEmailAddress"
+                app:btf_inputType="text"
                 app:btf_labelText="@string/lbl_gender"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
@@ -157,39 +159,39 @@
                 app:btf_labelText="@string/lbl_confirm_password"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
-                app:layout_constraintTop_toBottomOf="@+id/etPhone" />
+                app:layout_constraintTop_toBottomOf="@+id/etPass" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_select_check_box"
+                android:src="@drawable/ic_unselect_check_box"
                 android:layout_marginTop="@dimen/dp_15"
                 app:layout_constraintStart_toStartOf="@id/glStart"
-                app:layout_constraintTop_toBottomOf="@id/etPass"/>
+                app:layout_constraintTop_toBottomOf="@id/etConfirmPass"/>
 
             <com.basalbody.app.utils.BasalTextView
-                android:id="@+id/tvForgotPass"
+                android:id="@+id/tvTermsCondition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_15"
-                android:text="@string/lbl_forgot_password_que"
+                android:text="@string/agree_to_terms_conditions"
                 android:textColor="@color/colorText_4B4B4B"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintEnd_toEndOf="@id/glEnd"
-                app:layout_constraintTop_toBottomOf="@id/etPass"
-                app:textStyle="semiBold" />
+                android:textSize="@dimen/sp_14"
+                android:layout_marginStart="@dimen/dp_10"
+                app:layout_constraintTop_toTopOf="@id/ivCheck"
+                app:layout_constraintBottom_toBottomOf="@id/ivCheck"
+                app:layout_constraintStart_toEndOf="@+id/ivCheck"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnRegister"
                 style="@style/FilledButtonTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_43"
-                android:text="@string/lbl_login"
+                android:text="@string/register"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
-                app:layout_constraintTop_toBottomOf="@id/tvForgotPass" />
+                app:layout_constraintTop_toBottomOf="@id/ivCheck" />
 
             <com.basalbody.app.utils.BasalTextView
                 android:id="@+id/lblOrSignWith"
@@ -197,11 +199,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_43"
                 android:text="@string/lbl_or_sign_in_with"
-                android:textColor="@color/colorText_DC3556"
+                android:textColor="@color/black"
                 android:textSize="@dimen/sp_14"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
-                app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+                app:layout_constraintTop_toBottomOf="@id/btnRegister" />
 
             <View
                 android:layout_width="@dimen/dp_0"
@@ -234,14 +236,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/lblOrSignWith" />
 
             <com.basalbody.app.utils.BasalTextView
-                android:id="@+id/tvRegisterNow"
+                android:id="@+id/tvSignInNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/don_t_have_an_account_register_now"
+                android:text="@string/lbl_already_have_an_account_sign_in_now"
                 android:textColor="@color/colorText_989898"
                 android:textSize="@dimen/sp_14"
-                android:layout_marginBottom="@dimen/dp_30"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="@dimen/dp_25"
+                app:layout_constraintTop_toBottomOf="@+id/ivGoogle"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"/>
 

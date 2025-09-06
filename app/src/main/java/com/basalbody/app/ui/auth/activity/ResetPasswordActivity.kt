@@ -6,6 +6,7 @@ import com.basalbody.app.base.BaseActivity
 import com.basalbody.app.databinding.ActivityResetPasswordBinding
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.onNoSafeClick
+import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +33,10 @@ class ResetPasswordActivity  : BaseActivity<AuthViewModel, ActivityResetPassword
         binding.apply {
             llToolBar.ivBack.onNoSafeClick {
                 finish()
+            }
+
+            btnSubmit.onSafeClick {
+
             }
         }
     }

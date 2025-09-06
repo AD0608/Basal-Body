@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/dp_25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/dp_25" />
+
+    <include
+        android:id="@+id/llToolBar"
+        layout="@layout/view_toolbar"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="@dimen/dp_98"
+        android:layout_height="@dimen/dp_98"
+        android:layout_marginTop="@dimen/dp_32"
+        android:src="@drawable/ic_dummy_user"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintTop_toBottomOf="@id/llToolBar"
+        app:shapeAppearance="@style/ImageCorner_12"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_round_pink"
+        android:padding="@dimen/dp_7"
+        android:layout_marginEnd="-10dp"
+        android:layout_marginBottom="-10dp"
+        app:layout_constraintEnd_toEndOf="@+id/ivProfile"
+        app:layout_constraintBottom_toBottomOf="@+id/ivProfile">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivCamera"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.basalbody.app.utils.BasalTextField
+        android:id="@+id/etFullName"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_29"
+        app:btf_drawableStart="@drawable/ic_user"
+        app:btf_hint="@string/hint_enter_your_full_name_here"
+        app:btf_imeOptions="actionNext"
+        app:btf_inputType="textPersonName"
+        app:btf_labelText="@string/lbl_full_name"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/ivProfile" />
+
+    <com.basalbody.app.utils.BasalTextField
+        android:id="@+id/etEmail"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        app:btf_drawableStart="@drawable/ic_email"
+        app:btf_hint="@string/hint_enter_your_email_here"
+        app:btf_imeOptions="actionNext"
+        app:btf_inputType="textEmailAddress"
+        app:btf_labelText="@string/lbl_email"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/etFullName" />
+
+
+    <com.basalbody.app.utils.BasalTextField
+        android:id="@+id/etGender"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        app:btf_drawableStart="@drawable/ic_gender"
+        app:btf_drawableEnd="@drawable/ic_dropdown_18"
+        app:btf_hint="@string/hint_select_your_gender"
+        app:btf_imeOptions="actionNext"
+        app:btf_inputType="text"
+        app:btf_labelText="@string/lbl_gender"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnUpdate"
+        style="@style/FilledButtonTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:text="@string/button_update"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

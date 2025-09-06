@@ -161,8 +161,18 @@
     <string name="hint_enter_temperature">Enter Temperature</string>
     <string name="hint_select_date">Select Date</string>
     <string name="label_date">Date</string>
-    <string name="label_note">Notes</string>
-    <string name="hint_enter_note">Enter here...</string>
-    <string name="btn_add">Add</string>
-    <string name="label_notification">Notification</string>
+    <string name="register">Register</string>
+    <string name="agree_to_terms_conditions">Agree to Terms &amp; Conditions</string>
+    <string name="terms_conditions">Terms &amp; Conditions</string>
+    <string name="lbl_already_have_an_account_sign_in_now">Already have an account? Sign in Now</string>
+    <string name="sign_in_now">Sign in Now</string>
+    <string name="current_password">Current Password</string>
+    <string name="lbl_new_password">New Password</string>
+    <string name="lbl_change_password">Change Password</string>
+    <string name="contact_support">Contact Support</string>
+    <string name="lbl_message">Message</string>
+    <string name="hint_enter_your_comment_here">Enter your comment here</string>
+    <string name="title_bluetooth_device_troubleshooting">Bluetooth device troubleshooting</string>
+    <string name="lbl_issue_message">Issue Message</string>
+    <string name="title_edit_profile">Edit Profile</string>
 </resources>
