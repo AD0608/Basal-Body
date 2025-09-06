@@ -5,10 +5,11 @@ import com.basalbody.app.R
 import com.basalbody.app.base.BaseFragment
 import com.basalbody.app.databinding.FragmentBluetoothBinding
 import com.basalbody.app.extensions.addRippleWaves
+import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.gone
-import com.basalbody.app.extensions.onSafeClick
-import com.basalbody.app.extensions.removeRippleWaves
+import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.extensions.visible
+import com.basalbody.app.ui.home.activity.ConnectedDeviceActivity
 import com.basalbody.app.ui.home.adapter.BluetoothDevicesListAdapter
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
 
@@ -23,39 +24,27 @@ class BluetoothFragment :
 
     override fun initSetup() {
         binding.apply {
+            toolBar.tvTitle.changeText(getString(R.string.label_bluetooth))
+            toolBar.ivBack.gone()
             imgBluetooth.setImageResource(R.drawable.ic_bluetooth_blue)
-            clConnectedDevice.gone()
-            grpAvailableDevices.gone()
             rvAvailableDevices.adapter = availableDevicesAdapter
+            tvLabelAvailableDevices.gone()
+            rvAvailableDevices.gone()
         }
     }
 
     override fun listeners() {
         binding.apply {
             btnScanForDevices.setOnClickListener {
-                clConnectedDevice.gone()
-                grpAvailableDevices.visible()
                 imgBluetooth.addRippleWaves(color = "#407FFF".toColorInt())
-            }
-
-            btnChangeConnectionStatus onSafeClick {
-                imgBluetooth.setImageResource(R.drawable.ic_bluetooth_blue)
-                grpAvailableDevices.visible()
-                clConnectedDevice.gone()
-                btnScanForDevices.visible()
-                imgBluetooth.addRippleWaves(color = "#407FFF".toColorInt())
+                tvLabelAvailableDevices.visible()
+                rvAvailableDevices.visible()
             }
         }
     }
 
     private fun onConnectDeviceClick(s: String) {
-        binding.apply {
-            imgBluetooth.setImageResource(R.drawable.ic_bluetooth_connected)
-            clConnectedDevice.visible()
-            grpAvailableDevices.gone()
-            btnScanForDevices.gone()
-            imgBluetooth.removeRippleWaves()
-        }
+        startNewActivity(ConnectedDeviceActivity::class.java)
     }
 
 }

@@ -155,4 +155,6 @@
     <string name="lbl_full_name">Full Name</string>
     <string name="hint_select_your_gender">Select your Gender</string>
     <string name="lbl_gender">Gender</string>
+    <string name="label_bluetooth">Bluetooth</string>
+    <string name="label_connected_device">Connected Device</string>
 </resources>

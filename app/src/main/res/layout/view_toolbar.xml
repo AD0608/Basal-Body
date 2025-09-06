@@ -43,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivBack"
                 android:layout_width="wrap_content"
@@ -60,10 +59,10 @@
 
             <com.basalbody.app.utils.BasalTextView
                 android:id="@+id/tvTitle"
-                android:gravity="center"
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/dp_16"
+                android:gravity="center"
                 android:includeFontPadding="false"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_17"
@@ -84,7 +83,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/ivBack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvTitle"
-                app:layout_constraintTop_toTopOf="@+id/ivBack"/>
+                app:layout_constraintTop_toTopOf="@+id/ivBack" />
 
             <com.basalbody.app.utils.BasalTextView
                 android:id="@+id/textViewEnd"
@@ -94,11 +93,11 @@
                 android:includeFontPadding="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/sp_15"
-                app:textStyle="medium"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/ivBack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/ivBack"
+                app:textStyle="medium"
                 tools:text="Skip" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

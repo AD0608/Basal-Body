@@ -135,7 +135,7 @@
                 app:btf_drawableStart="@drawable/ic_password_lock"
                 app:btf_drawableEnd="@drawable/ic_password_eye_close"
                 app:btf_hint="@string/hint_enter_password_here"
-                app:btf_imeOptions="actionNextne"
+                app:btf_imeOptions="actionNext"
                 app:btf_inputType="textPassword"
                 app:btf_isPassword="true"
                 app:btf_labelText="@string/lbl_password"

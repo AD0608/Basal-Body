@@ -31,6 +31,12 @@
         android:theme="@style/Theme.AbcToGoMXB"
         tools:targetApi="31">
         <activity
+            android:name=".ui.home.activity.AddNewActivityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.activity.ConnectedDeviceActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.auth.activity.ForgotPasswordOptionActivity"
             android:exported="false" />
         <activity
