@@ -155,4 +155,9 @@
     <string name="lbl_full_name">Full Name</string>
     <string name="hint_select_your_gender">Select your Gender</string>
     <string name="lbl_gender">Gender</string>
+    <string name="register">Register</string>
+    <string name="agree_to_terms_conditions">Agree to Terms &amp; Conditions</string>
+    <string name="terms_conditions">Terms &amp; Conditions</string>
+    <string name="lbl_already_have_an_account_sign_in_now">Already have an account? Sign in Now</string>
+    <string name="sign_in_now">Sign in Now</string>
 </resources>

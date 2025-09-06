@@ -15,6 +15,7 @@ class AuthViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     var isSelectEmail : Boolean = false
+    var isTermsConditionCheck : Boolean = false
     var countDownTimer: CountDownTimer? = null
 
     //-------Init Api-------//
