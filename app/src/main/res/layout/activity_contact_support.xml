@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/dp_25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/dp_25" />
+
+    <include
+        android:id="@+id/llToolBar"
+        layout="@layout/view_toolbar"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.basalbody.app.utils.BasalTextField
+        android:id="@+id/etFullName"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_29"
+        app:btf_drawableStart="@drawable/ic_user"
+        app:btf_hint="@string/hint_enter_your_full_name_here"
+        app:btf_imeOptions="actionNext"
+        app:btf_inputType="textPersonName"
+        app:btf_labelText="@string/lbl_full_name"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/llToolBar" />
+
+    <com.basalbody.app.utils.BasalTextField
+        android:id="@+id/etEmail"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        app:btf_drawableStart="@drawable/ic_email"
+        app:btf_hint="@string/hint_enter_your_email_here"
+        app:btf_imeOptions="actionNext"
+        app:btf_inputType="textEmailAddress"
+        app:btf_labelText="@string/lbl_email"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/etFullName" />
+
+    <com.basalbody.app.utils.BasalTextView
+        android:id="@+id/lblMessage"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16"
+        app:textStyle="normal"
+        android:text="@string/lbl_message"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etMessage"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:fontFamily="@font/geist_regular"
+        android:background="@drawable/bg_app_multi_line_text_field"
+        android:gravity="top|start"
+        android:hint="@string/hint_enter_your_comment_here"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:minLines="5"
+        android:padding="@dimen/dp_17"
+        android:textColor="@color/color_edittext_text"
+        android:textColorHint="@color/color_edittext_hint"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/lblMessage" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSubmit"
+        style="@style/FilledButtonTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:text="@string/btn_submit"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
