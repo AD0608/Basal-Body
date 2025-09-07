@@ -175,4 +175,8 @@
     <string name="title_bluetooth_device_troubleshooting">Bluetooth device troubleshooting</string>
     <string name="lbl_issue_message">Issue Message</string>
     <string name="title_edit_profile">Edit Profile</string>
+    <string name="label_note">Notes</string>
+    <string name="hint_enter_note">Enter here...</string>
+    <string name="btn_add">Add</string>
+    <string name="label_notification">Notification</string>
 </resources>
