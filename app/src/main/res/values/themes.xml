@@ -1,5 +1,5 @@
 <resources>
-    <style name="Theme.BasalBody" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.BasalBody" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
@@ -43,6 +43,8 @@
         <item name="android:drawablePadding">@dimen/dp_10</item>
         <item name="android:paddingVertical">@dimen/dp_10</item>
         <item name="android:paddingHorizontal">@dimen/dp_34</item>
+        <item name="android:minWidth">@dimen/dp_0</item>
+        <item name="android:minHeight">@dimen/dp_0</item>
         <item name="android:textColor">@color/colorButtonText</item>
         <item name="android:textAllCaps">false</item>
     </style>

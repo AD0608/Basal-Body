@@ -34,14 +34,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="@dimen/dp_25" />
+                app:layout_constraintGuide_begin="@dimen/dp_24" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/glEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="@dimen/dp_25" />
+                app:layout_constraintGuide_end="@dimen/dp_24" />
 
 
             <com.basalbody.app.utils.BasalTextView
@@ -135,7 +135,7 @@
 
             <View
                 android:layout_width="@dimen/dp_0"
-                android:layout_height="@dimen/dp_1"
+                android:layout_height="0.5dp"
                 android:layout_marginEnd="@dimen/dp_10"
                 android:background="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/lblOrSignWith"
@@ -145,7 +145,7 @@
 
             <View
                 android:layout_width="@dimen/dp_0"
-                android:layout_height="@dimen/dp_1"
+                android:layout_height="0.5dp"
                 android:layout_marginStart="@dimen/dp_10"
                 android:background="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/lblOrSignWith"
@@ -153,12 +153,12 @@
                 app:layout_constraintStart_toEndOf="@+id/lblOrSignWith"
                 app:layout_constraintTop_toTopOf="@+id/lblOrSignWith" />
 
-            <com.google.android.material.imageview.ShapeableImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivGoogle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_50"
                 android:layout_marginTop="@dimen/dp_25"
-                android:src="@drawable/ic_g_login"
+                android:src="@drawable/ic_google_login"
                 app:layout_constraintEnd_toEndOf="@+id/glEnd"
                 app:layout_constraintStart_toStartOf="@+id/glStart"
                 app:layout_constraintTop_toBottomOf="@+id/lblOrSignWith" />

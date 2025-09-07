@@ -40,7 +40,7 @@ class SplashActivity : BaseActivity<AuthViewModel, ActivitySplashBinding>() {
 
         lifecycleScope.launch {
             delay(3000L)
-            startNewActivity(IntroActivity::class.java, isFinish = true)
+            startNewActivity(LoginActivity::class.java, isFinish = true)
 //            startNewActivity(HomeActivity::class.java, isFinish = true)
         }
     }

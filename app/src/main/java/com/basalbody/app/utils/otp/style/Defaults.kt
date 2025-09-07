@@ -6,9 +6,9 @@ import androidx.compose.ui.unit.sp
 
 object Defaults {
     val activeBackground: Color = Color.White
-    val passiveBackground: Color = Color(0xFFD0DAE2)
+    val passiveBackground: Color = Color.White
     val errorColor: Color = Color.Red
-    val textStyle: TextStyle = TextStyle(color = Color(0xFF010D15), fontSize = 14.sp)
+    val textStyle: TextStyle = TextStyle(color = Color(0xFF000000), fontSize = 14.sp)
     val digits: Int = 6
 }
 

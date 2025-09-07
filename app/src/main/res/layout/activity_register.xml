@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,9 +10,9 @@
         layout="@layout/view_toolbar"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="@dimen/dp_0"
@@ -36,14 +34,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="@dimen/dp_25" />
+                app:layout_constraintGuide_begin="@dimen/dp_24" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/glEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="@dimen/dp_25" />
+                app:layout_constraintGuide_end="@dimen/dp_24" />
 
             <com.basalbody.app.utils.BasalTextView
                 android:id="@+id/tvLabel"
@@ -103,8 +101,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
-                app:btf_drawableStart="@drawable/ic_gender"
                 app:btf_drawableEnd="@drawable/ic_dropdown_18"
+                app:btf_drawableStart="@drawable/ic_gender"
                 app:btf_hint="@string/hint_select_your_gender"
                 app:btf_imeOptions="actionNext"
                 app:btf_inputType="text"
@@ -123,8 +121,8 @@
                 app:btf_hint="@string/hint_enter_phone_no_here"
                 app:btf_imeOptions="actionNext"
                 app:btf_inputType="number"
-                app:btf_maxLength="10"
                 app:btf_labelText="@string/lbl_phone_number"
+                app:btf_maxLength="10"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
                 app:layout_constraintTop_toBottomOf="@+id/etGender" />
@@ -134,8 +132,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
-                app:btf_drawableStart="@drawable/ic_password_lock"
                 app:btf_drawableEnd="@drawable/ic_password_eye_close"
+                app:btf_drawableStart="@drawable/ic_password_lock"
                 app:btf_hint="@string/hint_enter_password_here"
                 app:btf_imeOptions="actionNext"
                 app:btf_inputType="textPassword"
@@ -150,8 +148,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
-                app:btf_drawableStart="@drawable/ic_password_lock"
                 app:btf_drawableEnd="@drawable/ic_password_eye_close"
+                app:btf_drawableStart="@drawable/ic_password_lock"
                 app:btf_hint="@string/hint_enter_password_here"
                 app:btf_imeOptions="actionDone"
                 app:btf_inputType="textPassword"
@@ -165,22 +163,22 @@
                 android:id="@+id/ivCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_unselect_check_box"
                 android:layout_marginTop="@dimen/dp_15"
+                android:src="@drawable/ic_unselect_check_box"
                 app:layout_constraintStart_toStartOf="@id/glStart"
-                app:layout_constraintTop_toBottomOf="@id/etConfirmPass"/>
+                app:layout_constraintTop_toBottomOf="@id/etConfirmPass" />
 
             <com.basalbody.app.utils.BasalTextView
                 android:id="@+id/tvTermsCondition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
                 android:text="@string/agree_to_terms_conditions"
                 android:textColor="@color/colorText_4B4B4B"
                 android:textSize="@dimen/sp_14"
-                android:layout_marginStart="@dimen/dp_10"
-                app:layout_constraintTop_toTopOf="@id/ivCheck"
                 app:layout_constraintBottom_toBottomOf="@id/ivCheck"
-                app:layout_constraintStart_toEndOf="@+id/ivCheck"/>
+                app:layout_constraintStart_toEndOf="@+id/ivCheck"
+                app:layout_constraintTop_toTopOf="@id/ivCheck" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnRegister"
@@ -225,12 +223,12 @@
                 app:layout_constraintStart_toEndOf="@+id/lblOrSignWith"
                 app:layout_constraintTop_toTopOf="@+id/lblOrSignWith" />
 
-            <com.google.android.material.imageview.ShapeableImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivGoogle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_50"
                 android:layout_marginTop="@dimen/dp_25"
-                android:src="@drawable/ic_g_login"
+                android:src="@drawable/ic_google_login"
                 app:layout_constraintEnd_toEndOf="@+id/glEnd"
                 app:layout_constraintStart_toStartOf="@+id/glStart"
                 app:layout_constraintTop_toBottomOf="@+id/lblOrSignWith" />
@@ -239,13 +237,13 @@
                 android:id="@+id/tvSignInNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_25"
                 android:text="@string/lbl_already_have_an_account_sign_in_now"
                 android:textColor="@color/colorText_989898"
                 android:textSize="@dimen/sp_14"
-                android:layout_marginTop="@dimen/dp_25"
-                app:layout_constraintTop_toBottomOf="@+id/ivGoogle"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
-                app:layout_constraintStart_toStartOf="@id/glStart"/>
+                app:layout_constraintStart_toStartOf="@id/glStart"
+                app:layout_constraintTop_toBottomOf="@+id/ivGoogle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,13 +5,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
@@ -27,6 +26,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.TextStyle
@@ -36,9 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
 import com.basalbody.app.utils.otp.style.ColorStyle
 import com.basalbody.app.utils.otp.style.Defaults
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 /**
  *Created by Paras Chauhan on 29,November,2023
@@ -61,14 +59,13 @@ fun InnerOtpView(
     onFocusChanged: (Boolean) -> Unit = {},
     onTextChange: (String, Boolean) -> Unit,
 ) {
-
     val focusRequester = remember { FocusRequester() }
     var isFocused by remember { mutableStateOf(false) }
 
-    val screenWidth = LocalConfiguration.current.screenWidthDp
-    val boxSize = textStyle.fontSize.value * 2 + 4
-    val maxDigit = (screenWidth / boxSize) - 1
-    val currentDigitCount = minOf(digits, maxDigit.toInt())
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val boxSpacing = 10.dp
+    val boxWidth = (screenWidth - (boxSpacing * (digits - 1))) / digits
 
     BasicTextField(
         modifier = modifier
@@ -80,11 +77,11 @@ fun InnerOtpView(
         value = value,
         singleLine = true,
         onValueChange = {
-            if (it.length <= currentDigitCount) {
+            if (it.length <= digits) {
                 if ((keyboardOptions.keyboardType == KeyboardType.Number && it.isDigitsOnly()) ||
                     keyboardOptions.keyboardType == KeyboardType.Text
                 ) {
-                    onTextChange.invoke(it, it.length == currentDigitCount)
+                    onTextChange.invoke(it, it.length == digits)
                     onFocusChanged(true)
                 }
             }
@@ -93,72 +90,58 @@ fun InnerOtpView(
         enabled = enabled,
         textStyle = TextStyle(textAlign = TextAlign.Center),
         keyboardOptions = keyboardOptions,
-        decorationBox = { innerTextField ->
+        decorationBox = {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                horizontalArrangement = Arrangement.spacedBy(boxSpacing)
             ) {
                 val textLength = value.length
-                repeat(currentDigitCount) { index ->
+                repeat(digits) { index ->
                     Box(
                         modifier = Modifier
-                            .weight(1f)
-                            .sizeIn(minWidth = boxSize.dp, minHeight = boxSize.dp)
+                            .weight(1f)         // equal width for each digit
+                            .aspectRatio(1f)    // make it a square
                             .background(
-                                if (index < textLength && value[index]
-                                        .toString()
-                                        .isNotEmpty()
-                                ) colorStyle.active else if (index == textLength && isFocused) colorStyle.active else colorStyle.passive,
-                                shape = RoundedCornerShape(18.dp)
+                                if (index < value.length) colorStyle.active
+                                else if (index == value.length && isFocused) colorStyle.active
+                                else colorStyle.passive,
+                                shape = CircleShape
                             )
                             .border(
                                 width = 0.5.dp,
-                                color = if (errorEnabled) colorStyle.error
-                                else (if (index < textLength && value[index]
-                                        .toString()
-                                        .isNotEmpty()
-                                ) textStyle.color else if (index == textLength && isFocused) textStyle.color else colorStyle.passive),
-                                shape = RoundedCornerShape(18.dp)
+                                color = if (errorEnabled) colorStyle.error else Color(0xff716569),
+                                shape = CircleShape
                             )
-                            .padding(1.dp)
-                            .padding(vertical = 20.dp),
-                        contentAlignment = Alignment.Center,
+                            .padding(vertical = 10.dp),
+                        contentAlignment = Alignment.Center
                     ) {
                         Text(
                             text = if (index < textLength) {
-                                if (password) {
-                                    symbol.toString()
-                                } else {
-                                    value[index].toString()
-                                }
-                            } else if (index == textLength && isFocused) "" else "_",
+                                if (password) symbol.toString() else value[index].toString()
+                            } else "",
+                            style = textStyle,
+                            textAlign = TextAlign.Center,
                             modifier = Modifier.align(
                                 Alignment.Center
-                            ),
-                            style = textStyle
+                            )
                         )
                         if (index == textLength && isFocused) {
                             var alpha by remember { mutableStateOf(1f) }
-                            LaunchedEffect(key1 = Unit) {
-                                coroutineScope {
-                                    launch {
-                                        while (true) {
-                                            delay(750L)
-                                            alpha = 1f - alpha
-                                        }
-                                    }
+                            LaunchedEffect(Unit) {
+                                while (true) {
+                                    delay(750L)
+                                    alpha = 1f - alpha
                                 }
                             }
                             Box(
                                 modifier = Modifier
                                     .width(2.dp)
-                                    .height(((boxSize / 2) - 2).dp)
+                                    .height(textStyle.fontSize.value.dp * 1.2f) // proportional to text size
                                     .alpha(alpha)
-                                    .background(textStyle.color.copy(alpha = 0.4f))
+                                    .background(textStyle.color.copy(alpha = 0.6f))
                             )
                         }
                     }
-                    if (index != currentDigitCount - 1) Spacer(modifier = Modifier.width(10.dp))
                 }
             }
         },

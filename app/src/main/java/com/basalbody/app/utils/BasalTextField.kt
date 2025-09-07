@@ -65,6 +65,7 @@ class BasalTextField @JvmOverloads constructor(
             this.minLines = minLines
             this.hint = fieldHint
             this.setLines(lines)
+            this.setTextCursorDrawable(R.drawable.cursor)
             this.setLineSpacing(lineSpacing, 1F)
             this.filters = arrayOf(InputFilter.LengthFilter(maxLength))
             this.isSingleLine = singleLine
@@ -94,7 +95,10 @@ class BasalTextField @JvmOverloads constructor(
 
 
         if (isPasswordField) {
-            endDrawableImage.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_password_eye_close))
+            endDrawableImage.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_open_eye))
+            editText.transformationMethod =
+                CustomPasswordTransformation()
+            editText.typeface = CommonUtils.getTypeface(context, 0)
         }
 
         endDrawableImage onNoSafeClick {
@@ -102,15 +106,17 @@ class BasalTextField @JvmOverloads constructor(
                 if (isPassword) {
                     endDrawableImage.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_password_eye_close))
                     isPassword = false
-                    editText?.transformationMethod =
+                    editText.transformationMethod =
                         HideReturnsTransformationMethod.getInstance()
                     editText.setSelection(editText.text!!.length)
+                    editText.typeface = CommonUtils.getTypeface(context, 0)
                 } else {
                     endDrawableImage.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_open_eye))
                     isPassword = true
-                    editText?.transformationMethod =
+                    editText.transformationMethod =
                         CustomPasswordTransformation()
                     editText.setSelection(editText.text!!.length)
+                    editText.typeface = CommonUtils.getTypeface(context, 0)
                 }
             }
         }
