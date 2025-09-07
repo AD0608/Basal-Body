@@ -179,4 +179,7 @@
     <string name="hint_enter_note">Enter here...</string>
     <string name="btn_add">Add</string>
     <string name="label_notification">Notification</string>
+    <string name="label_connect_bluetooth_devices">Connected Bluetooth Devices</string>
+    <string name="lbl_faq">FAQ</string>
+    <string name="lbl_data_privacy">Data Privacy</string>
 </resources>

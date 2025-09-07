@@ -9,6 +9,8 @@ import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.setTextDecorator
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
+import com.basalbody.app.ui.profile.activity.ChangePasswordActivity
+import com.basalbody.app.ui.setting.activity.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +35,7 @@ class RegisterActivity : BaseActivity<AuthViewModel, ActivityRegisterBinding>() 
                 true,
                 callBack = {
                     Log.e(TAG, "setupUI() Terms and Condition")
+                    startNewActivity(WebViewActivity::class.java)
                 })
             tvSignInNow.setTextDecorator(resources.getString(R.string.sign_in_now),
                 R.color.colorText_263238,

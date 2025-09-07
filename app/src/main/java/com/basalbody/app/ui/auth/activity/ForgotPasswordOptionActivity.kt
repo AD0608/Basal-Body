@@ -1,6 +1,5 @@
 package com.basalbody.app.ui.auth.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.basalbody.app.R
@@ -10,7 +9,6 @@ import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
-import com.basalbody.app.utils.CommonUtils
 import com.basalbody.app.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
