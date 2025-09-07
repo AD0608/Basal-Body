@@ -50,13 +50,11 @@
     </style>
 
     <style name="BNVTextStyleActive">
-        <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/geist_semi_bold</item>
         <item name="android:textSize">@dimen/sp_12</item>
     </style>
 
     <style name="BNVTextStyleInactive">
-        <item name="android:textColor">@color/color888888</item>
         <item name="android:fontFamily">@font/geist_regular</item>
         <item name="android:textSize">@dimen/sp_12</item>
     </style>

@@ -30,6 +30,8 @@
         app:itemTextAppearanceActive="@style/BNVTextStyleActive"
         app:itemTextAppearanceInactive="@style/BNVTextStyleInactive"
         app:labelVisibilityMode="labeled"
+        app:itemIconTint="@null"
+        app:itemTextColor="@color/bnv_item_text_color"
         app:menu="@menu/bottom_menu"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
