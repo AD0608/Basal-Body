@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
 import com.basalbody.app.databinding.ActivityConnectedBluetoothDeviceBinding
@@ -37,6 +38,12 @@ class FaqActivity : BaseActivity<ProfileViewModel, ActivityFaqBinding>() {
 
     private fun setupUI() {
         binding.apply {
+            ViewCompat.setOnApplyWindowInsetsListener(main) { v, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                v.setPaddingRelative(0,systemBars.top,0,0)
+                rvFaq.updatePadding(bottom = systemBars.bottom)
+                insets
+            }
             llToolBar.tvTitle.changeText(R.string.lbl_faq)
             rvFaq.adapter = faqAdapter
         }
