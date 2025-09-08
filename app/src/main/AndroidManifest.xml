@@ -31,6 +31,12 @@
         android:theme="@style/Theme.BasalBody"
         tools:targetApi="31">
         <activity
+            android:name=".ui.profile.activity.FaqActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.activity.ConnectedBluetoothDeviceActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profile.activity.TroubleShootActivity"
             android:exported="false" />
         <activity

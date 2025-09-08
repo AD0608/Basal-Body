@@ -11,6 +11,7 @@ import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.setTextDecorator
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
+import com.basalbody.app.ui.home.activity.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,6 +49,10 @@ class LoginActivity : BaseActivity<AuthViewModel, ActivityLoginBinding>() {
 
             tvForgotPass.onSafeClick {
                 startActivity(Intent(this@LoginActivity, ForgotPasswordOptionActivity::class.java))
+            }
+
+            btnLogin.onSafeClick {
+                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             }
         }
     }
