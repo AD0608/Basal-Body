@@ -72,13 +72,13 @@ android {
     productFlavors {
         create("development") {
             dimension = "MXB"
-            buildConfigField("String", "BASE_URL", "\"https://dev.rbt.sa/api/driver/\"")
-            buildConfigField("String", "SOCKET_BASE_URL", "\"https://dev.socket.rbt.sa\"")
+            buildConfigField("String", "BASE_URL", "\"www.google.com\"")
+            buildConfigField("String", "SOCKET_BASE_URL", "\"www.google.com\"")
         }
         create("production") {
             dimension = "MXB"
-            buildConfigField("String", "BASE_URL", "\"https://dev.rbt.sa/api/driver/\"")
-            buildConfigField("String", "SOCKET_BASE_URL", "\"https://dev.socket.rbt.sa\"")
+            buildConfigField("String", "BASE_URL", "\"www.google.com\"")
+            buildConfigField("String", "SOCKET_BASE_URL", "\"www.google.com\"")
         }
     }
 }
