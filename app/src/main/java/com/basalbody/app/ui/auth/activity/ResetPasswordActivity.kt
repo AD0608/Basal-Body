@@ -7,6 +7,8 @@ import com.basalbody.app.databinding.ActivityResetPasswordBinding
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.onNoSafeClick
 import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.extensions.startNewActivity
+import com.basalbody.app.ui.common.CommonSuccessBottomSheetDialog
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,7 +38,13 @@ class ResetPasswordActivity  : BaseActivity<AuthViewModel, ActivityResetPassword
             }
 
             btnSubmit.onSafeClick {
-
+                CommonSuccessBottomSheetDialog.newInstance(root, this@ResetPasswordActivity, callBack =  {
+                    startNewActivity(LoginActivity::class.java, isClearAllStacks = true, isFinish = true)
+                }).apply {
+                    title = this@ResetPasswordActivity.getString(R.string.label_password_update_successfully)
+                    description = this@ResetPasswordActivity.getString(R.string.message_password_reset_successfully)
+                    btnText = this@ResetPasswordActivity.getString(R.string.btn_back_to_login)
+                }.show(supportFragmentManager, "PasswordResetSuccessBottomSheetDialog")
             }
         }
     }

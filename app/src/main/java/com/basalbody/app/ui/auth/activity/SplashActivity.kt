@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
-import com.basalbody.app.common.CommonBottomSheetDialog
 import com.basalbody.app.databinding.ActivitySplashBinding
 import com.basalbody.app.extensions.notNull
 import com.basalbody.app.extensions.openPlayStore
@@ -40,8 +39,8 @@ class SplashActivity : BaseActivity<AuthViewModel, ActivitySplashBinding>() {
 
         lifecycleScope.launch {
             delay(3000L)
-//            startNewActivity(IntroActivity::class.java, isFinish = true)
-            startNewActivity(HomeActivity::class.java, isFinish = true)
+            startNewActivity(IntroActivity::class.java, isFinish = true)
+//            startNewActivity(HomeActivity::class.java, isFinish = true)
         }
     }
 
@@ -131,7 +130,7 @@ class SplashActivity : BaseActivity<AuthViewModel, ActivitySplashBinding>() {
         dialogImage: Int = R.drawable.ic_back,
         onBackButtonClick: (() -> Unit)? = null
     ) {
-        CommonBottomSheetDialog.newInstance(
+        /*CommonBottomSheetDialog.newInstance(
             this,
             binding.main,
             isPreventBackButton = !dialogNeedToDismiss,
@@ -144,7 +143,7 @@ class SplashActivity : BaseActivity<AuthViewModel, ActivitySplashBinding>() {
             image = dialogImage
             onClick = onButtonClick
             onBackClick = onBackButtonClick
-        }.show(supportFragmentManager, "handleInitError")
+        }.show(supportFragmentManager, "handleInitError")*/
     }
 
     private fun handleInitSuccess() {

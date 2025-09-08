@@ -81,8 +81,7 @@
         android:gravity="top|start"
         android:hint="@string/hint_enter_your_comment_here"
         android:inputType="textMultiLine"
-        android:maxLines="5"
-        android:minLines="5"
+        android:minLines="7"
         android:padding="@dimen/dp_17"
         android:textColor="@color/color_edittext_text"
         android:textColorHint="@color/color_edittext_hint"
@@ -98,6 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp_30"
         android:text="@string/btn_submit"
+        android:fontFamily="@font/geist_regular"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintBottom_toBottomOf="parent" />

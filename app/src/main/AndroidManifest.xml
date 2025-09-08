@@ -93,7 +93,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.setting.activity.WebViewActivity" />
+        <activity android:name=".ui.profile.activity.WebViewActivity" />
 
         <service
             android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"

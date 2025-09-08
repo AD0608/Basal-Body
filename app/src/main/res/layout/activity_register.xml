@@ -121,6 +121,7 @@
                 app:btf_hint="@string/hint_enter_phone_no_here"
                 app:btf_imeOptions="actionNext"
                 app:btf_inputType="number"
+                app:btf_isMobile="true"
                 app:btf_labelText="@string/lbl_phone_number"
                 app:btf_maxLength="10"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"

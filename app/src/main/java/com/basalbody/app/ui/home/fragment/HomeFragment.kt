@@ -119,6 +119,23 @@ class HomeFragment :
             imgNotifications onSafeClick {
                 startNewActivity(NotificationsActivity::class.java)
             }
+
+            btnYesMenstruation onSafeClick {
+                llMenstruationAnswer.background = null
+                btnNoMenstruation.gone()
+            }
+
+            btnNoMenstruation onSafeClick {
+                btnYesMenstruation.gone()
+            }
+
+            btnYesIntercourse onSafeClick {
+                llIntercourseAnswer.background = null
+                btnNoIntercourse.gone()
+            }
+            btnNoIntercourse onSafeClick {
+                btnYesIntercourse.gone()
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package com.basalbody.app.ui.setting.activity
+package com.basalbody.app.ui.profile.activity
 
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
@@ -10,16 +10,17 @@ import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
 import com.basalbody.app.common.CommonViewModel
 import com.basalbody.app.databinding.ActivityWebViewBinding
+import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.getEnum
 import com.basalbody.app.extensions.withNotNull
+import com.basalbody.app.ui.profile.viewmodel.ProfileViewModel
 import com.basalbody.app.utils.Constants
-import com.basalbody.app.utils.Constants.EMPTY_STRING
 import com.basalbody.app.utils.EnumUtils
 import com.basalbody.app.utils.LoadingDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WebViewActivity : BaseActivity<CommonViewModel, ActivityWebViewBinding>() {
+class WebViewActivity : BaseActivity<ProfileViewModel, ActivityWebViewBinding>() {
 
     private var receiptUrl = ""
 
@@ -28,6 +29,7 @@ class WebViewActivity : BaseActivity<CommonViewModel, ActivityWebViewBinding>() 
     override fun initSetup() {
         LoadingDialog.showLoadDialog(this@WebViewActivity)
 //        showProgressDialog(this)
+        binding.llToolBar.tvTitle.changeText(getString(R.string.label_data_privacy))
         binding.webView.apply {
             intent.extras.withNotNull { bundle ->
                 bundle.getEnum<EnumUtils.WebView>(Constants.BUNDLE_KEY_WHICH_WEB_VIEW).withNotNull {
@@ -64,7 +66,7 @@ class WebViewActivity : BaseActivity<CommonViewModel, ActivityWebViewBinding>() 
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     //---------Below code for reload page again----//
-                    if ((view?.title ?: EMPTY_STRING).isNotEmpty()) {
+                    if ((view?.title ?: Constants.EMPTY_STRING).isNotEmpty()) {
                         LoadingDialog.hideLoadDialog()
                     } else {
                         view?.reload()

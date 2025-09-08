@@ -12,28 +12,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/dp_25" />
+        app:layout_constraintGuide_begin="@dimen/dp_24" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/dp_25" />
+        app:layout_constraintGuide_end="@dimen/dp_24" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/dp_25" />
+        app:layout_constraintGuide_begin="@dimen/dp_24" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="@dimen/dp_25" />
+        app:layout_constraintGuide_end="@dimen/dp_24" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewIcon"

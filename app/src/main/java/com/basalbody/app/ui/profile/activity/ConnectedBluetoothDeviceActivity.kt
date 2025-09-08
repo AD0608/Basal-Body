@@ -1,6 +1,9 @@
 package com.basalbody.app.ui.profile.activity
 
 import android.util.Log
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
 import com.basalbody.app.databinding.ActivityConnectedBluetoothDeviceBinding
@@ -32,6 +35,12 @@ class ConnectedBluetoothDeviceActivity :
 
     private fun setupUI() {
         binding.apply {
+            ViewCompat.setOnApplyWindowInsetsListener(main) { v, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                v.setPaddingRelative(0,systemBars.top,0,0)
+                rvConnectedDevices.updatePadding(bottom = systemBars.bottom)
+                insets
+            }
             llToolBar.tvTitle.changeText(R.string.label_connect_bluetooth_devices)
             rvConnectedDevices.adapter = connectedDevicesAdapter
         }

@@ -10,7 +10,7 @@ import com.basalbody.app.extensions.setTextDecorator
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
 import com.basalbody.app.ui.profile.activity.ChangePasswordActivity
-import com.basalbody.app.ui.setting.activity.WebViewActivity
+import com.basalbody.app.ui.profile.activity.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

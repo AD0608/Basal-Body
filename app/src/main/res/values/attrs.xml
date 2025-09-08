@@ -137,6 +137,7 @@
         </attr>
 
         <attr name="btf_isPassword" format="boolean"/>
+        <attr name="btf_isMobile" format="boolean"/>
         <!--pass "[a-zA-Z0-9.,@ ]+" in value of digits for add that digits and add character that you want to use in field - like: .,@# etc-->
         <!--"[a-zA-Z ]+" this will allow only small, capital & space-->
         <attr name="btf_digits" format="string" />

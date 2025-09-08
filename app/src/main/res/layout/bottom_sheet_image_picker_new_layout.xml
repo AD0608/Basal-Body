@@ -5,7 +5,7 @@
     android:id="@+id/constraintMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bottomsheet_bg"
+    android:background="@drawable/bottom_sheet_bg"
     android:padding="@dimen/dp_18">
 
     <com.basalbody.app.utils.BasalTextView

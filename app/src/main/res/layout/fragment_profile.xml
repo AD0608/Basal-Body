@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/dp_25" />
+        app:layout_constraintGuide_begin="@dimen/dp_24" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/dp_25" />
+        app:layout_constraintGuide_end="@dimen/dp_24" />
 
     <include
         android:id="@+id/llToolBar"
         layout="@layout/view_toolbar"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivProfile"
@@ -36,68 +36,68 @@
         android:src="@drawable/ic_dummy_user"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@id/llToolBar"
-        app:shapeAppearance="@style/ImageCorner_12"/>
+        app:shapeAppearance="@style/ImageCorner_12" />
 
     <com.basalbody.app.utils.BasalTextView
         android:id="@+id/tvUserName"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
-        app:textStyle="bold"
-        android:textSize="@dimen/sp_18"
-        tools:text="@string/app_name"
-        android:textColor="@color/colorText_263238"
-        android:maxLines="2"
-        android:ellipsize="end"
         android:layout_marginHorizontal="@dimen/dp_16"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintTop_toTopOf="@+id/ivProfile"
-        app:layout_constraintStart_toEndOf="@+id/ivProfile"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/colorText_263238"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintBottom_toTopOf="@id/tvUserEmail"
         app:layout_constraintEnd_toStartOf="@+id/ivEditProfile"
-        app:layout_constraintBottom_toTopOf="@id/tvUserEmail"/>
+        app:layout_constraintStart_toEndOf="@+id/ivProfile"
+        app:layout_constraintTop_toTopOf="@+id/ivProfile"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:textStyle="bold"
+        tools:text="@string/app_name" />
 
     <com.basalbody.app.utils.BasalTextView
         android:id="@+id/tvUserEmail"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_15"
-        tools:text="@string/app_name"
-        android:textColor="@color/colorText_4B4B4B"
-        android:maxLines="1"
         android:ellipsize="end"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserName"
-        app:layout_constraintStart_toStartOf="@+id/tvUserName"
+        android:maxLines="1"
+        android:textColor="@color/colorText_4B4B4B"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintBottom_toBottomOf="@id/ivProfile"
         app:layout_constraintEnd_toEndOf="@+id/tvUserName"
-        app:layout_constraintBottom_toBottomOf="@id/ivProfile"/>
+        app:layout_constraintStart_toStartOf="@+id/tvUserName"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+        tools:text="@string/app_name" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_edit_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/ivProfile"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintTop_toTopOf="@+id/ivProfile"
-        app:layout_constraintBottom_toBottomOf="@+id/ivProfile"
-        app:shapeAppearance="@style/ImageCorner_12"/>
+        app:shapeAppearance="@style/ImageCorner_12" />
 
     <View
         android:id="@+id/viewLine"
         android:layout_width="@dimen/dp_0"
         android:layout_height="@dimen/dp_1"
-        android:background="@color/color_edittext_hint"
         android:layout_marginTop="@dimen/dp_25"
-        app:layout_constraintStart_toStartOf="@+id/glStart"
+        android:background="@color/color_edittext_hint"
         app:layout_constraintEnd_toEndOf="@+id/glEnd"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfile"/>
+        app:layout_constraintStart_toStartOf="@+id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/ivProfile" />
 
     <ScrollView
         android:layout_width="@dimen/dp_0"
         android:layout_height="@dimen/dp_0"
-        android:scrollbars="none"
         android:fillViewport="true"
-        app:layout_constraintStart_toStartOf="@id/glStart"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/glEnd"
-        app:layout_constraintTop_toBottomOf="@+id/viewLine"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@+id/viewLine">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -108,8 +108,8 @@
                 android:id="@+id/llChangePass"
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -117,20 +117,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile_change_pass"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.basalbody.app.utils.BasalTextView
                     android:id="@+id/tvOptionTitle"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
                     android:text="@string/lbl_change_password"
                     android:textColor="@color/colorText_263238"
                     android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dp_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivOption"
                     app:layout_constraintStart_toEndOf="@+id/ivOption"
-                    app:layout_constraintTop_toTopOf="@+id/ivOption"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivOption"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivOption" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -139,8 +139,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_25"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/llChangePass">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -148,30 +148,49 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile_language"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.basalbody.app.utils.BasalTextView
                     android:id="@+id/tvLanguage"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
                     android:text="Language"
                     android:textColor="@color/colorText_263238"
                     android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dp_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivLanguage"
                     app:layout_constraintStart_toEndOf="@+id/ivLanguage"
-                    app:layout_constraintTop_toTopOf="@+id/ivLanguage"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivLanguage"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivLanguage" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvCurrentLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_outlined_app_button"
+                android:drawableEnd="@drawable/ic_dropdown_18"
+                android:drawablePadding="@dimen/dp_7"
+                android:paddingHorizontal="@dimen/dp_15"
+                android:paddingVertical="@dimen/dp_5"
+                android:drawableTint="@color/black"
+                android:textSize="@dimen/sp_16"
+                app:textStyle="normal"
+                android:textColor="@color/black"
+                android:text="English"
+                app:layout_constraintBottom_toBottomOf="@id/llLanguage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/llLanguage"/>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/lLConnectBluetooth"
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_25"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/llLanguage">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -179,20 +198,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile_connect_blutooth"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.basalbody.app.utils.BasalTextView
                     android:id="@+id/tvConnectBluetooth"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
                     android:text="@string/label_connect_bluetooth_devices"
                     android:textColor="@color/colorText_263238"
                     android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dp_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivConnectBluetooth"
                     app:layout_constraintStart_toEndOf="@+id/ivConnectBluetooth"
-                    app:layout_constraintTop_toTopOf="@+id/ivConnectBluetooth"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivConnectBluetooth"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivConnectBluetooth" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -201,8 +220,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_25"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lLConnectBluetooth">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -210,20 +229,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile_data_privacy"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.basalbody.app.utils.BasalTextView
                     android:id="@+id/tvDataPrivacy"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
                     android:text="@string/lbl_data_privacy"
                     android:textColor="@color/colorText_263238"
                     android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dp_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivDataPrivacy"
                     app:layout_constraintStart_toEndOf="@+id/ivDataPrivacy"
-                    app:layout_constraintTop_toTopOf="@+id/ivDataPrivacy"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivDataPrivacy"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivDataPrivacy" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -232,8 +251,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_25"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/llDataPrivacy">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -241,20 +260,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile_faq"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.basalbody.app.utils.BasalTextView
                     android:id="@+id/tvFAQ"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
                     android:text="@string/lbl_faq"
                     android:textColor="@color/colorText_263238"
                     android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dp_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivFAQ"
                     app:layout_constraintStart_toEndOf="@+id/ivFAQ"
-                    app:layout_constraintTop_toTopOf="@+id/ivFAQ"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivFAQ"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivFAQ" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -263,8 +282,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_25"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/llFAQ">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -272,20 +291,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile_contact_support"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.basalbody.app.utils.BasalTextView
                     android:id="@+id/tvContactSupport"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
                     android:text="@string/contact_support"
                     android:textColor="@color/colorText_263238"
                     android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dp_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivContactSupport"
                     app:layout_constraintStart_toEndOf="@+id/ivContactSupport"
-                    app:layout_constraintTop_toTopOf="@+id/ivContactSupport"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivContactSupport"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivContactSupport" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -294,8 +313,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_25"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/llContactSupport">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -303,20 +322,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile_bluetooth_trouble_shoot"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.basalbody.app.utils.BasalTextView
                     android:id="@+id/tvTroubleShoot"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
                     android:text="@string/title_bluetooth_device_troubleshooting"
                     android:textColor="@color/colorText_263238"
                     android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dp_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivTroubleShoot"
                     app:layout_constraintStart_toEndOf="@+id/ivTroubleShoot"
-                    app:layout_constraintTop_toTopOf="@+id/ivTroubleShoot"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivTroubleShoot"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivTroubleShoot" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -325,8 +344,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_25"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/llTroubleShoot">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -334,20 +353,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile_notification"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.basalbody.app.utils.BasalTextView
                     android:id="@+id/tvNotification"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
                     android:text="@string/label_notification"
                     android:textColor="@color/colorText_263238"
                     android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dp_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivNotification"
                     app:layout_constraintStart_toEndOf="@+id/ivNotification"
-                    app:layout_constraintTop_toTopOf="@+id/ivNotification"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivNotification"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivNotification" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -356,8 +375,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_25"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/llNotification">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -365,20 +384,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile_delete_account"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.basalbody.app.utils.BasalTextView
                     android:id="@+id/tvLogout"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
                     android:text="@string/label_logout"
                     android:textColor="@color/colorText_263238"
                     android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dp_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivLogout"
                     app:layout_constraintStart_toEndOf="@+id/ivLogout"
-                    app:layout_constraintTop_toTopOf="@+id/ivLogout"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivLogout"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivLogout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -387,8 +406,8 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_25"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/llLogout">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -396,20 +415,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile_delete_account"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.basalbody.app.utils.BasalTextView
                     android:id="@+id/tvDeleteAccount"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
                     android:text="@string/label_delete_account"
                     android:textColor="@color/colorText_263238"
                     android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dp_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivDeleteAccount"
                     app:layout_constraintStart_toEndOf="@+id/ivDeleteAccount"
-                    app:layout_constraintTop_toTopOf="@+id/ivDeleteAccount"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivDeleteAccount"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivDeleteAccount" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

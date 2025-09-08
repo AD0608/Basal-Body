@@ -28,6 +28,7 @@ class BasalTextField @JvmOverloads constructor(
     private val startDrawableImage : AppCompatImageView
     private val endDrawableImage : AppCompatImageView
     private val editText : AppCompatEditText
+    private val tvPhoneNumberCode : BasalTextView
     private var isPassword = true
 
     init {
@@ -37,6 +38,7 @@ class BasalTextField @JvmOverloads constructor(
         startDrawableImage = findViewById(R.id.imgStartDrawable)
         endDrawableImage = findViewById(R.id.imgEndDrawable)
         editText = findViewById(R.id.edtField)
+        tvPhoneNumberCode = findViewById(R.id.tvPhoneNumberCode)
 
         val a = context.obtainStyledAttributes(
             attrs,
@@ -55,6 +57,7 @@ class BasalTextField @JvmOverloads constructor(
         val drawableEnd = a.getResourceId(R.styleable.BasalTextField_btf_drawableEnd, 0)
         val drawableStart = a.getResourceId(R.styleable.BasalTextField_btf_drawableStart, 0)
         val isPasswordField = a.getBoolean(R.styleable.BasalTextField_btf_isPassword, false)
+        val isMobileField = a.getBoolean(R.styleable.BasalTextField_btf_isMobile, false)
         val fieldHint = a.getString(R.styleable.BasalTextField_btf_hint)
 
         labelText.changeText(label ?: "")
@@ -93,6 +96,9 @@ class BasalTextField @JvmOverloads constructor(
             startDrawableImage.setImageDrawable(ContextCompat.getDrawable(context, drawableStart))
         }
 
+        if (isMobileField) {
+            tvPhoneNumberCode.visible()
+        }
 
         if (isPasswordField) {
             endDrawableImage.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_open_eye))
@@ -119,6 +125,10 @@ class BasalTextField @JvmOverloads constructor(
                     editText.typeface = CommonUtils.getTypeface(context, 0)
                 }
             }
+        }
+
+        tvPhoneNumberCode onNoSafeClick {
+            // Handle phone number code click if needed
         }
     }
 }
