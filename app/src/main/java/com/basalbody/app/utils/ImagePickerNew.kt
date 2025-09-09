@@ -25,7 +25,7 @@ import androidx.exifinterface.media.ExifInterface
 import androidx.fragment.app.FragmentActivity
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseBottomSheetDialogFragment
-import com.basalbody.app.common.CommonViewModel
+import com.basalbody.app.ui.common.CommonViewModel
 import com.basalbody.app.databinding.BottomSheetImagePickerNewLayoutBinding
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.justTry

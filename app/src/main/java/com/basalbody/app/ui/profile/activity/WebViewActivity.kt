@@ -8,10 +8,10 @@ import android.webkit.WebViewClient
 import androidx.activity.addCallback
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
-import com.basalbody.app.common.CommonViewModel
 import com.basalbody.app.databinding.ActivityWebViewBinding
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.getEnum
+import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.withNotNull
 import com.basalbody.app.ui.profile.viewmodel.ProfileViewModel
 import com.basalbody.app.utils.Constants
@@ -30,29 +30,32 @@ class WebViewActivity : BaseActivity<ProfileViewModel, ActivityWebViewBinding>()
         LoadingDialog.showLoadDialog(this@WebViewActivity)
 //        showProgressDialog(this)
         binding.llToolBar.tvTitle.changeText(getString(R.string.label_data_privacy))
+        binding.llToolBar.ivBack onSafeClick {
+            onBackPressedDispatcher.onBackPressed()
+        }
         binding.webView.apply {
             intent.extras.withNotNull { bundle ->
                 bundle.getEnum<EnumUtils.WebView>(Constants.BUNDLE_KEY_WHICH_WEB_VIEW).withNotNull {
-                        when (it) {
-                            EnumUtils.WebView.TERMS_AND_CONDITIONS -> {
-                                //binding.toolbar.setTitle(getString(R.string.label_term_conditions))
-                                loadUrl(Constants.URL_TERM_CONDITION)
-                            }
-
-                            EnumUtils.WebView.PRIVACY_POLICY -> {
-                                //binding.toolbar.setTitle(getString(R.string.label_privacy_policy))
-                                loadUrl(Constants.URL_PRIVACY_POLICY)
-                            }
-
-                            EnumUtils.WebView.ABOUT_US -> {
-                                //
-                                // binding.toolbar.setTitle(getString(R.string.label_about_us))
-                                loadUrl(Constants.URL_ABOUT_US)
-                            }
-
-                            else -> {}
+                    when (it) {
+                        EnumUtils.WebView.TERMS_AND_CONDITIONS -> {
+                            //binding.toolbar.setTitle(getString(R.string.label_term_conditions))
+                            loadUrl(Constants.URL_TERM_CONDITION)
                         }
+
+                        EnumUtils.WebView.PRIVACY_POLICY -> {
+                            //binding.toolbar.setTitle(getString(R.string.label_privacy_policy))
+                            loadUrl(Constants.URL_PRIVACY_POLICY)
+                        }
+
+                        EnumUtils.WebView.ABOUT_US -> {
+                            //
+                            // binding.toolbar.setTitle(getString(R.string.label_about_us))
+                            loadUrl(Constants.URL_ABOUT_US)
+                        }
+
+                        else -> {}
                     }
+                }
             } ?: run {
                 loadUrl(Constants.URL_TEST)
             }

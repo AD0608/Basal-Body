@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseBottomSheetDialogFragment
-import com.basalbody.app.common.CommonViewModel
+import com.basalbody.app.ui.common.CommonViewModel
 import com.basalbody.app.databinding.BottomSheetDialogLimitedAccessImagesPickerBinding
 import com.basalbody.app.extensions.gone
 import com.basalbody.app.extensions.onSafeClick

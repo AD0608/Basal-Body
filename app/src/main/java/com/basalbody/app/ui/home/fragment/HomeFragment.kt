@@ -23,6 +23,7 @@ import com.kizitonwose.calendar.view.ViewContainer
 import com.kizitonwose.calendar.view.WeekDayBinder
 import java.time.LocalDate
 import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.Locale
 
@@ -57,8 +58,8 @@ class HomeFragment :
         binding.apply {
             val currentDate = LocalDate.now()
             val currentMonth = YearMonth.now()
-            val startDate = currentMonth.atStartOfMonth() // Adjust as needed
-            val endDate = currentMonth.plusMonths(10).atEndOfMonth() // Adjust as needed
+            val startDate = currentMonth.minusMonths(10).atStartOfMonth() // Adjust as needed
+            val endDate = currentMonth.atDay(LocalDate.now().dayOfMonth) // Adjust as needed
             val firstDayOfWeek = firstDayOfWeekFromLocale() // Available from the library
             weekCalendarView.setup(startDate, endDate, firstDayOfWeek)
             weekCalendarView.scrollToWeek(currentDate)
@@ -68,31 +69,32 @@ class HomeFragment :
 
                 override fun bind(container: WeekdayViewContainer, day: WeekDay) {
                     val date = day.date
-                    val tvDate = container.tvDate
-                    val tvWeekDay = container.tvWeekDay
-                    val imgMenstruation = container.imgMenstruation
-                    val imgIntercourse = container.imgIntercourse
+                    container.apply {
 
-                    tvDate.text = date.dayOfMonth.toString()
-                    tvWeekDay.text = date.dayOfWeek.getDisplayName(
-                        TextStyle.SHORT,
-                        Locale.getDefault()
-                    ) // Mo, Tu, We...
-                    val isSelected = selectedDate == date
-                    container.view.background = if (isSelected) ContextCompat.getDrawable(
-                        container.view.context,
-                        R.drawable.bg_selected_week_day
-                    ) else null
-                    tvDate.setTextColor(if (isSelected) "#DE496E".toColorInt() else "#1E293B".toColorInt())
-                    tvWeekDay.setTextColor(if (isSelected) "#DE496E".toColorInt() else "#94A3B8".toColorInt())
-                    imgMenstruation.visibleIfOrGone(menstruationDays.contains(date))
-                    imgIntercourse.visibleIfOrGone(intercourseDays.contains(date))
+                        tvDate.text = date.dayOfMonth.toString()
+                        tvWeekDay.text = date.dayOfWeek.getDisplayName(
+                            TextStyle.SHORT,
+                            Locale.getDefault()
+                        ) // Mo, Tu, We...
+                        val isSelected = selectedDate == date
+                        view.background = if (isSelected) ContextCompat.getDrawable(
+                            container.view.context,
+                            R.drawable.bg_selected_week_day
+                        ) else null
+                        tvDate.setTextColor(if (isSelected) "#DE496E".toColorInt() else "#1E293B".toColorInt())
+                        tvWeekDay.setTextColor(if (isSelected) "#DE496E".toColorInt() else "#94A3B8".toColorInt())
+                        imgMenstruation.visibleIfOrGone(menstruationDays.contains(date))
+                        imgIntercourse.visibleIfOrGone(intercourseDays.contains(date))
 
-                    container.view.setOnClickListener {
-                        val old = selectedDate
-                        selectedDate = day.date
-                        old?.let(weekCalendarView::notifyDateChanged)
-                        weekCalendarView.notifyDateChanged(day.date)
+                        view.setOnClickListener {
+                            // Only allow selection of dates till today
+                            if (day.date.isAfter(LocalDate.now())) return@setOnClickListener
+                            val old = selectedDate
+                            selectedDate = day.date
+                            old?.let(weekCalendarView::notifyDateChanged)
+                            weekCalendarView.notifyDateChanged(day.date)
+                            updateUI()
+                        }
                     }
                 }
             }
@@ -135,6 +137,19 @@ class HomeFragment :
             }
             btnNoIntercourse onSafeClick {
                 btnYesIntercourse.gone()
+            }
+        }
+    }
+
+    private fun updateUI() {
+        binding.apply {
+            // Update any other UI elements based on the selected date
+            val isToday = selectedDate == LocalDate.now()
+            // Update the label to show "Today" if the selected date is today if it is yesterday then show "Yesterday" else show the date in dd/MM/yyyy format
+            tvSelectedDate.text = when {
+                isToday -> getString(R.string.label_today)
+                selectedDate == LocalDate.now().minusDays(1) -> getString(R.string.label_yesterday)
+                else -> selectedDate?.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ?: ""
             }
         }
     }

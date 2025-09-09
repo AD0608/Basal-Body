@@ -1,4 +1,4 @@
-package com.basalbody.app.common
+package com.basalbody.app.ui.common
 
 import android.content.Context
 import com.basalbody.app.base.BaseViewModel

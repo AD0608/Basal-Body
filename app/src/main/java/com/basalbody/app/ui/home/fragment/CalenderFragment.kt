@@ -11,6 +11,7 @@ import com.basalbody.app.extensions.changeColor
 import com.basalbody.app.extensions.changeDrawableImage
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.gone
+import com.basalbody.app.extensions.invisible
 import com.basalbody.app.extensions.onNoSafeClick
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.startNewActivity
@@ -26,6 +27,7 @@ import com.kizitonwose.calendar.core.daysOfWeek
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import com.kizitonwose.calendar.core.nextMonth
 import com.kizitonwose.calendar.core.previousMonth
+import com.kizitonwose.calendar.core.yearMonth
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.ViewContainer
 import java.time.LocalDate
@@ -128,11 +130,13 @@ class CalenderFragment :
                             dotMenstruation.visible()
                             dotIntercourse.visible()
                             dotTemperatureTrend.visible()
+                            spaceView.gone()
                         } else {
                             tvMonthDay.background = null
                             dotMenstruation.gone()
                             dotIntercourse.gone()
                             dotTemperatureTrend.gone()
+                            spaceView.visible()
                         }
 
                         view.setOnClickListener {
@@ -159,4 +163,5 @@ class MonthDayViewContainer(view: View) : ViewContainer(view) {
     val dotMenstruation = MonthCalenderDayViewBinding.bind(view).dotMenstruation
     val dotIntercourse = MonthCalenderDayViewBinding.bind(view).dotIntercourse
     val dotTemperatureTrend = MonthCalenderDayViewBinding.bind(view).dotTemperatureTrend
+    val spaceView = MonthCalenderDayViewBinding.bind(view).view
 }
