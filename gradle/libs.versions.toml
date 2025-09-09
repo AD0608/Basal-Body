@@ -41,6 +41,7 @@ swiperefreshlayout = "1.1.0"
 ui = "1.9.0"
 ksp = "2.2.10-2.0.2"
 view = "2.8.0"
+ccp = "2.7.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -83,6 +84,7 @@ play-services-location = { module = "com.google.android.gms:play-services-locati
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 socket-io-client = { module = "io.socket:socket.io-client", version.ref = "socketIoClient" }
 calender-view = { module = "com.kizitonwose.calendar:view", version.ref = "view" }
+ccp-view = { module = "com.hbb20:ccp", version.ref = "ccp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

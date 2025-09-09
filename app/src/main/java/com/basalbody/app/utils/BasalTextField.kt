@@ -5,9 +5,11 @@ import android.text.InputFilter
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +20,7 @@ import com.basalbody.app.extensions.onNoSafeClick
 import com.basalbody.app.extensions.setEndIconInsetDrawable
 import com.basalbody.app.extensions.visible
 import com.google.android.material.textfield.TextInputLayout
+import com.hbb20.CountryCodePicker
 
 class BasalTextField @JvmOverloads constructor(
     context: Context,
@@ -29,7 +32,10 @@ class BasalTextField @JvmOverloads constructor(
     private val endDrawableImage : AppCompatImageView
     private val editText : AppCompatEditText
     private val tvPhoneNumberCode : BasalTextView
+    private lateinit var  ccp : CountryCodePicker
     private var isPassword = true
+
+    private val TAG = "BasalTextField"
 
     init {
         LayoutInflater.from(context).inflate(R.layout.basal_text_field, this, true)
@@ -39,6 +45,7 @@ class BasalTextField @JvmOverloads constructor(
         endDrawableImage = findViewById(R.id.imgEndDrawable)
         editText = findViewById(R.id.edtField)
         tvPhoneNumberCode = findViewById(R.id.tvPhoneNumberCode)
+        ccp = findViewById(R.id.ccp)
 
         val a = context.obtainStyledAttributes(
             attrs,
@@ -129,6 +136,15 @@ class BasalTextField @JvmOverloads constructor(
 
         tvPhoneNumberCode onNoSafeClick {
             // Handle phone number code click if needed
+            ccp.launchCountrySelectionDialog()
+        }
+
+        // Get the selected country
+        ccp.setOnCountryChangeListener {
+            val code = ccp.selectedCountryCodeWithPlus
+            val name = ccp.selectedCountryName
+            tvPhoneNumberCode.changeText(code)
+            Log.e(TAG, "Selected: $name $code", )
         }
     }
 }
