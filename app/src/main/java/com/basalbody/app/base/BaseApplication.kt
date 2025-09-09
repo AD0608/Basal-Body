@@ -5,9 +5,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.google.android.libraries.places.api.Places
 import com.google.firebase.FirebaseApp
-import com.basalbody.app.BuildConfig.MAPS_API_KEY
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -39,6 +37,5 @@ class BaseApplication : Application(), LifecycleObserver {
         //--------HERE INITIALIZE FIREBASE SDK---------//
         FirebaseApp.initializeApp(this)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        Places.initializeWithNewPlacesApiEnabled(this, MAPS_API_KEY)
     }
 }

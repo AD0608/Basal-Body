@@ -19,7 +19,7 @@ android {
         applicationId = "com.basalbody.app"
         minSdk = 29
         targetSdk = 35
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -128,11 +128,6 @@ dependencies {
     implementation(libs.glide)
     ksp(libs.ksp.glide)
 
-    implementation(fileTree(mapOf(
-        "dir" to "src/main/libs",
-        "include" to listOf("*.aar")
-    )))
-
     // Firebase
     implementation(libs.firebase.messaging.ktx)
     implementation(libs.firebase.analytics.ktx)
@@ -140,13 +135,6 @@ dependencies {
 
     // Socket.IO
     implementation(libs.socket.io.client)
-
-    // Location and Maps
-    implementation(libs.play.services.location)
-    implementation(libs.play.services.maps)
-    implementation(libs.play.services.places)
-    implementation(libs.places)
-    implementation(libs.maps.utils.ktx)
 
     // Permissions + Lottie + DataStore
     implementation(libs.dexter)

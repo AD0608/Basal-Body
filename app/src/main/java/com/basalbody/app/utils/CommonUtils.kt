@@ -2,17 +2,13 @@
 
 package com.basalbody.app.utils
 
-import android.Manifest
 import android.app.Activity
 import android.app.ActivityManager
 import android.app.ActivityManager.RunningAppProcessInfo
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Canvas
 import android.graphics.Typeface
-import android.graphics.drawable.Drawable
 import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -26,18 +22,9 @@ import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.createBitmap
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.basalbody.app.BuildConfig
 import com.basalbody.app.R
-import kotlin.math.atan2
-import kotlin.math.cos
 import kotlin.math.roundToInt
-import kotlin.math.sin
 
 
 object CommonUtils {
