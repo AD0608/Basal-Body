@@ -34,7 +34,7 @@
         android:id="@+id/frameBluetooth"
         android:layout_width="@dimen/dp_280"
         android:layout_height="@dimen/dp_280"
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_15"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@id/toolBar">

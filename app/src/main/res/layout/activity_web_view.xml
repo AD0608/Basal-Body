@@ -32,7 +32,7 @@
         android:id="@+id/webView"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_0"
-        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"

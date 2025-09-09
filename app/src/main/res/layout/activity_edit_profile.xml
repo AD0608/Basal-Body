@@ -34,7 +34,7 @@
         android:id="@+id/ivProfile"
         android:layout_width="@dimen/dp_98"
         android:layout_height="@dimen/dp_98"
-        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_25"
         android:src="@drawable/ic_dummy_user"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintEnd_toEndOf="@id/glEnd"

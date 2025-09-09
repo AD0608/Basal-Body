@@ -43,6 +43,7 @@ class RegisterActivity : BaseActivity<AuthViewModel, ActivityRegisterBinding>() 
                 allowCallback = true,
                 callBack = {
                     Log.e(TAG, "setupUI() Sign in Now")
+                    onBackPressedDispatcher.onBackPressed()
                 })
         }
         callTermsConditionCheck()

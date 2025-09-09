@@ -9,12 +9,12 @@
     <!-- Image at the top -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivIntro"
-        android:layout_width="@dimen/dp_0"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        app:layout_constraintDimensionRatio="H, 1:1"
         tools:src="@drawable/intro_1"
-        android:adjustViewBounds="true"
         android:layout_marginHorizontal="@dimen/dp_40"
-        android:layout_marginTop="@dimen/dp_150"
+        android:layout_marginTop="@dimen/dp_110"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -29,11 +29,11 @@
         android:textColor="@color/colorText_263238"
         android:textSize="@dimen/sp_26"
         android:gravity="center"
-        android:layout_marginHorizontal="@dimen/dp_71"
+        android:layout_marginHorizontal="@dimen/dp_40"
         app:layout_constraintTop_toBottomOf="@id/ivIntro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="@dimen/dp_40"/>
 
     <!-- Second Text below First Text -->
     <com.basalbody.app.utils.BasalTextView
@@ -45,7 +45,7 @@
         android:textSize="@dimen/sp_18"
         android:layout_marginTop="@dimen/dp_10"
         android:gravity="center"
-        android:layout_marginHorizontal="@dimen/dp_48"
+        android:layout_marginHorizontal="@dimen/dp_40"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

@@ -36,11 +36,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgDayMenstruation"
-        android:layout_width="@dimen/dp_18"
-        android:layout_height="@dimen/dp_18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_5"
         android:layout_marginBottom="@dimen/dp_9"
-        android:src="@drawable/ic_menstruation"
+        android:src="@drawable/ic_menstruation_calendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/imgDayIntercourse"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -49,12 +49,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgDayIntercourse"
-        android:layout_width="@dimen/dp_18"
-        android:layout_height="@dimen/dp_18"
-        android:layout_marginStart="@dimen/dp_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_5"
         android:layout_marginBottom="@dimen/dp_9"
-        android:src="@drawable/ic_intercourse"
+        android:src="@drawable/ic_intercourse_calendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgDayMenstruation"

@@ -15,22 +15,22 @@ object DummyData {
             add(
                 IntroData(
                     R.drawable.intro_1,
-                    "Welcome to Basal Body",
-                    "Discover a new connection with your body through daily temperature tracking."
+                    "Welcome to\nBasal Body",
+                    "Discover a new connection with\nyour body through daily\ntemperature tracking."
                 )
             )
             add(
                 IntroData(
                     R.drawable.intro_2,
-                    "Track Effortlessly, Learn Deeply",
-                    "Record your BBT each morning and we'll turn your data into clear health insights."
+                    "Track Effortlessly,\nLearn Deeply",
+                    "Record your BBT each morning and\nwe'll turn your data into clear health\ninsights."
                 )
             )
             add(
                 IntroData(
                     R.drawable.intro_3,
-                    "Personalized Cycle Insights",
-                    "Get forecasts, fertility predictions, and health patterns tailored to you."
+                    "Personalized Cycle\nInsights",
+                    "Get forecasts, fertility\npredictions, and health patterns\ntailored to you."
                 )
             )
         }

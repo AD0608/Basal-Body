@@ -34,7 +34,7 @@
         android:layout_width="@dimen/dp_0"
         android:layout_height="@dimen/dp_0"
         android:id="@+id/rvNotifications"
-        android:layout_marginTop="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

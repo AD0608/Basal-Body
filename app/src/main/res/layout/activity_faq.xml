@@ -33,7 +33,7 @@
         android:id="@+id/llSearch"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_25"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/bg_search_text_field"
         app:layout_constraintEnd_toEndOf="@+id/glEnd"
         app:layout_constraintStart_toStartOf="@+id/glStart"

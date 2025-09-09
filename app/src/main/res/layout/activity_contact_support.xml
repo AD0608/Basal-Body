@@ -34,7 +34,7 @@
         android:id="@+id/etFullName"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_29"
+        android:layout_marginTop="@dimen/dp_25"
         app:btf_drawableStart="@drawable/ic_user"
         app:btf_hint="@string/hint_enter_your_full_name_here"
         app:btf_imeOptions="actionNext"

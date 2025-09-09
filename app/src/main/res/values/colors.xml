@@ -22,7 +22,7 @@
 
     <color name="colorSecondary">#204F70</color>
     <color name="colorSecondary4">#E9EDF1</color>
-    <color name="blurColor">#91000000</color>
+    <color name="blurColor">#80000000</color>
     <color name="textColor">#010D15</color>
     <color name="textColorGray">#6601021B</color>
     <color name="transparent">#00000000</color>
