@@ -72,13 +72,13 @@ android {
     productFlavors {
         create("development") {
             dimension = "MXB"
-            buildConfigField("String", "BASE_URL", "\"www.google.com\"")
-            buildConfigField("String", "SOCKET_BASE_URL", "\"www.google.com\"")
+            buildConfigField("String", "BASE_URL", "\"https://www.google.com\"")
+            buildConfigField("String", "SOCKET_BASE_URL", "\"https://www.google.com\"")
         }
         create("production") {
             dimension = "MXB"
-            buildConfigField("String", "BASE_URL", "\"www.google.com\"")
-            buildConfigField("String", "SOCKET_BASE_URL", "\"www.google.com\"")
+            buildConfigField("String", "BASE_URL", "\"https://www.google.com\"")
+            buildConfigField("String", "SOCKET_BASE_URL", "\"https://www.google.com\"")
         }
     }
 }
