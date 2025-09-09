@@ -10,6 +10,7 @@ import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.ui.auth.activity.LoginActivity
 import com.basalbody.app.ui.common.CommonConfirmationBottomSheetDialog
 import com.basalbody.app.ui.common.CommonSuccessBottomSheetDialog
+import com.basalbody.app.ui.common.showLanguageSelectionPopup
 import com.basalbody.app.ui.home.activity.NotificationsActivity
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
 import com.basalbody.app.ui.profile.activity.ChangePasswordActivity
@@ -85,6 +86,10 @@ class ProfileFragment :
                     description = this@ProfileFragment.getString(R.string.message_delete_account_confirmation)
                     positiveBtnText = this@ProfileFragment.getString(R.string.btn_delete)
                 }.show(childFragmentManager, "DeleteAccountConfirmationBottomSheetDialog")
+            }
+
+            tvCurrentLanguage onSafeClick {
+                showLanguageSelectionPopup(requireActivity(), tvCurrentLanguage)
             }
 
         }

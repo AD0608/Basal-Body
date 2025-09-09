@@ -2,7 +2,7 @@ package com.basalbody.app.ui.common
 
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseDialogFragment
-import com.basalbody.app.common.CommonViewModel
+import com.basalbody.app.ui.common.CommonViewModel
 import com.basalbody.app.databinding.DialogCommonBinding
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.setDialogWidthPercent
