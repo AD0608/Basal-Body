@@ -29,191 +29,209 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvCalendar"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvMainCalendar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/dp_15"
-        android:elevation="@dimen/dp_5"
-        app:cardCornerRadius="@dimen/dp_15"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@id/toolBar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgPreviousMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_50"
-                android:src="@drawable/ic_previous"
-                app:layout_constraintBottom_toBottomOf="@id/tvMothYear"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvMothYear" />
-
-            <com.basalbody.app.utils.BasalTextView
-                android:id="@+id/tvMothYear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_15"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:textStyle="semiBold"
-                tools:text="September 2025" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgNextMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_50"
-                android:src="@drawable/ic_next"
-                app:layout_constraintBottom_toBottomOf="@id/tvMothYear"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvMothYear" />
-
-            <include
-                android:id="@+id/weekDayTitleContainer"
-                layout="@layout/calendar_day_titles_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_20"
-                app:layout_constraintTop_toBottomOf="@id/tvMothYear" />
-
-            <com.kizitonwose.calendar.view.CalendarView
-                android:id="@+id/calendarView"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCalendar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_20"
-                android:layout_marginBottom="@dimen/dp_15"
-                app:cv_daySize="seventhWidth"
-                app:cv_dayViewResource="@layout/month_calender_day_view"
+                android:elevation="@dimen/dp_5"
+                app:cardCornerRadius="@dimen/dp_15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgPreviousMonth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_50"
+                        android:src="@drawable/ic_previous"
+                        app:layout_constraintBottom_toBottomOf="@id/tvMothYear"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvMothYear" />
+
+                    <com.basalbody.app.utils.BasalTextView
+                        android:id="@+id/tvMothYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_15"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:textStyle="semiBold"
+                        tools:text="September 2025" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgNextMonth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp_50"
+                        android:src="@drawable/ic_next"
+                        app:layout_constraintBottom_toBottomOf="@id/tvMothYear"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvMothYear" />
+
+                    <include
+                        android:id="@+id/weekDayTitleContainer"
+                        layout="@layout/calendar_day_titles_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
+                        app:layout_constraintTop_toBottomOf="@id/tvMothYear" />
+
+                    <com.kizitonwose.calendar.view.CalendarView
+                        android:id="@+id/calendarView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_marginBottom="@dimen/dp_15"
+                        app:cv_daySize="seventhWidth"
+                        app:cv_dayViewResource="@layout/month_calender_day_view"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/weekDayTitleContainer" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgDotMenstruation"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_10"
+                android:src="@drawable/ic_dot_menstruation"
+                app:layout_constraintEnd_toStartOf="@id/tvLabelMenstruation"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvCalendar" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvLabelMenstruation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_6"
+                android:text="@string/label_menstruation"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/imgDotMenstruation"
+                app:layout_constraintStart_toEndOf="@id/imgDotMenstruation"
+                app:layout_constraintTop_toTopOf="@id/imgDotMenstruation"
+                app:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgDotIntercourse"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_10"
+                android:src="@drawable/ic_dot_intercourse"
+                app:layout_constraintEnd_toStartOf="@id/tvLabelIntercourse"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/tvLabelMenstruation"
+                app:layout_constraintTop_toBottomOf="@id/cvCalendar" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvLabelIntercourse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_6"
+                android:text="@string/label_intercourse"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/imgDotIntercourse"
+                app:layout_constraintEnd_toStartOf="@id/imgDotTemperatureTrend"
+                app:layout_constraintStart_toEndOf="@id/imgDotIntercourse"
+                app:layout_constraintTop_toTopOf="@id/imgDotIntercourse"
+                app:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgDotTemperatureTrend"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_6"
+                android:src="@drawable/ic_dot_temperature_trend"
+                app:layout_constraintEnd_toStartOf="@id/tvLabelTemperatureTrend"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@id/cvCalendar" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvLabelTemperatureTrend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_temperature_trend"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/imgDotTemperatureTrend"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imgDotTemperatureTrend"
+                app:textStyle="normal" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvToday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_30"
+                android:text="@string/label_today"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLabelMenstruation"
+                app:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTodaysActivity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="@dimen/dp_15"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/weekDayTitleContainer" />
+                app:layout_constraintTop_toBottomOf="@id/tvToday"
+                tools:itemCount="3"
+                tools:listitem="@layout/each_row_todays_activity" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgDotMenstruation"
-        android:layout_width="@dimen/dp_15"
-        android:layout_height="@dimen/dp_15"
-        android:layout_marginTop="@dimen/dp_10"
-        android:src="@drawable/ic_dot_menstruation"
-        app:layout_constraintEnd_toStartOf="@id/tvLabelMenstruation"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/cvCalendar" />
-
-    <com.basalbody.app.utils.BasalTextView
-        android:id="@+id/tvLabelMenstruation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_6"
-        android:text="@string/label_menstruation"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_12"
-        app:layout_constraintBottom_toBottomOf="@id/imgDotMenstruation"
-        app:layout_constraintStart_toEndOf="@id/imgDotMenstruation"
-        app:layout_constraintTop_toTopOf="@id/imgDotMenstruation"
-        app:textStyle="normal" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgDotIntercourse"
-        android:layout_width="@dimen/dp_15"
-        android:layout_height="@dimen/dp_15"
-        android:layout_marginTop="@dimen/dp_10"
-        android:src="@drawable/ic_dot_intercourse"
-        app:layout_constraintEnd_toStartOf="@id/tvLabelIntercourse"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/cvCalendar" />
-
-    <com.basalbody.app.utils.BasalTextView
-        android:id="@+id/tvLabelIntercourse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_6"
-        android:text="@string/label_intercourse"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_12"
-        app:layout_constraintBottom_toBottomOf="@id/imgDotIntercourse"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintStart_toEndOf="@id/imgDotIntercourse"
-        app:layout_constraintTop_toTopOf="@id/imgDotIntercourse"
-        app:textStyle="normal" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgDotTemperatureTrend"
-        android:layout_width="@dimen/dp_15"
-        android:layout_height="@dimen/dp_15"
-        android:layout_marginTop="@dimen/dp_10"
-        android:layout_marginEnd="@dimen/dp_6"
-        android:src="@drawable/ic_dot_temperature_trend"
-        app:layout_constraintEnd_toStartOf="@id/tvLabelTemperatureTrend"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintTop_toBottomOf="@id/cvCalendar" />
-
-    <com.basalbody.app.utils.BasalTextView
-        android:id="@+id/tvLabelTemperatureTrend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_temperature_trend"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_12"
-        app:layout_constraintBottom_toBottomOf="@id/imgDotTemperatureTrend"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintTop_toTopOf="@id/imgDotTemperatureTrend"
-        app:textStyle="normal" />
-
-    <com.basalbody.app.utils.BasalTextView
-        android:id="@+id/tvToday"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_30"
-        android:text="@string/label_today"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_18"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/tvLabelMenstruation"
-        app:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintTop_toBottomOf="@id/tvToday"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/rvTodaysActivity"
-        android:layout_marginTop="@dimen/dp_15"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:itemCount="3"
-        tools:listitem="@layout/each_row_todays_activity"/>
-    
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddActivity"
         android:layout_width="@dimen/dp_60"
         android:layout_height="@dimen/dp_60"
+        android:layout_marginEnd="@dimen/dp_28"
+        android:layout_marginBottom="@dimen/dp_17"
         android:contentDescription="@string/label_add_activity"
         android:src="@drawable/ic_add"
         app:backgroundTint="#DC3556"
-        app:shapeAppearance="@style/Rounded"
-        app:tint="@color/white"
         app:fabCustomSize="@dimen/dp_60"
-        android:id="@+id/fabAddActivity"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="@dimen/dp_28"
-        android:layout_marginBottom="@dimen/dp_17"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shapeAppearance="@style/Rounded"
+        app:tint="@color/white" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

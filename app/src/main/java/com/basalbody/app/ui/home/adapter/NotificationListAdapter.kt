@@ -33,4 +33,10 @@ class NotificationListAdapter(
             }
         }
     }
+
+    fun removeAt(position: Int) {
+        if (position < 0 || position >= list.size) return
+        list.removeAt(position)
+        notifyItemRemoved(position)
+    }
 }
