@@ -26,7 +26,6 @@ class BluetoothFragment :
         binding.apply {
             toolBar.tvTitle.changeText(getString(R.string.label_bluetooth))
             toolBar.ivBack.gone()
-            imgBluetooth.setImageResource(R.drawable.ic_bluetooth_blue)
             rvAvailableDevices.adapter = availableDevicesAdapter
             tvLabelAvailableDevices.gone()
             rvAvailableDevices.gone()
@@ -36,7 +35,7 @@ class BluetoothFragment :
     override fun listeners() {
         binding.apply {
             btnScanForDevices.setOnClickListener {
-                imgBluetooth.addRippleWaves(color = "#407FFF".toColorInt())
+                imgBluetooth.addRippleWaves(color = "#46B74F".toColorInt())
                 tvLabelAvailableDevices.visible()
                 rvAvailableDevices.visible()
             }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet_bg"
-    android:backgroundTint="#FFF3ED"
+    android:backgroundTint="#F2FCEC"
     android:padding="@dimen/dp_25">
 
     <View
@@ -69,7 +69,6 @@
         style="@style/FilledButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FF2023"
         android:drawableTint="@color/white"
         android:fontFamily="@font/geist_regular"
         android:textColor="@color/white"

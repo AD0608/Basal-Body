@@ -17,7 +17,7 @@ class ConnectedDeviceActivity : BaseActivity<HomeViewModel, ActivityConnectedDev
 
     override fun initSetup() {
         binding.apply {
-            imgBluetooth.addRippleWaves(color = "#407FFF".toColorInt())
+            imgBluetooth.addRippleWaves(color = "#46B74F".toColorInt())
             toolBar.tvTitle.changeText(getString(R.string.label_connected_device))
         }
     }

@@ -81,10 +81,8 @@ class HomeFragment :
                             container.view.context,
                             R.drawable.bg_selected_week_day
                         ) else null
-                        tvDate.setTextColor(if (isSelected) "#DE496E".toColorInt() else "#1E293B".toColorInt())
-                        tvWeekDay.setTextColor(if (isSelected) "#DE496E".toColorInt() else "#94A3B8".toColorInt())
-                        imgMenstruation.visibleIfOrGone(menstruationDays.contains(date))
-                        imgIntercourse.visibleIfOrGone(intercourseDays.contains(date))
+                        tvDate.setTextColor(if (isSelected) "#46B74F".toColorInt() else "#1E293B".toColorInt())
+                        tvWeekDay.setTextColor(if (isSelected) "#46B74F".toColorInt() else "#94A3B8".toColorInt())
 
                         view.setOnClickListener {
                             // Only allow selection of dates till today
@@ -159,6 +157,4 @@ class HomeFragment :
 class WeekdayViewContainer(view: View) : ViewContainer(view) {
     val tvDate = WeekCalendarDayViewBinding.bind(view).tvDate
     val tvWeekDay: BasalTextView = WeekCalendarDayViewBinding.bind(view).tvWeekDay
-    val imgMenstruation: AppCompatImageView = WeekCalendarDayViewBinding.bind(view).imgDayMenstruation
-    val imgIntercourse: AppCompatImageView = WeekCalendarDayViewBinding.bind(view).imgDayIntercourse
 }

@@ -140,10 +140,10 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
             val shader = LinearGradient(
                 0f, 0f, 0f, bounds.height().toFloat(),
                 intArrayOf(
-                    "#FFD4E0".toColorInt(),
+                    "#96F49C".toColorInt(),
                     "#FFFFFF".toColorInt(),
                     "#FFFFFF".toColorInt(),
-                    "#FFE6D9".toColorInt()
+                    "#A6E87A".toColorInt()
                 ),
                 floatArrayOf(0f, 0.33f, 0.66f, 1f), // positions of colors
                 Shader.TileMode.CLAMP

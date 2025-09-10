@@ -26,12 +26,13 @@
         <item name="android:fontFamily">@font/geist_semi_bold</item>
         <item name="android:background">@drawable/bg_filled_app_button</item>
         <item name="android:drawableEnd">@drawable/ic_button_icon</item>
+        <item name="android:drawableTint">@color/white</item>
         <item name="android:drawablePadding">@dimen/dp_10</item>
         <item name="android:paddingVertical">@dimen/dp_10</item>
         <item name="android:paddingHorizontal">@dimen/dp_34</item>
         <item name="android:minWidth">@dimen/dp_0</item>
         <item name="android:minHeight">@dimen/dp_0</item>
-        <item name="android:textColor">@color/colorButtonText</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
