@@ -32,7 +32,7 @@ class LoginActivity : BaseActivity<AuthViewModel, ActivityLoginBinding>() {
             llToolBar.tvTitle.changeText(R.string.lbl_login)
             tvRegisterNow.setTextDecorator(
                 resources.getString(R.string.register_now),
-                R.color.colorText_DC3556,
+                R.color.colorText_309C34,
                 textFont = R.font.geist_bold,
                 allowCallback = true,
                 callBack = {

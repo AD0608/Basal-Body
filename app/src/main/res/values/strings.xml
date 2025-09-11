@@ -94,6 +94,7 @@
     <string name="item_home">Home</string>
     <string name="item_bluetooth">Bluetooth</string>
     <string name="item_calendar">Calendar</string>
+    <string name="item_insights">Insights</string>
     <string name="item_profile">Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -198,6 +199,7 @@
     <string name="label_logged_out">Logged Out\nSuccessfully</string>
     <string name="message_logout_successfully">You have been logged out successfully.</string>
     <string name="label_yesterday">Yesterday</string>
+    <string name="your_predicted_fertile_window">Your Predicted Fertile Window</string>
     <string name="label_founded_devices">Founded Devices</string>
     <string name="label_sorry">Sorry!</string>
     <string name="label_no_devices_found">No device found. Please check\nif the device\'s battery is charged\nand the power button is turned on.</string>

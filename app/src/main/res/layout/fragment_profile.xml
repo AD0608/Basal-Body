@@ -197,7 +197,7 @@
                     android:id="@+id/ivConnectBluetooth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_profile_connect_blutooth"
+                    android:src="@drawable/ic_profile_connect_bluetooth"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

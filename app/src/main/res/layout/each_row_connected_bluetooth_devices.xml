@@ -12,7 +12,7 @@
         android:id="@+id/imgBluetoothIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_bluetooth_item"
+        android:src="@drawable/ic_connected_bluetooth_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

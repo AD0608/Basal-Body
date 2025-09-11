@@ -226,7 +226,7 @@
         android:layout_marginBottom="@dimen/dp_17"
         android:contentDescription="@string/label_add_activity"
         android:src="@drawable/ic_add"
-        app:backgroundTint="#DC3556"
+        app:backgroundTint="#4DB94E"
         app:fabCustomSize="@dimen/dp_60"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

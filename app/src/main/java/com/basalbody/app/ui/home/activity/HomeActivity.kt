@@ -13,6 +13,7 @@ import com.basalbody.app.extensions.notNull
 import com.basalbody.app.ui.home.fragment.BluetoothFragment
 import com.basalbody.app.ui.home.fragment.CalenderFragment
 import com.basalbody.app.ui.home.fragment.HomeFragment
+import com.basalbody.app.ui.home.fragment.InsightsFragment
 import com.basalbody.app.ui.home.fragment.ProfileFragment
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +50,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                     R.id.itemHome -> HomeFragment()
                     R.id.itemBluetooth -> BluetoothFragment()
                     R.id.itemCalender -> CalenderFragment()
+                    R.id.itemInsights -> InsightsFragment()
                     R.id.itemProfile -> ProfileFragment()
                     else -> null
                 }
