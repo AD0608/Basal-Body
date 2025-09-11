@@ -18,6 +18,7 @@
         tools:text="Email" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_5"

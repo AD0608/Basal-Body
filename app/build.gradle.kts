@@ -42,7 +42,7 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             android.buildFeatures.buildConfig = true
-            manifestPlaceholders["crashlyticsEnabled"] = true
+            manifestPlaceholders["crashlyticsEnabled"] = false
             buildConfigField("Boolean", "ENABLE_LOG", "true")
         }
     }

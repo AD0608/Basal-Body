@@ -13,9 +13,11 @@ import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.extensions.visible
 import com.basalbody.app.extensions.visibleIfOrGone
+import com.basalbody.app.ui.common.CommonDialog
 import com.basalbody.app.ui.home.activity.NotificationsActivity
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
 import com.basalbody.app.utils.BasalTextView
+import com.basalbody.app.utils.EnumUtils
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
@@ -135,6 +137,13 @@ class HomeFragment :
             }
             btnNoIntercourse onSafeClick {
                 btnYesIntercourse.gone()
+            }
+
+            btnViewAll onSafeClick {
+                CommonDialog.newInstance(EnumUtils.DialogType.LOG_OUT, true, binding.root, requireActivity()).show(
+                    requireActivity().supportFragmentManager,
+                    "CommonDialog"
+                )
             }
         }
     }

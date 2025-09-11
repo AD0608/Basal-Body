@@ -7,6 +7,7 @@ import com.basalbody.app.extensions.changeDrawableImage
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.onNoSafeClick
 import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.ui.home.dialog.AddNewActivitySuccessDialog
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,6 +31,14 @@ class AddNewActivityActivity : BaseActivity<HomeViewModel, ActivityAddNewActivit
 
             rbIntercourse onNoSafeClick {
                 changeSelectedActivity(false)
+            }
+
+            btnAdd onSafeClick {
+                AddNewActivitySuccessDialog.newInstance(
+                    isCancel = true,
+                    rootView = root,
+                    activity = this@AddNewActivityActivity,
+                ).show(supportFragmentManager, AddNewActivitySuccessDialog::class.java.simpleName)
             }
         }
     }

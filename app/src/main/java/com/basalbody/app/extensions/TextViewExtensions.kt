@@ -99,6 +99,31 @@ fun Button.changeText(string: String) {
     text = string
 }
 
+fun Button.removeButtonTint() {
+    backgroundTintList = null
+}
+
+fun Button.setButtonTint(@ColorRes color: Int) {
+    backgroundTintList = ContextCompat.getColorStateList(context, color)
+}
+
+fun Button.removeDrawableEnd() {
+    setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
+}
+
+fun Button.setDrawableEnd(@DrawableRes drawableEnd: Int) {
+    setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, drawableEnd, 0)
+}
+
+fun Button.setDrawableEndWithColor(@DrawableRes drawableEnd: Int, @ColorRes color: Int) {
+    val drawable = ResourcesCompat.getDrawable(resources, drawableEnd, null)
+    drawable?.colorFilter = PorterDuffColorFilter(
+        ContextCompat.getColor(context, color),
+        PorterDuff.Mode.SRC_IN
+    )
+    setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, drawable, null)
+}
+
 fun TextView.changeFont(@FontRes font: Int) {
     typeface = ResourcesCompat.getFont(context, font)
 }

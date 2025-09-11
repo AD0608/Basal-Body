@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.basalbody.app.base.BaseAdapterWithViewBinding
 import com.basalbody.app.databinding.EachRowNotificationBinding
+import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.utils.SwipeLayout
 
 class NotificationListAdapter(
     private val context: Context,
@@ -21,6 +23,7 @@ class NotificationListAdapter(
             false
         )
     }
+
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val binding = holder.binding as EachRowNotificationBinding
         val item = list[position]
@@ -28,6 +31,18 @@ class NotificationListAdapter(
             // You can bind your data to the views here
             // For example:
             // textView.text = item
+            swipeLayout.setOnActionsListener(object : SwipeLayout.SwipeActionsListener {
+                override fun onOpen(direction: Int, isContinuous: Boolean) {
+                    // Handle on open if needed
+                }
+
+                override fun onClose() {
+                    // Handle on close if needed
+                }
+            })
+            swipeLayoutItem.imgDeleteNotification onSafeClick {
+                swipeLayout.close()
+            }
             root.setOnClickListener {
                 onItemClick?.invoke(item)
             }

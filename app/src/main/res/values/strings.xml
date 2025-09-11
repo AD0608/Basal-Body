@@ -107,7 +107,7 @@
     <string name="btn_tap_to_scan">Tap to scan</string>
     <string name="label_calendar">Calendar</string>
     <string name="btn_view_all">View all</string>
-    <string name="label_list_of_available_devices">List of Available Devices</string>
+    <string name="label_list_of_available_devices">Available Devices</string>
     <string name="btn_scan_for_devices">Scan for Devices</string>
     <string name="btn_connect">Connect</string>
 
@@ -198,4 +198,9 @@
     <string name="label_logged_out">Logged Out\nSuccessfully</string>
     <string name="message_logout_successfully">You have been logged out successfully.</string>
     <string name="label_yesterday">Yesterday</string>
+    <string name="label_founded_devices">Founded Devices</string>
+    <string name="label_sorry">Sorry!</string>
+    <string name="label_no_devices_found">No device found. Please check\nif the device\'s battery is charged\nand the power button is turned on.</string>
+    <string name="label_congratulations">Congratulations!</string>
+    <string name="message_your_logs_has_been_successfully_added">Your logs has been\nsuccessfully added.</string>
 </resources>

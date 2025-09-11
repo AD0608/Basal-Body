@@ -36,7 +36,7 @@
         android:id="@+id/tvBluetoothDeviceType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginStart="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_4"
         android:text="BBT Sensor 01"
         android:textColor="@color/black"

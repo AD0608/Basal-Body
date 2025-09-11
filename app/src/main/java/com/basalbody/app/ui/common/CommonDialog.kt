@@ -1,5 +1,7 @@
 package com.basalbody.app.ui.common
 
+import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseDialogFragment
 import com.basalbody.app.ui.common.CommonViewModel
@@ -10,15 +12,13 @@ import com.basalbody.app.utils.Constants
 import com.basalbody.app.utils.EnumUtils
 import kotlin.reflect.KClass
 
-class CommonDialog : BaseDialogFragment<CommonViewModel, DialogCommonBinding>(
+class CommonDialog : BaseDialogFragment<DialogCommonBinding>(
     inflate = DialogCommonBinding::inflate,
     isCancelAble = isCancel,
 ) {
     var type = EnumUtils.DialogType.NONE
     var callback: (() -> Unit)? = null
     var callbackNegative: (() -> Unit)? = null
-    override val modelClass: KClass<CommonViewModel>
-        get() = CommonViewModel::class
 
     override fun initControl() {
         setDialogWidthPercent(Constants.DEFAULT_WIDTH_DIALOG)
@@ -68,10 +68,14 @@ class CommonDialog : BaseDialogFragment<CommonViewModel, DialogCommonBinding>(
         var isCancel = false
         fun newInstance(
             type: EnumUtils.DialogType = EnumUtils.DialogType.NONE,
-            isCancel: Boolean = false
+            isCancel: Boolean = false,
+            rootView: ViewGroup,
+            activity: FragmentActivity,
         ) = CommonDialog().apply {
             this.type = type
             Companion.isCancel = isCancel
+            this.rootView = rootView
+            this.mActivity = activity
         }
     }
 }

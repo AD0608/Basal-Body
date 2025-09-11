@@ -32,7 +32,8 @@ class BasalTextField @JvmOverloads constructor(
     private val endDrawableImage : AppCompatImageView
     private val editText : AppCompatEditText
     private val tvPhoneNumberCode : BasalTextView
-    private lateinit var  ccp : CountryCodePicker
+    private val clField : ConstraintLayout
+    private var ccp : CountryCodePicker
     private var isPassword = true
 
     private val TAG = "BasalTextField"
@@ -46,6 +47,7 @@ class BasalTextField @JvmOverloads constructor(
         editText = findViewById(R.id.edtField)
         tvPhoneNumberCode = findViewById(R.id.tvPhoneNumberCode)
         ccp = findViewById(R.id.ccp)
+        clField = findViewById(R.id.clField)
 
         val a = context.obtainStyledAttributes(
             attrs,
@@ -145,6 +147,14 @@ class BasalTextField @JvmOverloads constructor(
             val name = ccp.selectedCountryName
             tvPhoneNumberCode.changeText(code)
             Log.e(TAG, "Selected: $name $code", )
+        }
+
+        editText.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                clField.background = ContextCompat.getDrawable(context, R.drawable.bg_app_text_field_focused)
+            } else {
+                clField.background = ContextCompat.getDrawable(context, R.drawable.bg_app_text_field)
+            }
         }
     }
 }

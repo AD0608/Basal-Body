@@ -21,6 +21,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -45,6 +46,7 @@ import com.basalbody.app.utils.language.LocaleHelper
 import com.basalbody.app.utils.showSnackBar
 import javax.inject.Inject
 import androidx.core.graphics.toColorInt
+import com.basalbody.app.extensions.changeBackground
 import com.basalbody.app.utils.dotsindicator.setBackgroundCompat
 
 abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActivity() {
@@ -125,7 +127,7 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
         activity = this
         binding = getViewBinding()
         setContentView(binding.root)
-        binding.root.background = gradientDrawable
+        binding.root.changeBackground(R.drawable.ic_app_bg)
         setupEdgeToEdge()
         initSetup()
         listeners()
@@ -133,7 +135,7 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
         addValidationObserver()
     }
 
-    private val gradientDrawable = object : Drawable() {
+    /*private val gradientDrawable = object : Drawable() {
         private val paint = Paint()
 
         override fun draw(canvas: Canvas) {
@@ -160,7 +162,7 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
             paint.colorFilter = colorFilter
         }
         override fun getOpacity(): Int = PixelFormat.OPAQUE
-    }
+    }*/
 
 
     private fun setupEdgeToEdge() {
