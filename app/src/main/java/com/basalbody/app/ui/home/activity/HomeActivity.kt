@@ -60,6 +60,10 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
         }
     }
 
+    fun setCalenderTab() {
+        binding.bottomNavigationView.selectedItemId = R.id.itemCalender
+    }
+
     private fun getDataFromIntent() {
         if (intent.notNull() && intent.extras.notNull()) {
             val userFrom = intent.extras?.getString("User_From")

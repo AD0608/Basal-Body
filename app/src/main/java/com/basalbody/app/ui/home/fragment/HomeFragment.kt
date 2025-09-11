@@ -14,6 +14,7 @@ import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.extensions.visible
 import com.basalbody.app.extensions.visibleIfOrGone
 import com.basalbody.app.ui.common.CommonDialog
+import com.basalbody.app.ui.home.activity.HomeActivity
 import com.basalbody.app.ui.home.activity.NotificationsActivity
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
 import com.basalbody.app.utils.BasalTextView
@@ -140,10 +141,7 @@ class HomeFragment :
             }
 
             btnViewAll onSafeClick {
-                CommonDialog.newInstance(EnumUtils.DialogType.LOG_OUT, true, binding.root, requireActivity()).show(
-                    requireActivity().supportFragmentManager,
-                    "CommonDialog"
-                )
+                (activity as HomeActivity).setCalenderTab()
             }
         }
     }
