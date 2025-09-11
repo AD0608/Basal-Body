@@ -1,18 +1,30 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
     android:width="40dp"
     android:height="40dp"
     android:viewportWidth="40"
     android:viewportHeight="40">
   <path
-      android:pathData="M12,0L28,0A12,12 0,0 1,40 12L40,28A12,12 0,0 1,28 40L12,40A12,12 0,0 1,0 28L0,12A12,12 0,0 1,12 0z"
-      android:fillColor="#FFEBF0"/>
+      android:pathData="M12,0L28,0A12,12 0,0 1,40 12L40,28A12,12 0,0 1,28 40L12,40A12,12 0,0 1,0 28L0,12A12,12 0,0 1,12 0z">
+    <aapt:attr name="android:fillColor">
+      <gradient 
+          android:startX="20"
+          android:startY="0"
+          android:endX="20"
+          android:endY="40"
+          android:type="linear">
+        <item android:offset="0" android:color="#FF46B74F"/>
+        <item android:offset="1" android:color="#FF7AC642"/>
+      </gradient>
+    </aapt:attr>
+  </path>
   <path
       android:pathData="M23.24,30.27H23.11C18.67,30.27 16.53,28.52 16.16,24.6C16.12,24.19 16.42,23.82 16.84,23.78C17.24,23.74 17.62,24.05 17.66,24.46C17.95,27.6 19.43,28.77 23.12,28.77H23.25C27.32,28.77 28.76,27.33 28.76,23.26V16.74C28.76,12.67 27.32,11.23 23.25,11.23H23.12C19.41,11.23 17.93,12.42 17.66,15.62C17.61,16.03 17.26,16.34 16.84,16.3C16.42,16.27 16.12,15.9 16.15,15.49C16.49,11.51 18.64,9.73 23.11,9.73H23.24C28.15,9.73 30.25,11.83 30.25,16.74V23.26C30.25,28.17 28.15,30.27 23.24,30.27Z"
-      android:fillColor="#292D32"/>
+      android:fillColor="#ffffff"/>
   <path
       android:pathData="M23,20.75H11.62C11.21,20.75 10.87,20.41 10.87,20C10.87,19.59 11.21,19.25 11.62,19.25H23C23.41,19.25 23.75,19.59 23.75,20C23.75,20.41 23.41,20.75 23,20.75Z"
-      android:fillColor="#292D32"/>
+      android:fillColor="#ffffff"/>
   <path
       android:pathData="M13.85,24.1C13.66,24.1 13.47,24.03 13.32,23.88L9.97,20.53C9.68,20.24 9.68,19.76 9.97,19.47L13.32,16.12C13.61,15.83 14.09,15.83 14.38,16.12C14.67,16.41 14.67,16.89 14.38,17.18L11.56,20L14.38,22.82C14.67,23.11 14.67,23.59 14.38,23.88C14.24,24.03 14.04,24.1 13.85,24.1Z"
-      android:fillColor="#292D32"/>
+      android:fillColor="#ffffff"/>
 </vector>

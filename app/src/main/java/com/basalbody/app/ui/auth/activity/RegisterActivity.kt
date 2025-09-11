@@ -38,7 +38,7 @@ class RegisterActivity : BaseActivity<AuthViewModel, ActivityRegisterBinding>() 
                     startNewActivity(WebViewActivity::class.java)
                 })
             tvSignInNow.setTextDecorator(resources.getString(R.string.sign_in_now),
-                R.color.colorText_263238,
+                R.color.colorText_309C34,
                 R.font.geist_bold,
                 allowCallback = true,
                 callBack = {
