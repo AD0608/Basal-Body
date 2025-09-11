@@ -267,7 +267,7 @@
                         android:paddingHorizontal="@dimen/dp_12"
                         android:paddingVertical="@dimen/dp_5"
                         android:text="No"
-                        android:textColor="@color/colorPinkDC3556"
+                        android:textColor="@color/colorGreen46B74F"
                         android:textSize="@dimen/sp_12"
                         app:textStyle="normal" />
 
@@ -343,7 +343,7 @@
                         android:paddingHorizontal="@dimen/dp_12"
                         android:paddingVertical="@dimen/dp_5"
                         android:text="No"
-                        android:textColor="@color/colorPinkDC3556"
+                        android:textColor="@color/colorGreen46B74F"
                         android:textSize="@dimen/sp_12"
                         app:textStyle="normal" />
 

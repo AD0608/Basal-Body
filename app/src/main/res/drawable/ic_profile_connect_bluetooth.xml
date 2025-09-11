@@ -19,14 +19,7 @@
     </aapt:attr>
   </path>
   <path
-      android:pathData="M29.174,14.812C29.703,14.283 30,13.566 30,12.819C30,12.071 29.703,11.354 29.175,10.825C28.646,10.297 27.929,10 27.181,10C26.434,9.999 25.717,10.296 25.188,10.825L11.842,24.174C11.61,24.405 11.438,24.69 11.342,25.004L10.021,29.356C9.995,29.442 9.993,29.534 10.015,29.622C10.038,29.709 10.083,29.789 10.147,29.853C10.211,29.917 10.291,29.962 10.378,29.984C10.466,30.006 10.558,30.004 10.644,29.978L14.997,28.658C15.31,28.563 15.595,28.392 15.827,28.161L29.174,14.812Z"
-      android:strokeLineJoin="round"
-      android:strokeWidth="2"
-      android:fillColor="#00000000"
-      android:strokeColor="#ffffff"
-      android:strokeLineCap="round"/>
-  <path
-      android:pathData="M23,13L27,17"
+      android:pathData="M15,15L25,25L20,30V10L25,15L15,25"
       android:strokeLineJoin="round"
       android:strokeWidth="2"
       android:fillColor="#00000000"

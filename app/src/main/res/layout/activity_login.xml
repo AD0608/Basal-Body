@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_43"
                 android:text="@string/lbl_or_sign_in_with"
-                android:textColor="@color/colorText_DC3556"
+                android:textColor="@color/black"
                 android:textSize="@dimen/sp_14"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
