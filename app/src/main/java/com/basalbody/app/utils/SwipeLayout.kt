@@ -147,6 +147,8 @@ class SwipeLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     private var gestureDetector: GestureDetectorCompat? = null
     private var draggingViewLeft = 0
     private var horizontalWidth = 0
+    private val SWIPE_START_THRESHOLD = 10 // px
+    private var hasSwipeStarted = false
 
     /**
      * Is open left view
@@ -571,6 +573,10 @@ class SwipeLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
         override fun onViewDragStateChanged(state: Int) {
             if (state == currentDraggingState) return
 
+            if (state == ViewDragHelper.STATE_IDLE) {
+                hasSwipeStarted = false
+            }
+
             if (isIdleAfterMoving(state)) {
                 updateState()
             }
@@ -586,15 +592,24 @@ class SwipeLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
             dy: Int
         ) {
             draggingViewLeft = left
+            if (!hasSwipeStarted && abs(left) > SWIPE_START_THRESHOLD) {
+                hasSwipeStarted = true
+                actionsListener?.onSwipeStart()   // 👈 fire only once when swipe really begins
+            }
 
             if (isTogether) {
-                if (currentDirection == LEFT) {
-                    staticRightView!!.offsetLeftAndRight(dx)
-                } else if (currentDirection == RIGHT) {
-                    staticLeftView!!.offsetLeftAndRight(dx)
-                } else if (currentDirection == HORIZONTAL) {
-                    staticLeftView!!.offsetLeftAndRight(dx)
-                    staticRightView!!.offsetLeftAndRight(dx)
+
+                when (currentDirection) {
+                    LEFT -> {
+                        staticRightView!!.offsetLeftAndRight(dx)
+                    }
+                    RIGHT -> {
+                        staticLeftView!!.offsetLeftAndRight(dx)
+                    }
+                    HORIZONTAL -> {
+                        staticLeftView!!.offsetLeftAndRight(dx)
+                        staticRightView!!.offsetLeftAndRight(dx)
+                    }
                 }
             }
         }
@@ -977,6 +992,7 @@ class SwipeLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     interface SwipeActionsListener {
         fun onOpen(direction: Int, isContinuous: Boolean)
         fun onClose()
+        fun onSwipeStart()
     }
 
     companion object {

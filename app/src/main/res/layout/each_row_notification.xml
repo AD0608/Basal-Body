@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/dp_15"
-    app:draggedItem="@id/clNotification"
+    app:draggedItem="@id/clNotificationMain"
     app:rightItem="@id/swipeLayoutItem"
+    app:isTogether="true"
     app:swipeDirection="left">
 
     <include
@@ -17,60 +18,68 @@
         android:layout_gravity="end" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clNotification"
+        android:id="@+id/clNotificationMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_notification_item"
-        android:padding="@dimen/dp_13">
+        android:background="@drawable/bg_notification_item">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgNotification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_notification_list"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clNotification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_notification_item"
+            android:padding="@dimen/dp_13">
 
-        <com.basalbody.app.utils.BasalTextView
-            android:id="@+id/tvNotificationTitle"
-            android:layout_width="@dimen/dp_0"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dp_8"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="Connect Your Bluetooth Device"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp_12"
-            app:layout_constraintEnd_toStartOf="@id/tvNotificationTime"
-            app:layout_constraintStart_toEndOf="@id/imgNotification"
-            app:layout_constraintTop_toTopOf="@id/imgNotification"
-            app:textStyle="bold" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_notification_list"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.basalbody.app.utils.BasalTextView
-            android:id="@+id/tvNotificationDesc"
-            android:layout_width="@dimen/dp_0"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_11"
-            android:layout_marginTop="@dimen/dp_4"
-            android:text="@string/dummy_lorem_ipsum"
-            android:textColor="@color/colorGray716569"
-            android:textSize="@dimen/sp_12"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imgNotification"
-            app:layout_constraintTop_toBottomOf="@id/tvNotificationTitle"
-            app:textStyle="normal" />
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvNotificationTitle"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_8"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Connect Your Bluetooth Device"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintEnd_toStartOf="@id/tvNotificationTime"
+                app:layout_constraintStart_toEndOf="@id/imgNotification"
+                app:layout_constraintTop_toTopOf="@id/imgNotification"
+                app:textStyle="bold" />
 
-        <com.basalbody.app.utils.BasalTextView
-            android:id="@+id/tvNotificationTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_8"
-            android:text="1 day ago"
-            android:textColor="@color/colorGray716569"
-            android:textSize="@dimen/sp_12"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/imgNotification"
-            app:textStyle="semiBold" />
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvNotificationDesc"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_11"
+                android:layout_marginTop="@dimen/dp_4"
+                android:text="@string/dummy_lorem_ipsum"
+                android:textColor="@color/colorGray716569"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgNotification"
+                app:layout_constraintTop_toBottomOf="@id/tvNotificationTitle"
+                app:textStyle="normal" />
+
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvNotificationTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:text="1 day ago"
+                android:textColor="@color/colorGray716569"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imgNotification"
+                app:textStyle="semiBold" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
