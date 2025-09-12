@@ -145,4 +145,7 @@ dependencies {
 
     //CCP
     implementation(libs.ccp.view)
+
+    //Chart
+    implementation(libs.mpandroidchart)
 }

@@ -205,4 +205,5 @@
     <string name="label_no_devices_found">No device found. Please check\nif the device\'s battery is charged\nand the power button is turned on.</string>
     <string name="label_congratulations">Congratulations!</string>
     <string name="message_your_logs_has_been_successfully_added">Your logs has been\nsuccessfully added.</string>
+    <string name="high_chance_of_conception">High chance of conception</string>
 </resources>
