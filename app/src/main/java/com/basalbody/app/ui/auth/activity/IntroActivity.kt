@@ -73,7 +73,7 @@ class IntroActivity : BaseActivity<AuthViewModel, ActivityIntroBinding>() {
     }
 
     fun goToHome() {
-        Log.e(TAG, "goToHome()")
+        localDataRepository.setOnboardingCompleted(true)
         startNewActivity(LoginActivity::class.java, isFinish = true)
     }
 

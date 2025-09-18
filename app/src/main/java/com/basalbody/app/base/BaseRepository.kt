@@ -20,6 +20,7 @@ import com.basalbody.app.extensions.nullSafe
 import com.basalbody.app.extensions.safeCast
 import com.basalbody.app.extensions.toObject
 import com.basalbody.app.extensions.withNotNull
+import com.basalbody.app.model.response.LoginResponse
 import com.basalbody.app.utils.CommonUtils.checkInternetConnected
 import com.basalbody.app.utils.dotsindicator.toObjectTypeToken
 import kotlinx.coroutines.CoroutineScope
@@ -85,17 +86,28 @@ abstract class BaseRepository {
                                                 }
                                             }
 
-                                            /*ApiIdentifier.API_LOGOUT -> {
+                                            ApiIdentifier.API_LOGIN -> {
+                                                val loginResponse =
+                                                    (mBean as? BaseResponse<*>)?.safeCast<LoginResponse>()
+                                                loginResponse?.data?.withNotNull { data ->
+                                                    data.withNotNull { loginData ->
+                                                        localDataRepository.saveBarrierToken(token = loginData.token ?: "")
+                                                        localDataRepository.saveUserDetails(userData = loginData)
+                                                    }
+                                                }
+                                            }
+
+                                            ApiIdentifier.API_LOGOUT -> {
                                                 localDataRepository.resetUserData()
                                             }
 
                                             ApiIdentifier.API_DELETE_ACCOUNT -> {
                                                 localDataRepository.resetUserData()
-                                            }*/
+                                            }
 
                                             else -> {}
                                         }
-                                        emit(Resource.Success(mBean))
+                                        emit(Resource.Success(mBean, message = mBean.message.nullSafe()))
                                     } else {
                                         emit(
                                             Resource.ErrorWithData(

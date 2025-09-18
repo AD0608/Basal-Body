@@ -4,6 +4,7 @@ import android.os.CountDownTimer
 import androidx.lifecycle.viewModelScope
 import com.basalbody.app.base.BaseViewModel
 import com.basalbody.app.model.Resource
+import com.basalbody.app.model.request.LoginRequest
 import com.basalbody.app.ui.auth.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,6 +29,18 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             splashRepository.callInitApi().collect {
                 _callInitApiMutableStateFlow.value = it
+            }
+        }
+    }
+
+    //-------Login Api-------//
+    private val _callLoginApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callLoginApiStateFlow: StateFlow<Resource<*>> = _callLoginApiMutableStateFlow
+    fun callLoginApi(request: LoginRequest) {
+        viewModelScope.launch {
+            splashRepository.callLoginApi(request).collect {
+                _callLoginApiMutableStateFlow.value = it
             }
         }
     }

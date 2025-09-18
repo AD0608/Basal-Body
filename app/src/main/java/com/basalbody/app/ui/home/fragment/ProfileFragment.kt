@@ -20,7 +20,9 @@ import com.basalbody.app.ui.profile.activity.EditProfileActivity
 import com.basalbody.app.ui.profile.activity.FaqActivity
 import com.basalbody.app.ui.profile.activity.TroubleShootActivity
 import com.basalbody.app.ui.profile.activity.WebViewActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment :
     BaseFragment<HomeViewModel, FragmentProfileBinding>(FragmentProfileBinding::inflate) {
     override fun getViewBinding(): FragmentProfileBinding =
@@ -70,20 +72,28 @@ class ProfileFragment :
                 startNewActivity(NotificationsActivity::class.java)
             }
             llLogout.onSafeClick {
-                CommonConfirmationBottomSheetDialog.newInstance(root, requireActivity(), callBack = {
-                    openLogoutSuccessPopup()
-                }).apply {
+                CommonConfirmationBottomSheetDialog.newInstance(
+                    root,
+                    requireActivity(),
+                    callBack = {
+                        openLogoutSuccessPopup()
+                    }).apply {
                     title = this@ProfileFragment.getString(R.string.label_logout)
-                    description = this@ProfileFragment.getString(R.string.message_logout_confirmation)
+                    description =
+                        this@ProfileFragment.getString(R.string.message_logout_confirmation)
                     positiveBtnText = this@ProfileFragment.getString(R.string.btn_logout)
                 }.show(childFragmentManager, "LogoutConfirmationBottomSheetDialog")
             }
             llDeleteAccount.onSafeClick {
-                CommonConfirmationBottomSheetDialog.newInstance(root, requireActivity(), callBack = {
-                    openDeleteAccountSuccessPopup()
-                }).apply {
+                CommonConfirmationBottomSheetDialog.newInstance(
+                    root,
+                    requireActivity(),
+                    callBack = {
+                        openDeleteAccountSuccessPopup()
+                    }).apply {
                     title = this@ProfileFragment.getString(R.string.label_delete_account)
-                    description = this@ProfileFragment.getString(R.string.message_delete_account_confirmation)
+                    description =
+                        this@ProfileFragment.getString(R.string.message_delete_account_confirmation)
                     positiveBtnText = this@ProfileFragment.getString(R.string.btn_delete)
                 }.show(childFragmentManager, "DeleteAccountConfirmationBottomSheetDialog")
             }

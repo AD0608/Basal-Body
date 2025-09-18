@@ -30,7 +30,7 @@ class BasalTextField @JvmOverloads constructor(
     private val labelText : BasalTextView
     private val startDrawableImage : AppCompatImageView
     private val endDrawableImage : AppCompatImageView
-    private val editText : AppCompatEditText
+    val editText : AppCompatEditText
     private val tvPhoneNumberCode : BasalTextView
     private val clField : ConstraintLayout
     private var ccp : CountryCodePicker
@@ -157,6 +157,14 @@ class BasalTextField @JvmOverloads constructor(
             }
         }
     }
+}
+
+fun BasalTextField.setText(text: String?) {
+    this.editText.setText(text?.takeIf { it.isNotEmpty() || it != "null" }.orEmpty())
+}
+
+fun BasalTextField.getText(): String? {
+    return this.editText.text?.toString()
 }
 
 class CustomPasswordTransformation : PasswordTransformationMethod() {

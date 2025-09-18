@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintTop_toBottomOf="@id/llToolBar"
-        app:shapeAppearance="@style/ImageCorner_12"/>
+        app:shapeAppearance="@style/Corners12dp"/>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivCamera"

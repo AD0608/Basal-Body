@@ -1,12 +1,7 @@
 package com.basalbody.app.ui.home.fragment
 
 import android.graphics.Color
-import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseFragment
@@ -22,12 +17,16 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InsightsFragment : BaseFragment<HomeViewModel, FragmentInsightsBinding>(
-    FragmentInsightsBinding::inflate) {
+    FragmentInsightsBinding::inflate
+) {
     val TAG = "InsightsFragment"
 
-    override fun getViewBinding(): FragmentInsightsBinding = FragmentInsightsBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentInsightsBinding =
+        FragmentInsightsBinding.inflate(layoutInflater)
 
     private var cycleInsightsList = arrayListOf<CycleInsight>().apply {
         add(CycleInsight("Jan", "28"))

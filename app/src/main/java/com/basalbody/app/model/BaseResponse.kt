@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 open class BaseResponse<T : Serializable>(
-    @SerializedName("status")
+    @SerializedName("success")
     var status: Boolean = false,
 
     @SerializedName("message")

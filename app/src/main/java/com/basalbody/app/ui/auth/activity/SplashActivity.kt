@@ -39,8 +39,7 @@ class SplashActivity : BaseActivity<AuthViewModel, ActivitySplashBinding>() {
 
         lifecycleScope.launch {
             delay(3000L)
-            startNewActivity(IntroActivity::class.java, isFinish = true)
-//            startNewActivity(HomeActivity::class.java, isFinish = true)
+            navigateUser()
         }
     }
 
@@ -66,6 +65,20 @@ class SplashActivity : BaseActivity<AuthViewModel, ActivitySplashBinding>() {
                     })
             }
         }*/
+    }
+
+    private fun navigateUser() {
+        val isOnboardingCompleted = localDataRepository.isOnboardingCompleted()
+        if (isOnboardingCompleted) {
+            val userDetails = localDataRepository.getUserDetails()
+            if (userDetails.notNull()) {
+                startNewActivity(HomeActivity::class.java, isFinish = true)
+            } else {
+                startNewActivity(LoginActivity::class.java, isFinish = true)
+            }
+        } else {
+            startNewActivity(IntroActivity::class.java, isFinish = true)
+        }
     }
 
     private fun handleInitData(initData: BaseResponse<InitData>?) {

@@ -10,7 +10,7 @@ sealed class Resource<T>(
     val isLoadingShow: Boolean? = null,
     val multiPartBodyImage: MultipartBody.Part? = null,
 ) {
-    class Success<T>(data: T) : Resource<T>(data = data)
+    class Success<T>(data: T, message: String? = null) : Resource<T>(data = data, message = message)
     class Loading<T>(isLoadingShow: Boolean) : Resource<T>(isLoadingShow = isLoadingShow)
     class Error<T>(message: String) : Resource<T>(message = message)
     class AuthException<T>(data: T) : Resource<T>(data = data)

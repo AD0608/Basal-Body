@@ -31,7 +31,6 @@ android {
             isShrinkResources = false
             android.buildFeatures.buildConfig = true
             manifestPlaceholders["crashlyticsEnabled"] = true
-            buildConfigField("Boolean", "ENABLE_LOG", "false")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -43,7 +42,6 @@ android {
             isShrinkResources = false
             android.buildFeatures.buildConfig = true
             manifestPlaceholders["crashlyticsEnabled"] = false
-            buildConfigField("Boolean", "ENABLE_LOG", "true")
         }
     }
 
@@ -67,17 +65,17 @@ android {
         jvmTarget = "11"
     }
 
-    flavorDimensions += listOf("MXB")
+    flavorDimensions += listOf("Basal")
 
     productFlavors {
         create("development") {
-            dimension = "MXB"
-            buildConfigField("String", "BASE_URL", "\"https://www.google.com\"")
+            dimension = "Basal"
+            buildConfigField("String", "BASE_URL", "\"http://basalbody-backend-env.eba-7pkupmkm.ap-southeast-1.elasticbeanstalk.com/api/app/v1/\"")
             buildConfigField("String", "SOCKET_BASE_URL", "\"https://www.google.com\"")
         }
         create("production") {
-            dimension = "MXB"
-            buildConfigField("String", "BASE_URL", "\"https://www.google.com\"")
+            dimension = "Basal"
+            buildConfigField("String", "BASE_URL", "\"http://basalbody-backend-env.eba-7pkupmkm.ap-southeast-1.elasticbeanstalk.com/api/app/v1/\"")
             buildConfigField("String", "SOCKET_BASE_URL", "\"https://www.google.com\"")
         }
     }

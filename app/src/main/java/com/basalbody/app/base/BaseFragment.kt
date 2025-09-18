@@ -40,7 +40,7 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewBinding>(private val infl
     }
 
     @Inject
-    lateinit var userPreference: LocalDataRepository
+    lateinit var localDataRepository: LocalDataRepository
 
     open fun onNetworkChange(isNetworkAvailable: Boolean) {}
     open fun onSocketConnectionChange(isConnected: Boolean) {}
@@ -140,7 +140,7 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewBinding>(private val infl
     }
 
     fun clearDataOnLogoutAndNavigateToLoginScreen() {
-        userPreference.resetUserData()
+        localDataRepository.resetUserData()
         /*requireActivity().startNewActivity(
             RoleSelectionActivity::class.java,
             isClearAllStacks = true

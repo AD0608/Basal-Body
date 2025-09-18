@@ -41,7 +41,7 @@ class FlowInActivity<T>(
             is Resource.Success<*> -> {
                 if (shouldShowSuccessMessage) {
                     showSnackBar(
-                        (data.data as BaseResponse<*>).message,
+                        data.message ?: "",
                         Constants.STATUS_SUCCESSFUL,
                         context = context
                     )

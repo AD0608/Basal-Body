@@ -11,7 +11,6 @@ import com.basalbody.app.extensions.changeColor
 import com.basalbody.app.extensions.changeDrawableImage
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.gone
-import com.basalbody.app.extensions.invisible
 import com.basalbody.app.extensions.onNoSafeClick
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.startNewActivity
@@ -27,15 +26,16 @@ import com.kizitonwose.calendar.core.daysOfWeek
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import com.kizitonwose.calendar.core.nextMonth
 import com.kizitonwose.calendar.core.previousMonth
-import com.kizitonwose.calendar.core.yearMonth
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.ViewContainer
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.Locale
 
+@AndroidEntryPoint
 class CalenderFragment :
     BaseFragment<HomeViewModel, FragmentCalenderBinding>(FragmentCalenderBinding::inflate) {
     override fun getViewBinding(): FragmentCalenderBinding =
@@ -44,7 +44,11 @@ class CalenderFragment :
     private val titleFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
     var selectedDate: LocalDate? = LocalDate.now()
     private val todaysActivityListAdapter by lazy {
-        TodaysActivityListAdapter(requireContext(), arrayListOf("menstruation","intercourse","temperatureTrend"), ::onItemClick)
+        TodaysActivityListAdapter(
+            requireContext(),
+            arrayListOf("menstruation", "intercourse", "temperatureTrend"),
+            ::onItemClick
+        )
     }
 
     override fun initSetup() {
@@ -151,7 +155,7 @@ class CalenderFragment :
         }
     }
 
-    private fun onItemClick(item : String) {
+    private fun onItemClick(item: String) {
         ActivityDetailsBottomSheetDialog.newInstance(binding.root, requireActivity(), callBack = {
 
         }).show(requireActivity().supportFragmentManager, "ActivityDetailsBottomSheetDialog")

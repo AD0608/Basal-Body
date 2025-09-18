@@ -4,6 +4,7 @@ import android.content.Context
 import com.basalbody.app.BuildConfig
 import com.basalbody.app.base.BaseRepository
 import com.basalbody.app.model.Resource
+import com.basalbody.app.model.request.LoginRequest
 import com.basalbody.app.network.ApiIdentifier
 import com.basalbody.app.network.ApiService
 import kotlinx.coroutines.flow.Flow
@@ -20,6 +21,17 @@ class AuthRepository @Inject constructor(
             apiIdentifier = ApiIdentifier.API_INIT,
             apiCall = {
                 apiService.callInitApi(BuildConfig.VERSION_NAME)
+            }
+        )
+    }
+
+    //-------Login Api-------//
+    fun callLoginApi(request: LoginRequest): Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiIdentifier = ApiIdentifier.API_LOGIN,
+            apiCall = {
+                apiService.callLoginApi(request)
             }
         )
     }

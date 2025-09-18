@@ -1,35 +1,34 @@
 package com.basalbody.app.ui.home.fragment
 
 import android.view.View
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorInt
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseFragment
 import com.basalbody.app.databinding.FragmentHomeBinding
 import com.basalbody.app.databinding.WeekCalendarDayViewBinding
+import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.gone
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.extensions.visible
-import com.basalbody.app.extensions.visibleIfOrGone
-import com.basalbody.app.ui.common.CommonDialog
 import com.basalbody.app.ui.home.activity.HomeActivity
 import com.basalbody.app.ui.home.activity.NotificationsActivity
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
 import com.basalbody.app.utils.BasalTextView
-import com.basalbody.app.utils.EnumUtils
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import com.kizitonwose.calendar.view.ViewContainer
 import com.kizitonwose.calendar.view.WeekDayBinder
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.Locale
 
+@AndroidEntryPoint
 class HomeFragment :
     BaseFragment<HomeViewModel, FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
@@ -52,6 +51,7 @@ class HomeFragment :
 
         }*/
     }
+
     override fun initSetup() {
         setupCalendar()
         setupUI()
@@ -105,6 +105,8 @@ class HomeFragment :
 
     private fun setupUI() {
         binding.apply {
+            val userName = localDataRepository.getUserDetails()?.user?.fullname.orEmpty()
+            tvWelcomeText.changeText("Welcome $userName!")
             grpConnectedDevice.gone()
             btnTapToScan.gone()
             btnTapToScanDevice.visible()

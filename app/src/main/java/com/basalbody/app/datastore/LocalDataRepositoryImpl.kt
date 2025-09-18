@@ -1,6 +1,7 @@
 package com.basalbody.app.datastore
 
 import com.basalbody.app.model.response.InitData
+import com.basalbody.app.model.response.LoginResponse
 
 
 interface LocalDataRepositoryImpl {
@@ -17,12 +18,14 @@ interface LocalDataRepositoryImpl {
 
     fun getCurrentLanguage(): String
 
-    fun saveUserDetails(userData: String)
-//    fun getUserDetails(): AuthData?
+    fun saveUserDetails(userData: LoginResponse)
+    fun getUserDetails(): LoginResponse?
 
     fun resetUserData()
 
     fun saveInitData(initData: InitData?)
     fun getInitData(): InitData?
     fun getUserType(): String
+    fun isOnboardingCompleted(): Boolean
+    fun setOnboardingCompleted(completed: Boolean)
 }

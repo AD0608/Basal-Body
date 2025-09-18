@@ -1,9 +1,13 @@
 package com.basalbody.app.network
 
 import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.request.LoginRequest
 import com.basalbody.app.model.response.InitData
+import com.basalbody.app.model.response.LoginResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
@@ -22,8 +26,14 @@ interface ApiService {
     @GET(API_INIT)
     suspend fun callInitApi(@Path("version") version: String): Response<BaseResponse<InitData>>
 
+    @POST(API_LOGIN)
+    suspend fun callLoginApi(@Body request: LoginRequest): Response<BaseResponse<LoginResponse>>
+
 }
 
 enum class ApiIdentifier {
     API_INIT,
+    API_LOGIN,
+    API_LOGOUT,
+    API_DELETE_ACCOUNT,
 }

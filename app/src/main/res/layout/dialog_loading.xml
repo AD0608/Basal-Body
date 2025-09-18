@@ -5,17 +5,14 @@
     android:layout_height="wrap_content"
     android:background="@android:color/transparent">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/progressAnimationView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="@dimen/dp_150"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="loader.json"
-        app:lottie_loop="true" />
+        app:shapeAppearanceOverlay="@style/Corners12dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

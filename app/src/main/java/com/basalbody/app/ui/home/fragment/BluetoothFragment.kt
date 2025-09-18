@@ -12,7 +12,9 @@ import com.basalbody.app.extensions.visible
 import com.basalbody.app.ui.home.activity.ConnectedDeviceActivity
 import com.basalbody.app.ui.home.adapter.BluetoothDevicesListAdapter
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BluetoothFragment :
     BaseFragment<HomeViewModel, FragmentBluetoothBinding>(FragmentBluetoothBinding::inflate) {
     override fun getViewBinding(): FragmentBluetoothBinding =

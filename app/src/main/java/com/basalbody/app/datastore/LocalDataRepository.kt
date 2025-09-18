@@ -8,6 +8,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
 import com.basalbody.app.model.response.InitData
 import com.basalbody.app.extensions.withNotNull
+import com.basalbody.app.model.response.LoginResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -94,21 +95,21 @@ class LocalDataRepository @Inject constructor(
         }
     }
 
-    override fun saveUserDetails(userData: String) {
+    override fun saveUserDetails(userData: LoginResponse) {
         CoroutineScope(Dispatchers.IO).launch {
             context.userDataStore.edit { preferences ->
-                preferences[USER_DETAILS_KEY] = userData
+                preferences[USER_DETAILS_KEY] = gson.toJson(userData)
             }
         }
     }
 
-//    override fun getUserDetails(): AuthData? {
-//        val userData = runBlocking {
-//            context.userDataStore.data.first()[USER_DETAILS_KEY].withNotNull { it }
-//                ?: run { return@run "" }
-//        }
-//        return if (userData.isEmpty()) null else gson.fromJson(userData, AuthData::class.java)
-//    }
+    override fun getUserDetails(): LoginResponse? {
+        val userData = runBlocking {
+            context.userDataStore.data.first()[USER_DETAILS_KEY].withNotNull { it }
+                ?: run { return@run "" }
+        }
+        return if (userData.isEmpty()) null else gson.fromJson(userData, LoginResponse::class.java)
+    }
 
     override fun getUserType(): String {
         return runBlocking {
@@ -140,5 +141,20 @@ class LocalDataRepository @Inject constructor(
                 ?: run { return@run "" }
         }
         return if (initData.isEmpty()) null else gson.fromJson(initData, InitData::class.java)
+    }
+
+    override fun isOnboardingCompleted(): Boolean {
+        return runBlocking {
+            context.userDataStore.data.first()[ONBOARDING_COMPLETED_KEY].withNotNull { it }
+                ?: run { return@run false }
+        }
+    }
+
+    override fun setOnboardingCompleted(completed: Boolean) {
+        CoroutineScope(Dispatchers.IO).launch {
+            context.userDataStore.edit { preferences ->
+                preferences[ONBOARDING_COMPLETED_KEY] = completed
+            }
+        }
     }
 }

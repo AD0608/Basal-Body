@@ -74,9 +74,9 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
-    <style name="ImageCorner_12" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+    <style name="Corners12dp" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/dp_12</item> <!-- 50% makes it perfectly circular -->
+        <item name="cornerSize">@dimen/dp_12</item>
     </style>
 
 </resources>
