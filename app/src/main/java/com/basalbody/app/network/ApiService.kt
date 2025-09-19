@@ -3,7 +3,7 @@ package com.basalbody.app.network
 import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.request.LoginRequest
 import com.basalbody.app.model.response.InitData
-import com.basalbody.app.model.response.LoginResponse
+import com.basalbody.app.model.response.UserResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -27,7 +27,7 @@ interface ApiService {
     suspend fun callInitApi(@Path("version") version: String): Response<BaseResponse<InitData>>
 
     @POST(API_LOGIN)
-    suspend fun callLoginApi(@Body request: LoginRequest): Response<BaseResponse<LoginResponse>>
+    suspend fun callLoginApi(@Body request: LoginRequest): Response<BaseResponse<UserResponse>>
 
 }
 

@@ -20,7 +20,7 @@ import com.basalbody.app.extensions.nullSafe
 import com.basalbody.app.extensions.safeCast
 import com.basalbody.app.extensions.toObject
 import com.basalbody.app.extensions.withNotNull
-import com.basalbody.app.model.response.LoginResponse
+import com.basalbody.app.model.response.UserResponse
 import com.basalbody.app.utils.CommonUtils.checkInternetConnected
 import com.basalbody.app.utils.dotsindicator.toObjectTypeToken
 import kotlinx.coroutines.CoroutineScope
@@ -87,9 +87,9 @@ abstract class BaseRepository {
                                             }
 
                                             ApiIdentifier.API_LOGIN -> {
-                                                val loginResponse =
-                                                    (mBean as? BaseResponse<*>)?.safeCast<LoginResponse>()
-                                                loginResponse?.data?.withNotNull { data ->
+                                                val userResponse =
+                                                    (mBean as? BaseResponse<*>)?.safeCast<UserResponse>()
+                                                userResponse?.data?.withNotNull { data ->
                                                     data.withNotNull { loginData ->
                                                         localDataRepository.saveBarrierToken(token = loginData.token ?: "")
                                                         localDataRepository.saveUserDetails(userData = loginData)

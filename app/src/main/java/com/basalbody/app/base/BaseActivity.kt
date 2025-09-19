@@ -47,6 +47,8 @@ import com.basalbody.app.utils.showSnackBar
 import javax.inject.Inject
 import androidx.core.graphics.toColorInt
 import com.basalbody.app.extensions.changeBackground
+import com.basalbody.app.extensions.startNewActivity
+import com.basalbody.app.ui.auth.activity.LoginActivity
 import com.basalbody.app.utils.dotsindicator.setBackgroundCompat
 
 abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActivity() {
@@ -221,7 +223,7 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
 
     fun clearDataOnLogoutAndNavigateToLoginScreen() {
         localDataRepository.resetUserData()
-        //startNewActivity(className = RoleSelectionActivity::class.java, isClearAllStacks = true)
+        startNewActivity(className = LoginActivity::class.java, isClearAllStacks = true)
     }
 
     fun showApiErrorMessage(message: String?) {

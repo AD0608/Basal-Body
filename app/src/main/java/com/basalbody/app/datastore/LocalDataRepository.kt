@@ -8,7 +8,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
 import com.basalbody.app.model.response.InitData
 import com.basalbody.app.extensions.withNotNull
-import com.basalbody.app.model.response.LoginResponse
+import com.basalbody.app.model.response.UserResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -95,7 +95,7 @@ class LocalDataRepository @Inject constructor(
         }
     }
 
-    override fun saveUserDetails(userData: LoginResponse) {
+    override fun saveUserDetails(userData: UserResponse) {
         CoroutineScope(Dispatchers.IO).launch {
             context.userDataStore.edit { preferences ->
                 preferences[USER_DETAILS_KEY] = gson.toJson(userData)
@@ -103,12 +103,12 @@ class LocalDataRepository @Inject constructor(
         }
     }
 
-    override fun getUserDetails(): LoginResponse? {
+    override fun getUserDetails(): UserResponse? {
         val userData = runBlocking {
             context.userDataStore.data.first()[USER_DETAILS_KEY].withNotNull { it }
                 ?: run { return@run "" }
         }
-        return if (userData.isEmpty()) null else gson.fromJson(userData, LoginResponse::class.java)
+        return if (userData.isEmpty()) null else gson.fromJson(userData, UserResponse::class.java)
     }
 
     override fun getUserType(): String {

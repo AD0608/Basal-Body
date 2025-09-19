@@ -15,7 +15,7 @@ import com.basalbody.app.extensions.setTextDecorator
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.request.LoginRequest
-import com.basalbody.app.model.response.LoginResponse
+import com.basalbody.app.model.response.UserResponse
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
 import com.basalbody.app.ui.home.activity.HomeActivity
 import com.basalbody.app.utils.Constants
@@ -37,7 +37,7 @@ class LoginActivity : BaseActivity<AuthViewModel, ActivityLoginBinding>() {
     override fun addObservers() {
         lifecycleScope.launch {
             viewModel.callLoginApiStateFlow.collect {
-                FlowInActivity<BaseResponse<LoginResponse>>(
+                FlowInActivity<BaseResponse<UserResponse>>(
                     data = it,
                     context = this@LoginActivity,
                     shouldShowErrorMessage = true,
@@ -91,13 +91,11 @@ class LoginActivity : BaseActivity<AuthViewModel, ActivityLoginBinding>() {
         }
     }
 
-    private fun handleLoginResponse(loginResponse: BaseResponse<LoginResponse>?) {
-        if (loginResponse.notNull()) {
-            if (loginResponse?.status == true) {
+    private fun handleLoginResponse(userResponse: BaseResponse<UserResponse>?) {
+        if (userResponse.notNull() && userResponse?.status == true) {
                 startNewActivity(HomeActivity::class.java, isFinish = true)
-            } else {
-                showSnackBar(loginResponse?.message ?: "", Constants.STATUS_ERROR, this)
-            }
+        } else {
+            showSnackBar(userResponse?.message ?: "", Constants.STATUS_ERROR, this)
         }
     }
 

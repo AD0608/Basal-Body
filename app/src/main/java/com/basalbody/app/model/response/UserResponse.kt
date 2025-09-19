@@ -3,7 +3,7 @@ package com.basalbody.app.model.response
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class LoginResponse(
+data class UserResponse(
 
 	@field:SerializedName("is_firebase_auth")
 	val isFirebaseAuth: Boolean? = null,
