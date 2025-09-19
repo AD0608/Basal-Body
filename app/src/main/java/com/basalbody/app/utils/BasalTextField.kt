@@ -21,6 +21,7 @@ import com.basalbody.app.extensions.setEndIconInsetDrawable
 import com.basalbody.app.extensions.visible
 import com.google.android.material.textfield.TextInputLayout
 import com.hbb20.CountryCodePicker
+import androidx.core.view.isVisible
 
 class BasalTextField @JvmOverloads constructor(
     context: Context,
@@ -31,7 +32,7 @@ class BasalTextField @JvmOverloads constructor(
     private val startDrawableImage : AppCompatImageView
     private val endDrawableImage : AppCompatImageView
     val editText : AppCompatEditText
-    private val tvPhoneNumberCode : BasalTextView
+    val tvPhoneNumberCode : BasalTextView
     private val clField : ConstraintLayout
     private var ccp : CountryCodePicker
     private var isPassword = true
@@ -146,7 +147,7 @@ class BasalTextField @JvmOverloads constructor(
             val code = ccp.selectedCountryCodeWithPlus
             val name = ccp.selectedCountryName
             tvPhoneNumberCode.changeText(code)
-            Log.e(TAG, "Selected: $name $code", )
+            Log.e(TAG, "Selected: $name $code")
         }
 
         editText.setOnFocusChangeListener { _, hasFocus ->
@@ -156,6 +157,14 @@ class BasalTextField @JvmOverloads constructor(
                 clField.background = ContextCompat.getDrawable(context, R.drawable.bg_app_text_field)
             }
         }
+    }
+}
+
+fun BasalTextField.getCountryCode(): String {
+    return if (tvPhoneNumberCode.isVisible) {
+        tvPhoneNumberCode.text.toString()
+    } else {
+        ""
     }
 }
 

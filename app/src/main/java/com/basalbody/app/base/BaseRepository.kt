@@ -21,6 +21,7 @@ import com.basalbody.app.extensions.safeCast
 import com.basalbody.app.extensions.toObject
 import com.basalbody.app.extensions.withNotNull
 import com.basalbody.app.model.response.UserResponse
+import com.basalbody.app.network.ApiService.Companion.API_ERROR
 import com.basalbody.app.utils.CommonUtils.checkInternetConnected
 import com.basalbody.app.utils.dotsindicator.toObjectTypeToken
 import kotlinx.coroutines.CoroutineScope
@@ -150,6 +151,25 @@ abstract class BaseRepository {
 
                         response.code() == API_CUSTOM_EXCEPTION -> {
                             emit(Resource.Error<String>(response.message()))
+                        }
+
+                        response.code() == API_ERROR -> {
+                            if (response.errorBody() != null) {
+                                val errorJson = response.errorBody()!!.string()
+                                val baseResponse = errorJson.toObject<BaseResponse<*>>()  // your extension
+                                if (baseResponse != null) {
+                                    emit(
+                                        Resource.ErrorWithData(
+                                            data = baseResponse,
+                                            message = baseResponse.message.nullSafe()
+                                        )
+                                    )
+                                } else {
+                                    emit(Resource.Error<String>(errorJson)) // fallback raw error
+                                }
+                            } else {
+                                emit(Resource.Error<String>(response.message()))
+                            }
                         }
 
                         response.code() == API_MAINTENANCE_MODE_EXCEPTION -> {

@@ -4,6 +4,7 @@ object LimitCount {
     const val userNameMin = 2
     const val userNameMax = 35
     const val textFieldMax = 70
+    const val otpLength = 6
     const val phoneMin = 7
     const val phoneMax = 15
     const val passwordMin = 8

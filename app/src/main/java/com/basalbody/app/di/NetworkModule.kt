@@ -28,8 +28,6 @@ class NetworkModule {
     companion object {
         const val API_KEY_ACCEPT = "Accept"
         const val API_VALUE_ACCEPT = "application/json"
-        const val API_KEY = "KEY"
-        const val API_KEY_VALUE = "GoRBT@123*"
         const val API_KEY_AUTHORIZATION = "Authorization"
         const val API_KEY_BEARER = "Bearer"
     }
@@ -69,7 +67,6 @@ class NetworkModule {
                 val apiKey: String = localDataRepository.getBarrierToken()
                 val requestBuilder = original.newBuilder()
                 requestBuilder.addHeader(API_KEY_ACCEPT, API_VALUE_ACCEPT)
-                requestBuilder.addHeader(API_KEY, API_KEY_VALUE)
                 if (apiKey.isNotEmpty()) {
                     requestBuilder.addHeader(
                         API_KEY_AUTHORIZATION,
