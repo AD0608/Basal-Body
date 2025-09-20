@@ -6,6 +6,7 @@ import com.basalbody.app.base.BaseRepository
 import com.basalbody.app.model.Resource
 import com.basalbody.app.model.request.ForgotPasswordRequest
 import com.basalbody.app.model.request.LoginRequest
+import com.basalbody.app.model.request.RegisterRequest
 import com.basalbody.app.model.request.ResendOtpRequest
 import com.basalbody.app.model.request.ResetPasswordStep1Request
 import com.basalbody.app.model.request.ResetPasswordStep2Request
@@ -36,6 +37,17 @@ class AuthRepository @Inject constructor(
             apiIdentifier = ApiIdentifier.API_LOGIN,
             apiCall = {
                 apiService.callLoginApi(request)
+            }
+        )
+    }
+
+    //-------Register Api-------//
+    fun callRegisterApi(request: RegisterRequest): Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiIdentifier = ApiIdentifier.API_REGISTER,
+            apiCall = {
+                apiService.callRegisterApi(request)
             }
         )
     }

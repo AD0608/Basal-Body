@@ -209,4 +209,6 @@
     <string name="validation_empty_current_password">Please enter current password</string>
     <string name="validation_current_password_min">Current password must contain minimum 8 digits</string>
     <string name="validation_current_password_space">Current password can’t start or end with a blank space.</string>
+    <string name="validation_terms_condition">Please accept terms and condition</string>
+    <string name="invalid_password">Password must be at least 8 characters long, with at least one uppercase letter, one lowercase letter, one digit, and one special character.</string>
 </resources>

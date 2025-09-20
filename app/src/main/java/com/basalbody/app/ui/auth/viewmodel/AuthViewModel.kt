@@ -6,6 +6,7 @@ import com.basalbody.app.base.BaseViewModel
 import com.basalbody.app.model.Resource
 import com.basalbody.app.model.request.ForgotPasswordRequest
 import com.basalbody.app.model.request.LoginRequest
+import com.basalbody.app.model.request.RegisterRequest
 import com.basalbody.app.model.request.ResendOtpRequest
 import com.basalbody.app.model.request.ResetPasswordStep1Request
 import com.basalbody.app.model.request.ResetPasswordStep2Request
@@ -45,6 +46,18 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             splashRepository.callLoginApi(request).collect {
                 _callLoginApiMutableStateFlow.value = it
+            }
+        }
+    }
+
+    //-------Register Api-------//
+    private val _callRegisterApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callRegisterApiStateFlow: StateFlow<Resource<*>> = _callRegisterApiMutableStateFlow
+    fun callRegisterApi(request: RegisterRequest) {
+        viewModelScope.launch {
+            splashRepository.callRegisterApi(request).collect {
+                _callRegisterApiMutableStateFlow.value = it
             }
         }
     }

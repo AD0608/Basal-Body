@@ -100,6 +100,19 @@ abstract class BaseRepository {
                                                 }
                                             }
 
+                                            ApiIdentifier.API_REGISTER -> {
+                                                val userResponse =
+                                                    (mBean as? BaseResponse<*>)?.safeCast<UserResponse>()
+                                                userResponse?.data?.withNotNull { data ->
+                                                    data.withNotNull { loginData ->
+                                                        localDataRepository.saveBarrierToken(
+                                                            token = loginData.token ?: ""
+                                                        )
+                                                        localDataRepository.saveUserDetails(userData = loginData)
+                                                    }
+                                                }
+                                            }
+
                                             ApiIdentifier.API_LOGOUT,
                                             ApiIdentifier.API_CHANGE_PASSWORD,
                                             ApiIdentifier.API_DELETE_ACCOUNT -> {

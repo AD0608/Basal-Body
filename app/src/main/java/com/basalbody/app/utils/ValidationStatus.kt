@@ -11,6 +11,7 @@ enum class ValidationStatus {
     EMPTY_PASSWORD,
     EMPTY_CURRENT_PASSWORD,
     PASSWORD_START_END_BLANK_SPACE,
+    INVALID_PASSWORD,
     CURRENT_PASSWORD_START_END_BLANK_SPACE,
     EMPTY_NEW_PASSWORD,
     NEW_PASSWORD_START_END_BLANK_SPACE,
@@ -21,6 +22,7 @@ enum class ValidationStatus {
     NEW_PASSWORD_LENGTH,
     CONFIRM_PASSWORD_LENGTH,
     PASSWORD_CONFIRM_PASS_SAME,
+    TERMS_CONDITION,
     PASSWORD_CONFIRM_PASS_NOT_SAME,
     NEW_PASSWORD_CONFIRM_PASS_NOT_SAME,
     CURRENT_PASSWORD_NEW_PASSWORD_NOT_SAME,
@@ -31,6 +33,7 @@ enum class ValidationStatus {
     EMPTY_NAME,
     EMPTY_EMAIL,
     INVALID_EMAIL,
+    EMPTY_GENDER,
     EMPTY_OTP,
     INVALID_OTP,
     EMPTY_DOB,
@@ -66,6 +69,7 @@ object Validation {
             ValidationStatus.EMPTY_NEW_PASSWORD -> activity.getString(R.string.validation_empty_new_password)
             ValidationStatus.EMPTY_CONFIRM_PASSWORD -> activity.getString(R.string.validation_empty_confirm_password)
             ValidationStatus.PASSWORD_START_END_BLANK_SPACE -> activity.getString(R.string.validation_password_space)
+            ValidationStatus.INVALID_PASSWORD -> activity.getString(R.string.invalid_password)
             ValidationStatus.CURRENT_PASSWORD_START_END_BLANK_SPACE -> activity.getString(R.string.validation_current_password_space)
             ValidationStatus.NEW_PASSWORD_START_END_BLANK_SPACE -> activity.getString(R.string.validation_new_password_space)
             ValidationStatus.PASSWORD_LENGTH -> activity.getString(R.string.validation_password_min)
@@ -74,12 +78,14 @@ object Validation {
             ValidationStatus.CONFIRM_PASSWORD_LENGTH -> activity.getString(R.string.validation_confirm_password_min)
             ValidationStatus.CONFIRM_PASSWORD_START_END_BLANK_SPACE -> activity.getString(R.string.validation_confirm_password_space)
             ValidationStatus.PASSWORD_CONFIRM_PASS_SAME -> activity.getString(R.string.validation_password_and_confirm_password_must_be_same)
+            ValidationStatus.TERMS_CONDITION -> activity.getString(R.string.validation_terms_condition)
             ValidationStatus.PASSWORD_CONFIRM_PASS_NOT_SAME -> activity.getString(R.string.validation_password_and_confirm_password_does_not_match)
             ValidationStatus.NEW_PASSWORD_CONFIRM_PASS_NOT_SAME -> activity.getString(R.string.validation_new_password_and_confirm_password_does_not_match)
             ValidationStatus.CURRENT_PASSWORD_NEW_PASSWORD_NOT_SAME -> activity.getString(R.string.validation_new_password_and_current_password_must_be_different)
             ValidationStatus.EMPTY_NAME -> activity.getString(R.string.validation_empty_name)
             ValidationStatus.EMPTY_EMAIL -> activity.getString(R.string.validation_empty_email)
             ValidationStatus.INVALID_EMAIL -> activity.getString(R.string.validation_invalid_email)
+            ValidationStatus.EMPTY_GENDER -> activity.getString(R.string.validation_empty_gender)
             ValidationStatus.EMPTY_OTP -> activity.getString(R.string.validation_empty_otp)
             ValidationStatus.INVALID_OTP -> activity.getString(R.string.validation_invalid_otp)
             ValidationStatus.EMPTY_DOB -> activity.getString(R.string.validation_empty_dob)

@@ -236,6 +236,11 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
             return false
         }
 
+        if (!value.trim().matches(Constants.REGEX_VALID_PASSWORD_NEW.toRegex())) {
+            viewModel.setValidationValue(ValidationStatus.INVALID_PASSWORD)
+            return false
+        }
+
         return true
 
     }

@@ -54,6 +54,9 @@ object Constants {
     //    const val REGEX_VALID_PASSWORD = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=])(?=\\S+\$).{4,}\$" //TODO: Not allow blank space between Password
     const val REGEX_VALID_PASSWORD =
         "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{8,}\$" //TODO: Allow Blank Splace between Password
+
+    val REGEX_VALID_PASSWORD_NEW =
+        "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}$" //TODO: Regex: at least 8 chars, 1 uppercase, 1 lowercase, 1 digit, 1 special symbol
     const val PASSWORD_LIMIT = 8
 
     const val MAX_AMOUNT = "^\\d{0,5}(\\.\\d{0,2})?$"

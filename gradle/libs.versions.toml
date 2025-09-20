@@ -1,5 +1,5 @@
 [versions]
-agp = "8.13.0"
+agp = "8.12.2"
 datastorePreferencesCore = "1.1.7"
 datastorePreferences = "1.1.7"
 dexter = "6.2.3"

@@ -4,6 +4,7 @@ import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.request.ChangePasswordRequest
 import com.basalbody.app.model.request.ForgotPasswordRequest
 import com.basalbody.app.model.request.LoginRequest
+import com.basalbody.app.model.request.RegisterRequest
 import com.basalbody.app.model.request.ResendOtpRequest
 import com.basalbody.app.model.request.ResetPasswordStep1Request
 import com.basalbody.app.model.request.ResetPasswordStep2Request
@@ -43,6 +44,10 @@ interface ApiService {
     @POST(API_LOGIN)
     suspend fun callLoginApi(@Body request: LoginRequest): Response<BaseResponse<UserResponse>>
 
+    //-------Register-------//
+    @POST(API_REGISTER)
+    suspend fun callRegisterApi(@Body request: RegisterRequest): Response<BaseResponse<UserResponse>>
+
     //-------Forgot Password-------//
     @POST(API_FORGOT_PASSWORD)
     suspend fun callForgotPasswordApi(@Body request: ForgotPasswordRequest): Response<BaseResponse<ForgotPasswordResponse>>
@@ -70,6 +75,7 @@ interface ApiService {
 enum class ApiIdentifier {
     API_INIT,
     API_LOGIN,
+    API_REGISTER,
     API_LOGOUT,
     API_DELETE_ACCOUNT,
     API_CHANGE_PASSWORD

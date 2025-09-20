@@ -75,7 +75,7 @@
                 app:btf_drawableStart="@drawable/ic_user"
                 app:btf_hint="@string/hint_enter_your_full_name_here"
                 app:btf_imeOptions="actionNext"
-                app:btf_inputType="textPersonName"
+                app:btf_inputType="textPersonName|textCapWords"
                 app:btf_labelText="@string/lbl_full_name"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
