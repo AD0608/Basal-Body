@@ -96,6 +96,29 @@
             tools:hint="Enter your email here"
             tools:ignore="Autofill,LabelFor,TextFields" />
 
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:visibility="gone"
+            android:id="@+id/txtField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_22"
+            app:layout_goneMarginStart="@dimen/dp_10"
+            android:background="@color/transparent"
+            android:fontFamily="@font/geist_regular"
+            android:maxLines="1"
+            android:paddingVertical="@dimen/dp_6"
+            android:textColor="@color/color_edittext_text"
+            android:textColorHint="@color/color_edittext_hint"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgEndDrawable"
+            app:layout_constraintStart_toEndOf="@id/tvPhoneNumberCode"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:hint="Enter your email here"
+            tools:ignore="Autofill,LabelFor,TextFields" />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgEndDrawable"
             android:layout_width="@dimen/dp_24"

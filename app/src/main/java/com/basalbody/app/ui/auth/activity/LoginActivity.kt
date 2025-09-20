@@ -70,7 +70,6 @@ class LoginActivity : BaseActivity<AuthViewModel, ActivityLoginBinding>() {
                     )
                     viewModel.callLoginApi(request)
                 }
-                //startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             }
         }
     }

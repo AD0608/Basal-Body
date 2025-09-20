@@ -7,10 +7,15 @@ import com.basalbody.app.databinding.ActivityRegisterBinding
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.setTextDecorator
+import com.basalbody.app.extensions.showToast
 import com.basalbody.app.extensions.startNewActivity
+import com.basalbody.app.model.request.LoginRequest
 import com.basalbody.app.ui.auth.viewmodel.AuthViewModel
 import com.basalbody.app.ui.profile.activity.ChangePasswordActivity
 import com.basalbody.app.ui.profile.activity.WebViewActivity
+import com.basalbody.app.utils.Constants.EMAIL_PATTERN
+import com.basalbody.app.utils.ValidationStatus
+import com.basalbody.app.utils.getText
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -57,8 +62,18 @@ class RegisterActivity : BaseActivity<AuthViewModel, ActivityRegisterBinding>() 
                 finish()
             }
 
+            etGender.onSafeClick {
+                showToast("Select Gender")
+            }
+
             btnRegister.onSafeClick {
-                finish()
+                if (allDetailsValid()) {
+                    val request = LoginRequest(
+                        email = etEmail.getText()?.trim().toString(),
+                        password = etPass.getText()?.trim().toString(),
+                    )
+                    viewModel.callLoginApi(request)
+                }
             }
 
             ivCheck.onSafeClick {
@@ -71,5 +86,27 @@ class RegisterActivity : BaseActivity<AuthViewModel, ActivityRegisterBinding>() 
     private fun callTermsConditionCheck(){
         val image = if (viewModel.isTermsConditionCheck) R.drawable.ic_select_check_box else R.drawable.ic_unselect_check_box
         binding.ivCheck.setImageResource(image)
+    }
+
+    private fun allDetailsValid(): Boolean {
+        binding.apply {
+            return when {
+                etEmail.getText()?.trim()?.isEmpty() == true -> {
+                    viewModel.setValidationValue(ValidationStatus.EMPTY_EMAIL)
+                    false
+                }
+
+                etEmail.getText()?.trim()?.matches(EMAIL_PATTERN.toRegex()) == false -> {
+                    viewModel.setValidationValue(ValidationStatus.INVALID_EMAIL)
+                    false
+                }
+
+                !password(etPass.getText()?.trim() ?: "") -> {
+                    false
+                }
+
+                else -> true
+            }
+        }
     }
 }

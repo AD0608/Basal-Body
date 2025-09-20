@@ -136,6 +136,7 @@
             <flag name="actionDone" value="0x00000006" />
         </attr>
 
+        <attr name="btf_isGender" format="boolean"/>
         <attr name="btf_isPassword" format="boolean"/>
         <attr name="btf_isMobile" format="boolean"/>
         <!--pass "[a-zA-Z0-9.,@ ]+" in value of digits for add that digits and add character that you want to use in field - like: .,@# etc-->

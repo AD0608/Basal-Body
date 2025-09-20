@@ -12,10 +12,12 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.basalbody.app.R
 import com.basalbody.app.extensions.changeText
+import com.basalbody.app.extensions.gone
 import com.basalbody.app.extensions.onNoSafeClick
 import com.basalbody.app.extensions.setEndIconInsetDrawable
 import com.basalbody.app.extensions.visible
@@ -32,6 +34,7 @@ class BasalTextField @JvmOverloads constructor(
     private val startDrawableImage : AppCompatImageView
     private val endDrawableImage : AppCompatImageView
     val editText : AppCompatEditText
+    val txtField : AppCompatTextView
     val tvPhoneNumberCode : BasalTextView
     private val clField : ConstraintLayout
     private var ccp : CountryCodePicker
@@ -46,6 +49,7 @@ class BasalTextField @JvmOverloads constructor(
         startDrawableImage = findViewById(R.id.imgStartDrawable)
         endDrawableImage = findViewById(R.id.imgEndDrawable)
         editText = findViewById(R.id.edtField)
+        txtField = findViewById(R.id.txtField)
         tvPhoneNumberCode = findViewById(R.id.tvPhoneNumberCode)
         ccp = findViewById(R.id.ccp)
         clField = findViewById(R.id.clField)
@@ -67,6 +71,7 @@ class BasalTextField @JvmOverloads constructor(
         val drawableEnd = a.getResourceId(R.styleable.BasalTextField_btf_drawableEnd, 0)
         val drawableStart = a.getResourceId(R.styleable.BasalTextField_btf_drawableStart, 0)
         val isPasswordField = a.getBoolean(R.styleable.BasalTextField_btf_isPassword, false)
+        val isGenderField = a.getBoolean(R.styleable.BasalTextField_btf_isGender, false)
         val isMobileField = a.getBoolean(R.styleable.BasalTextField_btf_isMobile, false)
         val fieldHint = a.getString(R.styleable.BasalTextField_btf_hint)
 
@@ -98,6 +103,19 @@ class BasalTextField @JvmOverloads constructor(
                 this.filters = arrayOf(digitsFilter, InputFilter.LengthFilter(maxLength))
             }
         }
+
+        txtField.apply {
+            this.inputType = inputType
+            this.imeOptions = imeOptions
+            this.maxLines = maxLines
+            this.minLines = minLines
+            this.hint = fieldHint
+            this.setLines(lines)
+            this.setTextCursorDrawable(R.drawable.cursor)
+            this.setLineSpacing(lineSpacing, 1F)
+            this.filters = arrayOf(InputFilter.LengthFilter(maxLength))
+            this.isSingleLine = singleLine
+        }
         if (drawableEnd != 0) {
             endDrawableImage.visible()
             endDrawableImage.setImageDrawable(ContextCompat.getDrawable(context, drawableEnd))
@@ -115,6 +133,14 @@ class BasalTextField @JvmOverloads constructor(
             editText.transformationMethod =
                 CustomPasswordTransformation()
             editText.typeface = CommonUtils.getTypeface(context, 0)
+        }
+
+        if (isGenderField) {
+            editText.gone()
+            txtField.visible()
+        }else{
+            editText.visible()
+            txtField.gone()
         }
 
         endDrawableImage onNoSafeClick {
@@ -174,6 +200,10 @@ fun BasalTextField.setText(text: String?) {
 
 fun BasalTextField.getText(): String? {
     return this.editText.text?.toString()
+}
+
+fun BasalTextField.getTextTextView(): String? {
+    return this.txtField.text?.toString()
 }
 
 class CustomPasswordTransformation : PasswordTransformationMethod() {
