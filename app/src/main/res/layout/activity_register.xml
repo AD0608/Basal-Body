@@ -107,6 +107,7 @@
                 app:btf_imeOptions="actionNext"
                 app:btf_inputType="text"
                 app:btf_labelText="@string/lbl_gender"
+                app:btf_isGender="true"
                 app:layout_constraintEnd_toEndOf="@id/glEnd"
                 app:layout_constraintStart_toStartOf="@id/glStart"
                 app:layout_constraintTop_toBottomOf="@+id/etEmail" />
