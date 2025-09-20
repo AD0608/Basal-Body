@@ -50,9 +50,6 @@
             android:name=".ui.profile.activity.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.auth.activity.ChangePasswordActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.home.activity.NotificationsActivity"
             android:exported="false" />
         <activity

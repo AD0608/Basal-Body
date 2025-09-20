@@ -3,6 +3,7 @@ package com.basalbody.app.ui.profile.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.basalbody.app.base.BaseViewModel
 import com.basalbody.app.model.Resource
+import com.basalbody.app.model.request.ChangePasswordRequest
 import com.basalbody.app.ui.profile.repository.ProfileRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,15 +14,15 @@ class ProfileViewModel @Inject constructor(
     private var profileRepository: ProfileRepository,
 ) : BaseViewModel() {
 
-    //-------Init Api-------//
     /**Always set Initial state of flow is Show loading [false]*/
-    private val _callInitApiMutableStateFlow =
+    //-------Change Password Api-------//
+    private val _callChangePasswordApiMutableStateFlow =
         MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
-    val callInitApiStateFlow: StateFlow<Resource<*>> = _callInitApiMutableStateFlow
-    fun callInitApi() {
+    val callChangePasswordApiStateFlow: StateFlow<Resource<*>> = _callChangePasswordApiMutableStateFlow
+    fun callChangePasswordApi(request: ChangePasswordRequest) {
         viewModelScope.launch {
-            profileRepository.callInitApi().collect {
-                _callInitApiMutableStateFlow.value = it
+            profileRepository.callChangePasswordApi(request).collect {
+                _callChangePasswordApiMutableStateFlow.value = it
             }
         }
     }

@@ -12,6 +12,8 @@ const val API_FORGOT_PASSWORD = "${PACKAGE_AUTH}forgot-password"
 const val API_RESEND_OTP = "${PACKAGE_AUTH}resend-otp"
 const val API_RESET_PASSWORD_STEP1 = "${PACKAGE_AUTH}reset-password/step1"
 const val API_RESET_PASSWORD_STEP2 = "${PACKAGE_AUTH}reset-password/step2"
+const val API_LOGOUT = "${PACKAGE_AUTH}logout"
+const val API_CHANGE_PASSWORD = "${PACKAGE_AUTH}change-password/2"
 
 
 //---------- Api Params ----------//

@@ -1,13 +1,16 @@
 package com.basalbody.app.network
 
 import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.request.ChangePasswordRequest
 import com.basalbody.app.model.request.ForgotPasswordRequest
 import com.basalbody.app.model.request.LoginRequest
 import com.basalbody.app.model.request.ResendOtpRequest
 import com.basalbody.app.model.request.ResetPasswordStep1Request
 import com.basalbody.app.model.request.ResetPasswordStep2Request
+import com.basalbody.app.model.response.ChangePasswordResponse
 import com.basalbody.app.model.response.ForgotPasswordResponse
 import com.basalbody.app.model.response.InitData
+import com.basalbody.app.model.response.LogoutResponse
 import com.basalbody.app.model.response.ResendOtpResponse
 import com.basalbody.app.model.response.ResetPasswordStep1Response
 import com.basalbody.app.model.response.ResetPasswordStep2Response
@@ -16,6 +19,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
@@ -55,6 +59,12 @@ interface ApiService {
     @POST(API_RESET_PASSWORD_STEP2)
     suspend fun callResetPasswordStep2Api(@Body request: ResetPasswordStep2Request): Response<BaseResponse<ResetPasswordStep2Response>>
 
+    @GET(API_LOGOUT)
+    suspend fun callLogoutApi(): Response<BaseResponse<LogoutResponse>>
+
+    @PUT(API_CHANGE_PASSWORD)
+    suspend fun callChangePasswordApi(@Body request: ChangePasswordRequest): Response<BaseResponse<ChangePasswordResponse>>
+
 }
 
 enum class ApiIdentifier {
@@ -62,4 +72,5 @@ enum class ApiIdentifier {
     API_LOGIN,
     API_LOGOUT,
     API_DELETE_ACCOUNT,
+    API_CHANGE_PASSWORD
 }

@@ -9,12 +9,15 @@ enum class ValidationStatus {
     PHONE_VALID,
     PHONE_VERIFY,
     EMPTY_PASSWORD,
+    EMPTY_CURRENT_PASSWORD,
     PASSWORD_START_END_BLANK_SPACE,
+    CURRENT_PASSWORD_START_END_BLANK_SPACE,
     EMPTY_NEW_PASSWORD,
     NEW_PASSWORD_START_END_BLANK_SPACE,
     CONFIRM_PASSWORD_START_END_BLANK_SPACE,
     EMPTY_CONFIRM_PASSWORD,
     PASSWORD_LENGTH,
+    CURRENT_PASSWORD_LENGTH,
     NEW_PASSWORD_LENGTH,
     CONFIRM_PASSWORD_LENGTH,
     PASSWORD_CONFIRM_PASS_SAME,
@@ -59,11 +62,14 @@ object Validation {
             ValidationStatus.PHONE_VALID -> activity.getString(R.string.validation_invalid_phone)
             ValidationStatus.PHONE_VERIFY -> activity.getString(R.string.validation_phone_verify)
             ValidationStatus.EMPTY_PASSWORD -> activity.getString(R.string.validation_empty_password)
+            ValidationStatus.EMPTY_CURRENT_PASSWORD -> activity.getString(R.string.validation_empty_current_password)
             ValidationStatus.EMPTY_NEW_PASSWORD -> activity.getString(R.string.validation_empty_new_password)
             ValidationStatus.EMPTY_CONFIRM_PASSWORD -> activity.getString(R.string.validation_empty_confirm_password)
             ValidationStatus.PASSWORD_START_END_BLANK_SPACE -> activity.getString(R.string.validation_password_space)
+            ValidationStatus.CURRENT_PASSWORD_START_END_BLANK_SPACE -> activity.getString(R.string.validation_current_password_space)
             ValidationStatus.NEW_PASSWORD_START_END_BLANK_SPACE -> activity.getString(R.string.validation_new_password_space)
             ValidationStatus.PASSWORD_LENGTH -> activity.getString(R.string.validation_password_min)
+            ValidationStatus.CURRENT_PASSWORD_LENGTH -> activity.getString(R.string.validation_current_password_min)
             ValidationStatus.NEW_PASSWORD_LENGTH -> activity.getString(R.string.validation_new_password_min)
             ValidationStatus.CONFIRM_PASSWORD_LENGTH -> activity.getString(R.string.validation_confirm_password_min)
             ValidationStatus.CONFIRM_PASSWORD_START_END_BLANK_SPACE -> activity.getString(R.string.validation_confirm_password_space)

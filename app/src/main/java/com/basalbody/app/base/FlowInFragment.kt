@@ -34,7 +34,7 @@ class FlowInFragment<T>(
 
             is Resource.AuthException<*> -> {
                 fragment.showApiErrorMessage(fragment.getString(R.string.message_you_have_been_logged_out_please_log_back_in))
-                fragment.clearDataOnLogoutAndNavigateToLoginScreen()
+                fragment.navigateToLoginScreen()
             }
 
             is Resource.Success<*> -> {

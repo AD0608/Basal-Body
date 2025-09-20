@@ -6,14 +6,6 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.ColorFilter
-import android.graphics.LinearGradient
-import android.graphics.Paint
-import android.graphics.PixelFormat
-import android.graphics.Shader
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -21,7 +13,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -45,11 +36,9 @@ import com.basalbody.app.utils.ValidationStatus
 import com.basalbody.app.utils.language.LocaleHelper
 import com.basalbody.app.utils.showSnackBar
 import javax.inject.Inject
-import androidx.core.graphics.toColorInt
 import com.basalbody.app.extensions.changeBackground
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.ui.auth.activity.LoginActivity
-import com.basalbody.app.utils.dotsindicator.setBackgroundCompat
 
 abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActivity() {
     enum class ScreenType {
@@ -221,7 +210,7 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
         }
     }
 
-    fun clearDataOnLogoutAndNavigateToLoginScreen() {
+    fun navigateToLoginScreen() {
         localDataRepository.resetUserData()
         startNewActivity(className = LoginActivity::class.java, isClearAllStacks = true)
     }
@@ -244,6 +233,27 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
 
         if (value.first() == ' ' || value.last() == ' ') {
             viewModel.setValidationValue(ValidationStatus.PASSWORD_START_END_BLANK_SPACE)
+            return false
+        }
+
+        return true
+
+    }
+
+    fun currentPassword(value: String): Boolean {
+
+        if (value.isBlank()) {
+            viewModel.setValidationValue(ValidationStatus.EMPTY_CURRENT_PASSWORD)
+            return false
+        }
+
+        if (value.length < LimitCount.passwordMin) {
+            viewModel.setValidationValue(ValidationStatus.CURRENT_PASSWORD_LENGTH)
+            return false
+        }
+
+        if (value.first() == ' ' || value.last() == ' ') {
+            viewModel.setValidationValue(ValidationStatus.CURRENT_PASSWORD_START_END_BLANK_SPACE)
             return false
         }
 

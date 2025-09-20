@@ -18,6 +18,8 @@ import com.basalbody.app.utils.ActivityLauncher.registerActivityForResult
 import com.basalbody.app.extensions.hideLoader
 import com.basalbody.app.extensions.nullSafe
 import com.basalbody.app.extensions.showLoader
+import com.basalbody.app.extensions.startNewActivity
+import com.basalbody.app.ui.auth.activity.LoginActivity
 import com.basalbody.app.utils.CommonUtils.showOkDialog
 import javax.inject.Inject
 
@@ -139,12 +141,11 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewBinding>(private val infl
         showAlert(type.message.toString())
     }
 
-    fun clearDataOnLogoutAndNavigateToLoginScreen() {
-        localDataRepository.resetUserData()
-        /*requireActivity().startNewActivity(
-            RoleSelectionActivity::class.java,
+    fun navigateToLoginScreen() {
+        requireActivity().startNewActivity(
+            LoginActivity::class.java,
             isClearAllStacks = true
-        )*/
+        )
     }
 
     fun showApiErrorMessage(message: String?) {

@@ -1,7 +1,6 @@
 package com.basalbody.app.base
 
 import com.basalbody.app.R
-import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.Resource
 import com.basalbody.app.utils.Constants
 import com.basalbody.app.utils.showSnackBar
@@ -35,7 +34,7 @@ class FlowInActivity<T>(
 
             is Resource.AuthException<*> -> {
                 context.showApiErrorMessage(context.getString(R.string.message_you_have_been_logged_out_please_log_back_in))
-                context.clearDataOnLogoutAndNavigateToLoginScreen()
+                context.navigateToLoginScreen()
             }
 
             is Resource.Success<*> -> {

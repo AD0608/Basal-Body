@@ -4,6 +4,7 @@ import android.content.Context
 import com.basalbody.app.BuildConfig
 import com.basalbody.app.base.BaseRepository
 import com.basalbody.app.model.Resource
+import com.basalbody.app.model.request.ChangePasswordRequest
 import com.basalbody.app.network.ApiIdentifier
 import com.basalbody.app.network.ApiService
 import kotlinx.coroutines.flow.Flow
@@ -13,13 +14,14 @@ class HomeRepository @Inject constructor(
     var context: Context,
     private val apiService: ApiService,
 ) : BaseRepository() {
-    //-------Init Api-------//
-    fun callInitApi(): Flow<Resource<*>> {
+
+    //-------Logout Api-------//
+    fun callLogoutApi(): Flow<Resource<*>> {
         return callAPI(
             context = context,
-            apiIdentifier = ApiIdentifier.API_INIT,
+            apiIdentifier = ApiIdentifier.API_LOGOUT,
             apiCall = {
-                apiService.callInitApi(BuildConfig.VERSION_NAME)
+                apiService.callLogoutApi()
             }
         )
     }

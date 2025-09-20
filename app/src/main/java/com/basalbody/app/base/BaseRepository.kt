@@ -6,22 +6,22 @@ import android.provider.Settings
 import android.util.Log
 import com.basalbody.app.R
 import com.basalbody.app.datastore.LocalDataRepository
-import com.basalbody.app.model.BaseResponse
-import com.basalbody.app.model.Resource
-import com.basalbody.app.model.response.InitData
-import com.basalbody.app.network.ApiIdentifier
-import com.basalbody.app.network.ApiService.Companion.API_AUTH_EXCEPTION
-import com.basalbody.app.network.ApiService.Companion.API_CUSTOM_EXCEPTION
-import com.basalbody.app.network.ApiService.Companion.API_MAINTENANCE_MODE_EXCEPTION
-import com.basalbody.app.network.ApiService.Companion.API_NO_INTERNET_EXCEPTION
-import com.basalbody.app.network.ApiService.Companion.API_SERVER_ERROR
-import com.basalbody.app.network.ApiService.Companion.API_SUCCESS_RANGE
 import com.basalbody.app.extensions.nullSafe
 import com.basalbody.app.extensions.safeCast
 import com.basalbody.app.extensions.toObject
 import com.basalbody.app.extensions.withNotNull
+import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.Resource
+import com.basalbody.app.model.response.InitData
 import com.basalbody.app.model.response.UserResponse
+import com.basalbody.app.network.ApiIdentifier
+import com.basalbody.app.network.ApiService.Companion.API_AUTH_EXCEPTION
+import com.basalbody.app.network.ApiService.Companion.API_CUSTOM_EXCEPTION
 import com.basalbody.app.network.ApiService.Companion.API_ERROR
+import com.basalbody.app.network.ApiService.Companion.API_MAINTENANCE_MODE_EXCEPTION
+import com.basalbody.app.network.ApiService.Companion.API_NO_INTERNET_EXCEPTION
+import com.basalbody.app.network.ApiService.Companion.API_SERVER_ERROR
+import com.basalbody.app.network.ApiService.Companion.API_SUCCESS_RANGE
 import com.basalbody.app.utils.CommonUtils.checkInternetConnected
 import com.basalbody.app.utils.dotsindicator.toObjectTypeToken
 import kotlinx.coroutines.CoroutineScope
@@ -92,23 +92,28 @@ abstract class BaseRepository {
                                                     (mBean as? BaseResponse<*>)?.safeCast<UserResponse>()
                                                 userResponse?.data?.withNotNull { data ->
                                                     data.withNotNull { loginData ->
-                                                        localDataRepository.saveBarrierToken(token = loginData.token ?: "")
+                                                        localDataRepository.saveBarrierToken(
+                                                            token = loginData.token ?: ""
+                                                        )
                                                         localDataRepository.saveUserDetails(userData = loginData)
                                                     }
                                                 }
                                             }
 
-                                            ApiIdentifier.API_LOGOUT -> {
-                                                localDataRepository.resetUserData()
-                                            }
-
+                                            ApiIdentifier.API_LOGOUT,
+                                            ApiIdentifier.API_CHANGE_PASSWORD,
                                             ApiIdentifier.API_DELETE_ACCOUNT -> {
                                                 localDataRepository.resetUserData()
                                             }
 
                                             else -> {}
                                         }
-                                        emit(Resource.Success(mBean, message = mBean.message.nullSafe()))
+                                        emit(
+                                            Resource.Success(
+                                                mBean,
+                                                message = mBean.message.nullSafe()
+                                            )
+                                        )
                                     } else {
                                         emit(
                                             Resource.ErrorWithData(
@@ -156,7 +161,8 @@ abstract class BaseRepository {
                         response.code() == API_ERROR -> {
                             if (response.errorBody() != null) {
                                 val errorJson = response.errorBody()!!.string()
-                                val baseResponse = errorJson.toObject<BaseResponse<*>>()  // your extension
+                                val baseResponse =
+                                    errorJson.toObject<BaseResponse<*>>()  // your extension
                                 if (baseResponse != null) {
                                     emit(
                                         Resource.ErrorWithData(

@@ -1,8 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.dagger)
-    id("org.jetbrains.kotlin.plugin.compose") version "2.1.0" // Required with Kotlin 2.1+
+    id("org.jetbrains.kotlin.plugin.compose") version "2.2.20" // Required with Kotlin 2.1+
     id("kotlin-kapt")
     id("kotlin-parcelize")
     alias(libs.plugins.google.services)
@@ -13,12 +15,12 @@ plugins {
 
 android {
     namespace = "com.basalbody.app"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.basalbody.app"
         minSdk = 29
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 2
         versionName = "1.0.0"
 
@@ -45,11 +47,6 @@ android {
         }
     }
 
-    secrets {
-        propertiesFileName = "secrets.properties"
-        defaultPropertiesFileName = "local.defaults.properties"
-    }
-
     buildFeatures {
         dataBinding = true
         viewBinding = true
@@ -61,8 +58,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
     }
 
     flavorDimensions += listOf("Basal")

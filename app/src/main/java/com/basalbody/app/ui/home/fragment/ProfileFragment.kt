@@ -1,12 +1,17 @@
 package com.basalbody.app.ui.home.fragment
 
+import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseFragment
+import com.basalbody.app.base.FlowInFragment
 import com.basalbody.app.databinding.FragmentProfileBinding
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.gone
+import com.basalbody.app.extensions.notNull
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.startNewActivity
+import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.response.LogoutResponse
 import com.basalbody.app.ui.auth.activity.LoginActivity
 import com.basalbody.app.ui.common.CommonConfirmationBottomSheetDialog
 import com.basalbody.app.ui.common.CommonSuccessBottomSheetDialog
@@ -21,12 +26,27 @@ import com.basalbody.app.ui.profile.activity.FaqActivity
 import com.basalbody.app.ui.profile.activity.TroubleShootActivity
 import com.basalbody.app.ui.profile.activity.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProfileFragment :
     BaseFragment<HomeViewModel, FragmentProfileBinding>(FragmentProfileBinding::inflate) {
     override fun getViewBinding(): FragmentProfileBinding =
         FragmentProfileBinding.inflate(layoutInflater)
+
+    override fun addObserver() {
+        lifecycleScope.launch {
+            viewModel.callLogoutApiStateFlow.collect {
+                FlowInFragment<BaseResponse<LogoutResponse>>(
+                    data = it,
+                    fragment = this@ProfileFragment,
+                    shouldShowErrorMessage = true,
+                    shouldShowLoader = true,
+                    onSuccess = ::handleLogoutResponse,
+                )
+            }
+        }
+    }
 
     override fun initSetup() {
         setupUI()
@@ -76,7 +96,7 @@ class ProfileFragment :
                     root,
                     requireActivity(),
                     callBack = {
-                        openLogoutSuccessPopup()
+                        viewModel.callLogoutApi()
                     }).apply {
                     title = this@ProfileFragment.getString(R.string.label_logout)
                     description =
@@ -105,6 +125,12 @@ class ProfileFragment :
         }
     }
 
+    private fun handleLogoutResponse(response: BaseResponse<LogoutResponse>?) {
+        if (response.notNull() && response?.status == true) {
+            openLogoutSuccessPopup()
+        }
+    }
+
     private fun openDeleteAccountSuccessPopup() {
         CommonSuccessBottomSheetDialog.newInstance(binding.root, requireActivity(), callBack = {
             startNewActivity(LoginActivity::class.java, isClearAllStacks = true)
@@ -117,7 +143,7 @@ class ProfileFragment :
 
     private fun openLogoutSuccessPopup() {
         CommonSuccessBottomSheetDialog.newInstance(binding.root, requireActivity(), callBack = {
-            startNewActivity(LoginActivity::class.java, isClearAllStacks = true)
+            navigateToLoginScreen()
         }).apply {
             title = this@ProfileFragment.getString(R.string.label_logout_successfully)
             description = this@ProfileFragment.getString(R.string.message_logout_successfully)

@@ -206,4 +206,7 @@
     <string name="label_congratulations">Congratulations!</string>
     <string name="message_your_logs_has_been_successfully_added">Your logs has been\nsuccessfully added.</string>
     <string name="high_chance_of_conception">High chance of conception</string>
+    <string name="validation_empty_current_password">Please enter current password</string>
+    <string name="validation_current_password_min">Current password must contain minimum 8 digits</string>
+    <string name="validation_current_password_space">Current password can’t start or end with a blank space.</string>
 </resources>
