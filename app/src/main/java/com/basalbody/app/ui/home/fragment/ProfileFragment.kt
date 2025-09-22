@@ -13,6 +13,7 @@ import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.response.LogoutResponse
+import com.basalbody.app.model.response.UserResponse
 import com.basalbody.app.ui.auth.activity.LoginActivity
 import com.basalbody.app.ui.common.CommonConfirmationBottomSheetDialog
 import com.basalbody.app.ui.common.CommonSuccessBottomSheetDialog
@@ -26,6 +27,7 @@ import com.basalbody.app.ui.profile.activity.EditProfileActivity
 import com.basalbody.app.ui.profile.activity.FaqActivity
 import com.basalbody.app.ui.profile.activity.TroubleShootActivity
 import com.basalbody.app.ui.profile.activity.WebViewActivity
+import com.basalbody.app.utils.loadImageViaGlide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -50,6 +52,18 @@ class ProfileFragment :
                 )
             }
         }
+
+        lifecycleScope.launch {
+            viewModel.callGetUserProfileApiStateFlow.collect {
+                FlowInFragment<BaseResponse<UserResponse>>(
+                    data = it,
+                    fragment = this@ProfileFragment,
+                    shouldShowErrorMessage = true,
+                    shouldShowLoader = true,
+                    onSuccess = ::handleProfileResponse,
+                )
+            }
+        }
     }
 
     override fun initSetup() {
@@ -57,11 +71,13 @@ class ProfileFragment :
     }
 
     private fun setupUI() {
+        val user = localDataRepository.getUserDetails()?.user
         binding.apply {
             llToolBar.ivBack.gone()
             llToolBar.tvTitle.changeText(R.string.item_profile)
-            tvUserName.changeText(localDataRepository.getUserDetails()?.user?.fullname ?: "")
-            tvUserEmail.changeText(localDataRepository.getUserDetails()?.user?.email ?: "")
+            tvUserName.changeText(user?.fullname ?: "")
+            tvUserEmail.changeText(user?.email ?: "")
+            ivProfile.loadImageViaGlide(value = user?.profileImage?.url ?: "")
         }
     }
 
@@ -70,6 +86,7 @@ class ProfileFragment :
 
             ivEditProfile.onSafeClick {
                 startNewActivity(EditProfileActivity::class.java)
+                //viewModel.callGetUserProfileApi()
             }
             llChangePass.onSafeClick {
                 startNewActivity(ChangePasswordActivity::class.java)
@@ -132,6 +149,12 @@ class ProfileFragment :
     private fun handleLogoutResponse(response: BaseResponse<LogoutResponse>?) {
         if (response.notNull() && response?.status == true) {
             openLogoutSuccessPopup()
+        }
+    }
+
+    private fun handleProfileResponse(response: BaseResponse<UserResponse>?) {
+        if (response.notNull() && response?.status == true) {
+            startNewActivity(EditProfileActivity::class.java)
         }
     }
 

@@ -8,6 +8,7 @@ import com.basalbody.app.ui.profile.repository.ProfileRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
@@ -23,6 +24,18 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch {
             profileRepository.callChangePasswordApi(request).collect {
                 _callChangePasswordApiMutableStateFlow.value = it
+            }
+        }
+    }
+
+    //-------Upload Profile Image Api-------//
+    private val _callUploadProfileImageApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callUploadProfileImageApiStateFlow: StateFlow<Resource<*>> = _callUploadProfileImageApiMutableStateFlow
+    fun callUploadProfileImageApi(image: MultipartBody.Part) {
+        viewModelScope.launch {
+            profileRepository.callUploadProfileImageApi(image).collect {
+                _callUploadProfileImageApiMutableStateFlow.value = it
             }
         }
     }

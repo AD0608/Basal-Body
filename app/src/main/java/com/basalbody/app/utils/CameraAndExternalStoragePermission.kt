@@ -15,7 +15,6 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.basalbody.app.R
 import com.basalbody.app.extensions.withNotNull
 
-
 class CameraAndExternalStoragePermission(
     private val context: Context,
     private val activityLauncher: ActivityLauncher<Intent, ActivityResult>
@@ -29,7 +28,6 @@ class CameraAndExternalStoragePermission(
                         if (it.areAllPermissionsGranted()) {
                             onPermissionAllowed.invoke()
                         } else if (it.isAnyPermissionPermanentlyDenied) {
-                            // show alert dialog navigating to Settings
                             CommonUtils.showSettingsDialog(
                                 context = context,
                                 activityLauncher = activityLauncher,
@@ -48,46 +46,35 @@ class CameraAndExternalStoragePermission(
             }).check()
     }
 
-    fun checkStoragePermission(isMediaSelection: Boolean = true, onPermissionAllowed: () -> Unit) {
+    fun checkStoragePermission(onPermissionAllowed: () -> Unit) {
         Dexter.withContext(context).apply {
             when {
-
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE && isMediaSelection -> {
-                    if (ContextCompat.checkSelfPermission(
-                            context,
-                            Manifest.permission.READ_MEDIA_IMAGES
-                        ) == PackageManager.PERMISSION_GRANTED
-                    ) {
-                        onPermissionAllowed.invoke()
-                    } else {
-                        this.withPermissions(
-                            Manifest.permission.READ_MEDIA_IMAGES,
-                            Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
-                        ).withListener(createPermissionListener(onPermissionAllowed)).check()
-                    }
-                }
-                // Android 6 - 12 (API 23 - 32)
-                isMediaSelection -> {
+                // Android 6 - 12 (API 23 - 32) → Requires READ_EXTERNAL_STORAGE
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> {
                     if (ContextCompat.checkSelfPermission(
                             context,
                             Manifest.permission.READ_EXTERNAL_STORAGE
+                        ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                            context,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
                         ) == PackageManager.PERMISSION_GRANTED
                     ) {
                         onPermissionAllowed.invoke()
                     } else {
-                        this.withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        this.withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                             .withListener(createPermissionListener(onPermissionAllowed))
                             .check()
                     }
                 }
 
-                // Below Android 6, no runtime permission needed
+                // Below Android 6 (API < 23) → No runtime permission needed
                 else -> {
                     onPermissionAllowed.invoke()
                 }
             }
         }
     }
+
 
     private fun createPermissionListener(onPermissionAllowed: () -> Unit): MultiplePermissionsListener {
         return object : MultiplePermissionsListener {

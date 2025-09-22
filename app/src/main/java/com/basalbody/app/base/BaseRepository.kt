@@ -87,20 +87,11 @@ abstract class BaseRepository {
                                                 }
                                             }
 
-                                            ApiIdentifier.API_LOGIN -> {
-                                                val userResponse =
-                                                    (mBean as? BaseResponse<*>)?.safeCast<UserResponse>()
-                                                userResponse?.data?.withNotNull { data ->
-                                                    data.withNotNull { loginData ->
-                                                        localDataRepository.saveBarrierToken(
-                                                            token = loginData.token ?: ""
-                                                        )
-                                                        localDataRepository.saveUserDetails(userData = loginData)
-                                                    }
-                                                }
-                                            }
-
-                                            ApiIdentifier.API_REGISTER -> {
+                                            ApiIdentifier.API_LOGIN,
+                                            ApiIdentifier.API_REGISTER,
+                                            ApiIdentifier.API_GET_USER_PROFILE,
+                                            ApiIdentifier.API_UPDATE_USER_PROFILE,
+                                            ApiIdentifier.API_UPDATE_USER_PROFILE_PICTURE -> {
                                                 val userResponse =
                                                     (mBean as? BaseResponse<*>)?.safeCast<UserResponse>()
                                                 userResponse?.data?.withNotNull { data ->

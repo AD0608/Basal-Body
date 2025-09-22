@@ -36,16 +36,16 @@ data class User(
 	val createdAt: String? = null,
 
 	@field:SerializedName("profile_image_id")
-	val profileImageId: Any? = null,
+	val profileImageId: Int? = null,
 
 	@field:SerializedName("firebase_uid")
-	val firebaseUid: Any? = null,
+	val firebaseUid: String? = null,
 
 	@field:SerializedName("profileImage")
-	val profileImage: Any? = null,
+	val profileImage: ProfileImage? = null,
 
 	@field:SerializedName("deleted_at")
-	val deletedAt: Any? = null,
+	val deletedAt: String? = null,
 
 	@field:SerializedName("updated_at")
 	val updatedAt: String? = null,
@@ -73,4 +73,11 @@ data class Role(
 
 	@field:SerializedName("id")
 	val id: Int? = null
+)
+
+data class ProfileImage(
+	@field:SerializedName("filename")
+	val filename: String? = null,
+	@field:SerializedName("url")
+	val url: String? = null
 )

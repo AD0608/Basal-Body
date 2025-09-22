@@ -1,7 +1,5 @@
 package com.basalbody.app.utils
 
-import android.Manifest
-import android.content.ClipData
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
@@ -18,20 +16,16 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.content.PermissionChecker
 import androidx.exifinterface.media.ExifInterface
 import androidx.fragment.app.FragmentActivity
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseBottomSheetDialogFragment
-import com.basalbody.app.ui.common.CommonViewModel
 import com.basalbody.app.databinding.BottomSheetImagePickerNewLayoutBinding
 import com.basalbody.app.extensions.changeText
-import com.basalbody.app.extensions.justTry
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.visibleIfOrGone
-import com.basalbody.app.utils.Constants.DEFAULT_ONE
+import com.basalbody.app.ui.common.CommonViewModel
 import com.basalbody.app.utils.Constants.GIF_MIME_TYPE
 import com.basalbody.app.utils.Constants.WEBP_MIME_TYPE
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +33,8 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 import kotlin.reflect.KClass
 
 @AndroidEntryPoint
@@ -51,31 +46,22 @@ class ImagePickerNew(isPreventBackButton: Boolean) :
     ) {
 
     private var activityLauncher: ActivityLauncher<Intent, ActivityResult>? = null
-    var isMultipleImageSelection: Boolean = false
-    var isPDFPickerShow: Boolean = false
-    var isGalleryShow: Boolean = true
-    private var propertyImageListSize: Int? = null
-    private var maxImageCount: Int = 0
-    private var maxItems = DEFAULT_ONE
     private var mCurrentPhotoPath: String? = null
     private var title: String = ""
     private var description: String = ""
     private var photoURI: Uri? = null
-    private lateinit var pickMultipleMedia: ActivityResultLauncher<PickVisualMediaRequest>
+    private lateinit var pickSingleMedia: ActivityResultLauncher<PickVisualMediaRequest>
     override val modelClass: KClass<CommonViewModel>
         get() = CommonViewModel::class
 
     override fun initControls() {
-        binding.textViewGallery.visibleIfOrGone(isGalleryShow)
-        binding.textViewFiles.visibleIfOrGone(isPDFPickerShow)
+        binding.textViewGallery.visibleIfOrGone(true) // only gallery
         binding.textViewTitle.changeText(title)
         binding.tvDescription.changeText(description)
         if (activityLauncher == null) dismiss()
-        maxItems = maxImageCount - (propertyImageListSize
-            ?: 0)
-        if (maxItems == DEFAULT_ONE) {
-            pickMultipleMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia())
-            { uri ->
+
+        pickSingleMedia =
+            registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
                 dismiss()
                 if (uri != null) {
                     val mimeType = mActivity.contentResolver?.getType(uri)
@@ -102,44 +88,9 @@ class ImagePickerNew(isPreventBackButton: Boolean) :
                         return@registerForActivityResult
                     }
 
-                    onResult?.invoke(null, null, arrayListOf(uri), null)
+                    onResult?.invoke(null, null, uri)
                 }
             }
-        } else {
-            pickMultipleMedia =
-                registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(maxItems)) { uris ->
-                    dismiss()
-
-                    val tenMB = 10 * 1024 * 1024 // 10 MB in bytes
-                    val filteredUris = uris.filterNot { uri ->
-                        val mimeType = mActivity.contentResolver.getType(uri)
-
-                        // Check for disallowed formats (GIF or WEBP)
-                        if (mimeType == GIF_MIME_TYPE || mimeType == WEBP_MIME_TYPE) {
-                            return@filterNot true
-                        }
-
-                        // Check for file size > 10MB
-                        val fileSize =
-                            mActivity.contentResolver.openAssetFileDescriptor(uri, "r")?.use {
-                                it.length
-                            } ?: 0L
-
-                        fileSize > tenMB
-                    }
-
-                    // Show appropriate message if anything was removed
-                    if (filteredUris.size != uris.size) {
-                        showSnackBar(
-                            getString(R.string.validation_some_images_are_not_supported_due_to_format_or_size),
-                            Constants.STATUS_ERROR,
-                            mActivity
-                        )
-                    }
-
-                    onResult?.invoke(null, null, ArrayList(filteredUris), null)
-                }
-        }
 
         takePictureLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
@@ -149,8 +100,8 @@ class ImagePickerNew(isPreventBackButton: Boolean) :
                     val correctedBitmap = fixImageOrientation(file)
                     correctedBitmap?.let {
                         val savedUri =
-                            saveBitmapToFile(it, file) // optional overwrite or create new file
-                        onResult?.invoke(savedUri.toString(), null, null, null)
+                            saveBitmapToFile(it, file) // overwrite
+                        onResult?.invoke(savedUri.toString(), null, null)
                     }
 
                     dismiss()
@@ -165,106 +116,53 @@ class ImagePickerNew(isPreventBackButton: Boolean) :
                     context = requireActivity(),
                     activityLauncher = it1
                 ).checkCameraPermission {
-                    dispatchTakePictureIntent() //If camera permission is granted then only open camera for take picture
+                    dispatchTakePictureIntent()
                 }
             }
         }
 
         binding.textViewGallery onSafeClick {
-            activityLauncher?.let { it1 ->
-                CameraAndExternalStoragePermission(
+            activityLauncher?.let { launcher ->
+                val permissionHelper = CameraAndExternalStoragePermission(
                     context = requireActivity(),
-                    activityLauncher = it1
-                ).checkStoragePermission {
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-                        openGallary(isMultipleImageSelection = isMultipleImageSelection) //If camera permission is granted then only open gallery
-                    } else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.TIRAMISU) {
-                        pickMultipleMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-                    } else {
-                        if (ContextCompat.checkSelfPermission(
-                                requireActivity(),
-                                Manifest.permission.READ_MEDIA_IMAGES
-                            ) == PermissionChecker.PERMISSION_GRANTED
-                        ) {
-                            pickMultipleMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-                        } else {
-                            justTry {
-                                mActivity.contentResolver?.let { it1 ->
-                                    LimitedAccessImagesPickerBottomSheetDialog.newInstance(
-                                        rootView = rootView,
-                                        activity = mActivity,
-                                        isCancel = true,
-                                        isPreventBackButton = false,
-                                        maxPickItem = if (isMultipleImageSelection) maxItems else DEFAULT_ONE,
-                                        contentResolver = it1
-                                    ).apply {
-                                        onImageSelection = {
-                                            this@ImagePickerNew.dismiss()
-                                            onResult?.invoke(null, null, it, null)
-                                        }
-                                    }.show(
-                                        mActivity.supportFragmentManager,
-                                        LimitedAccessImagesPickerBottomSheetDialog::class.simpleName
-                                    )
-                                }
-                            }
-                        }
+                    activityLauncher = launcher
+                )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    pickSingleMedia.launch(
+                        PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                    )
+                } else {
+                    // Android 12 and below -> check READ_EXTERNAL_STORAGE, then open legacy gallery
+                    permissionHelper.checkStoragePermission {
+                        openGallery()
                     }
                 }
             }
         }
 
-        binding.textViewFiles onSafeClick {
-            activityLauncher?.let { it1 ->
-                CameraAndExternalStoragePermission(
-                    context = requireContext(),
-                    activityLauncher = it1
-                ).checkStoragePermission(isMediaSelection = false) {
-                    openPdfPicker(activityLauncher!!) { path, _ ->
-                    }//No need callback here we pass data in imagePickerResult.onResult(_, _)
-                }
-            }
-        }
+
     }
 
-    private fun openGallary(isMultipleImageSelection: Boolean) {
-        //-------Below code is not restrict gif for choose from gallery-------//
-//        selectImageFromGalleryResult.launch("image/*")
-
-        //-------Add restriction to add gif-------//
+    private fun openGallery() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-//        intent.action = Intent.ACTION_OPEN_DOCUMENT
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         val mimeTypes = arrayOf("image/png", "image/jpg", "image/jpeg")
         intent.type = "*/*"
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, isMultipleImageSelection)
         selectImageFromGalleryResult.launch(intent)
     }
 
     private val selectImageFromGalleryResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult: ActivityResult? ->
             activityResult?.let {
-                /*it.data?.data?.path?.let { it1 ->
-                    imagePickerResult.onResult(
-                        it.data!!.data.toString(),
-                        it.data?.clipData
-                    )
-                }*/
-
-//                it.data?.withNotNull {
                 dismiss()
-                onResult?.invoke(it.data?.data.toString(), it.data?.clipData, null, null)
-//                }
+                onResult?.invoke(it.data?.data.toString(), it.data?.clipData, null)
             }
         }
 
     private lateinit var takePictureLauncher: ActivityResultLauncher<Uri>
     private fun dispatchTakePictureIntent() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        // Ensure that there's a camera activity to handle the intent
-
-        // Create the File where the photo should go
         var photoFile: File? = null
         try {
             photoFile = createImageFile()
@@ -278,70 +176,14 @@ class ImagePickerNew(isPreventBackButton: Boolean) :
             Logger.e(requireContext().packageName)
         }
 
-        // Continue only if the File was successfully created
         if (photoFile != null) {
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
             photoURI?.let { takePictureLauncher.launch(it) }
         }
     }
 
-    private fun openPdfPicker(
-        launcher: ActivityLauncher<Intent, ActivityResult>,
-        callBack: (String?, ClipData?) -> Unit
-    ) {
-        pickPdf(
-            launcher
-        ) { path, _ ->
-            onResult?.invoke(
-                null,
-                null,
-                null,
-                path
-            )
-//            callBack.invoke(path, clipData)
-            dismiss()
-        }
-    }
-
-    private fun pickPdf(
-        launcher: ActivityLauncher<Intent, ActivityResult>,
-        callBack: (String?, ClipData?) -> Unit
-    ) {
-        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
-            type = "application/pdf"
-        }
-
-        launcher.launch(intent) { activityResult: ActivityResult? ->
-            activityResult?.let { result ->
-                val uri = result.data?.data
-
-                uri?.let uriLet@{
-                    val fileSize = try {
-                        mActivity.contentResolver.openAssetFileDescriptor(uri, "r")?.use { fd ->
-                            fd.length
-                        } ?: 0L
-                    } catch (e: Exception) {
-                        0L
-                    }
-
-                    if (fileSize > 10 * 1024 * 1024) {
-                        showSnackBar(
-                            mActivity.getString(R.string.validation_maximum_size_for_pdf_should_be_10_mb),
-                            Constants.STATUS_ERROR,
-                            mActivity
-                        )
-                        return@uriLet
-                    }
-
-                    callBack.invoke(uri.toString(), result.data?.clipData)
-                }
-            }
-        }
-    }
-
     @Throws(IOException::class)
     private fun createImageFile(): File {
-        // Create an image file name
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(Date())
         val imageFileName = "JPEG_" + timeStamp + "_"
         val storageDir = requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
@@ -354,20 +196,14 @@ class ImagePickerNew(isPreventBackButton: Boolean) :
         return image
     }
 
-    var onResult: ((path: String?, clipData: ClipData?, uriList: ArrayList<Uri>?, pdfPath: String?) -> Unit)? =
+    var onResult: ((path: String?, clipData: android.content.ClipData?, uri: Uri?) -> Unit)? =
         null
 
     companion object {
-
         fun newInstance(
             rootView: ViewGroup,
             activity: FragmentActivity,
             activityLauncher: ActivityLauncher<Intent, ActivityResult>,
-            isMultipleImageSelection: Boolean,
-            isPDFPickerShow: Boolean,
-            isGalleryShow: Boolean = true,
-            imageListSize: Int? = null,
-            maxImageCount: Int = 0,
             isPreventBackButton: Boolean,
             title: String = "",
             description: String = ""
@@ -377,13 +213,6 @@ class ImagePickerNew(isPreventBackButton: Boolean) :
             this.title = title
             this.description = description
             this.activityLauncher = activityLauncher
-            this.isGalleryShow = isGalleryShow
-            this.isMultipleImageSelection = isMultipleImageSelection
-            this.isPDFPickerShow = isPDFPickerShow
-            if (imageListSize != null) {
-                this.propertyImageListSize = imageListSize
-            }
-            this.maxImageCount = maxImageCount
         }
     }
 
@@ -418,7 +247,7 @@ class ImagePickerNew(isPreventBackButton: Boolean) :
 
 fun getFileNameFromUri(context: Context, uri: Uri): String? {
     return when (uri.scheme) {
-        ContentResolver.SCHEME_CONTENT -> { // Query content resolver for display name (Only works for content:// URIs)
+        ContentResolver.SCHEME_CONTENT -> {
             context.contentResolver.query(
                 uri,
                 arrayOf(OpenableColumns.DISPLAY_NAME),
@@ -433,10 +262,7 @@ fun getFileNameFromUri(context: Context, uri: Uri): String? {
             null
         }
 
-        ContentResolver.SCHEME_FILE -> { // Extract file name from file path for file:// URIs
-            File(uri.path!!).name
-        }
-
+        ContentResolver.SCHEME_FILE -> File(uri.path!!).name
         else -> null
     }
 }

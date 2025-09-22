@@ -25,4 +25,15 @@ class HomeRepository @Inject constructor(
             }
         )
     }
+
+    //-------Get User Profile Api-------//
+    fun callGetUserProfileApi(): Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiIdentifier = ApiIdentifier.API_GET_USER_PROFILE,
+            apiCall = {
+                apiService.callGetUserProfileApi()
+            }
+        )
+    }
 }

@@ -24,4 +24,15 @@ class ProfileRepository @Inject constructor(
             }
         )
     }
+
+    //-------Upload Profile Image Api-------//
+    fun callUploadProfileImageApi(image: okhttp3.MultipartBody.Part): Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiIdentifier = ApiIdentifier.API_UPDATE_USER_PROFILE_PICTURE,
+            apiCall = {
+                apiService.callUpdateUserProfilePictureApi(profile = image)
+            }
+        )
+    }
 }

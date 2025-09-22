@@ -1,6 +1,7 @@
 package com.basalbody.app.network
 
 import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.request.AddInquiryRequest
 import com.basalbody.app.model.request.ChangePasswordRequest
 import com.basalbody.app.model.request.ForgotPasswordRequest
 import com.basalbody.app.model.request.LoginRequest
@@ -8,6 +9,7 @@ import com.basalbody.app.model.request.RegisterRequest
 import com.basalbody.app.model.request.ResendOtpRequest
 import com.basalbody.app.model.request.ResetPasswordStep1Request
 import com.basalbody.app.model.request.ResetPasswordStep2Request
+import com.basalbody.app.model.response.AddInquiryResponse
 import com.basalbody.app.model.response.ChangePasswordResponse
 import com.basalbody.app.model.response.ForgotPasswordResponse
 import com.basalbody.app.model.response.InitData
@@ -16,11 +18,14 @@ import com.basalbody.app.model.response.ResendOtpResponse
 import com.basalbody.app.model.response.ResetPasswordStep1Response
 import com.basalbody.app.model.response.ResetPasswordStep2Response
 import com.basalbody.app.model.response.UserResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface ApiService {
@@ -70,6 +75,19 @@ interface ApiService {
     @PUT(API_CHANGE_PASSWORD)
     suspend fun callChangePasswordApi(@Body request: ChangePasswordRequest): Response<BaseResponse<ChangePasswordResponse>>
 
+    @GET(API_GET_USER_PROFILE)
+    suspend fun callGetUserProfileApi(): Response<BaseResponse<UserResponse>>
+
+    @PUT(API_UPDATE_USER_PROFILE)
+    suspend fun callUpdateUserProfileApi(@Body request: RegisterRequest): Response<BaseResponse<UserResponse>>
+
+    @Multipart
+    @POST(API_UPDATE_USER_PROFILE_PICTURE)
+    suspend fun callUpdateUserProfilePictureApi(@Part profile: MultipartBody.Part): Response<BaseResponse<UserResponse>>
+
+    @POST(API_ADD_INQUIRY)
+    suspend fun callAddInquiryApi(@Body request : AddInquiryRequest): Response<BaseResponse<AddInquiryResponse>>
+
 }
 
 enum class ApiIdentifier {
@@ -78,5 +96,8 @@ enum class ApiIdentifier {
     API_REGISTER,
     API_LOGOUT,
     API_DELETE_ACCOUNT,
-    API_CHANGE_PASSWORD
+    API_CHANGE_PASSWORD,
+    API_GET_USER_PROFILE,
+    API_UPDATE_USER_PROFILE,
+    API_UPDATE_USER_PROFILE_PICTURE,
 }

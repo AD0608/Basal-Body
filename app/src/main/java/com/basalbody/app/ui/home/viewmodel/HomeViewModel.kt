@@ -3,7 +3,6 @@ package com.basalbody.app.ui.home.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.basalbody.app.base.BaseViewModel
 import com.basalbody.app.model.Resource
-import com.basalbody.app.model.request.ChangePasswordRequest
 import com.basalbody.app.ui.home.repository.HomeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,6 +22,20 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             homeRepository.callLogoutApi().collect {
                 _callLogoutApiMutableStateFlow.value = it
+            }
+        }
+    }
+
+    //-------Get User Profile Api-------//
+    private val _callGetUserProfileApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callGetUserProfileApiStateFlow: StateFlow<Resource<*>> =
+        _callGetUserProfileApiMutableStateFlow
+
+    fun callGetUserProfileApi() {
+        viewModelScope.launch {
+            homeRepository.callGetUserProfileApi().collect {
+                _callGetUserProfileApiMutableStateFlow.value = it
             }
         }
     }
