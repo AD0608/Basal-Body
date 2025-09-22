@@ -225,17 +225,14 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
             viewModel.setValidationValue(ValidationStatus.EMPTY_PASSWORD)
             return false
         }
-
         if (value.length < LimitCount.passwordMin) {
             viewModel.setValidationValue(ValidationStatus.PASSWORD_LENGTH)
             return false
         }
-
         if (value.first() == ' ' || value.last() == ' ') {
             viewModel.setValidationValue(ValidationStatus.PASSWORD_START_END_BLANK_SPACE)
             return false
         }
-
         if (!value.trim().matches(Constants.REGEX_VALID_PASSWORD_NEW.toRegex())) {
             viewModel.setValidationValue(ValidationStatus.INVALID_PASSWORD)
             return false
@@ -251,14 +248,16 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
             viewModel.setValidationValue(ValidationStatus.EMPTY_CURRENT_PASSWORD)
             return false
         }
-
         if (value.length < LimitCount.passwordMin) {
             viewModel.setValidationValue(ValidationStatus.CURRENT_PASSWORD_LENGTH)
             return false
         }
-
         if (value.first() == ' ' || value.last() == ' ') {
             viewModel.setValidationValue(ValidationStatus.CURRENT_PASSWORD_START_END_BLANK_SPACE)
+            return false
+        }
+        if (!value.trim().matches(Constants.REGEX_VALID_PASSWORD_NEW.toRegex())) {
+            viewModel.setValidationValue(ValidationStatus.INVALID_PASSWORD)
             return false
         }
 
@@ -272,14 +271,16 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
             viewModel.setValidationValue(ValidationStatus.EMPTY_NEW_PASSWORD)
             return false
         }
-
         if (value.length < LimitCount.passwordMin) {
             viewModel.setValidationValue(ValidationStatus.NEW_PASSWORD_LENGTH)
             return false
         }
-
         if (value.first() == ' ' || value.last() == ' ') {
             viewModel.setValidationValue(ValidationStatus.NEW_PASSWORD_START_END_BLANK_SPACE)
+            return false
+        }
+        if (!value.trim().matches(Constants.REGEX_VALID_PASSWORD_NEW.toRegex())) {
+            viewModel.setValidationValue(ValidationStatus.INVALID_PASSWORD)
             return false
         }
 
@@ -293,13 +294,20 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
             viewModel.setValidationValue(ValidationStatus.EMPTY_CONFIRM_PASSWORD)
             return false
         }
-
         if (value.length < LimitCount.passwordMin) {
             viewModel.setValidationValue(ValidationStatus.CONFIRM_PASSWORD_LENGTH)
             return false
         }
         if (value.first() == ' ' || value.last() == ' ') {
             viewModel.setValidationValue(ValidationStatus.CONFIRM_PASSWORD_START_END_BLANK_SPACE)
+            return false
+        }
+        if (!value.trim().matches(Constants.REGEX_VALID_PASSWORD_NEW.toRegex())) {
+            viewModel.setValidationValue(ValidationStatus.INVALID_PASSWORD)
+            return false
+        }
+        if (!value.trim().matches(Constants.REGEX_VALID_PASSWORD_NEW.toRegex())) {
+            viewModel.setValidationValue(ValidationStatus.INVALID_PASSWORD)
             return false
         }
         return true
@@ -319,6 +327,11 @@ abstract class BaseActivity<V : BaseViewModel, VB : ViewBinding> : AppCompatActi
 
         if (value.first() == ' ' || value.last() == ' ') {
             viewModel.setValidationValue(ValidationStatus.CONFIRM_NEW_PASSWORD_START_END_BLANK_SPACE)
+            return false
+        }
+
+        if (!value.trim().matches(Constants.REGEX_VALID_PASSWORD_NEW.toRegex())) {
+            viewModel.setValidationValue(ValidationStatus.INVALID_PASSWORD)
             return false
         }
 

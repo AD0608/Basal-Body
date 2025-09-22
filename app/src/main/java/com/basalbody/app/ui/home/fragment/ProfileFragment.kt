@@ -1,5 +1,6 @@
 package com.basalbody.app.ui.home.fragment
 
+import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseFragment
@@ -31,6 +32,9 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ProfileFragment :
     BaseFragment<HomeViewModel, FragmentProfileBinding>(FragmentProfileBinding::inflate) {
+
+    val TAG = "ProfileFragment"
+
     override fun getViewBinding(): FragmentProfileBinding =
         FragmentProfileBinding.inflate(layoutInflater)
 
@@ -56,8 +60,8 @@ class ProfileFragment :
         binding.apply {
             llToolBar.ivBack.gone()
             llToolBar.tvTitle.changeText(R.string.item_profile)
-            tvUserName.changeText("Selly Mal")
-            tvUserEmail.changeText("selly@gmail.com")
+            tvUserName.changeText(localDataRepository.getUserDetails()?.user?.fullname ?: "")
+            tvUserEmail.changeText(localDataRepository.getUserDetails()?.user?.email ?: "")
         }
     }
 
