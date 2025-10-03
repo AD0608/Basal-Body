@@ -1,6 +1,9 @@
 package com.basalbody.app.ui.home.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.util.Log
+import androidx.activity.result.ActivityResult
 import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseFragment
@@ -67,14 +70,16 @@ class ProfileFragment :
     }
 
     override fun initSetup() {
+        binding.apply {
+            llToolBar.ivBack.gone()
+            llToolBar.tvTitle.changeText(R.string.item_profile)
+        }
         setupUI()
     }
 
     private fun setupUI() {
         val user = localDataRepository.getUserDetails()?.user
         binding.apply {
-            llToolBar.ivBack.gone()
-            llToolBar.tvTitle.changeText(R.string.item_profile)
             tvUserName.changeText(user?.fullname ?: "")
             tvUserEmail.changeText(user?.email ?: "")
             ivProfile.loadImageViaGlide(value = user?.profileImage?.url ?: "")
@@ -85,8 +90,7 @@ class ProfileFragment :
         binding.apply {
 
             ivEditProfile.onSafeClick {
-                startNewActivity(EditProfileActivity::class.java)
-                //viewModel.callGetUserProfileApi()
+                viewModel.callGetUserProfileApi()
             }
             llChangePass.onSafeClick {
                 startNewActivity(ChangePasswordActivity::class.java)
@@ -154,7 +158,11 @@ class ProfileFragment :
 
     private fun handleProfileResponse(response: BaseResponse<UserResponse>?) {
         if (response.notNull() && response?.status == true) {
-            startNewActivity(EditProfileActivity::class.java)
+            activityLauncher.launch(Intent(requireContext(), EditProfileActivity::class.java)) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    setupUI()
+                }
+            }
         }
     }
 

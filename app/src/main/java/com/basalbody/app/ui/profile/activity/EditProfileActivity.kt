@@ -16,12 +16,17 @@ import com.basalbody.app.model.response.ChangePasswordResponse
 import com.basalbody.app.model.response.UserResponse
 import com.basalbody.app.ui.common.showGenderSelectionPopup
 import com.basalbody.app.ui.profile.viewmodel.ProfileViewModel
+import com.basalbody.app.utils.Constants.EMAIL_PATTERN
 import com.basalbody.app.utils.ImagePickerNew
 import com.basalbody.app.utils.Logger
+import com.basalbody.app.utils.ValidationStatus
+import com.basalbody.app.utils.finishActivityWithLauncherResult
+import com.basalbody.app.utils.getText
 import com.basalbody.app.utils.loadImageViaGlide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
+import kotlin.text.uppercase
 
 @AndroidEntryPoint
 class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBinding>() {
@@ -31,10 +36,11 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
         ActivityEditProfileBinding.inflate(layoutInflater)
 
     private var imageUri : Uri? = null
+    private var profileImageUrl : String = ""
 
     override fun addObservers() {
         lifecycleScope.launch {
-            viewModel.callChangePasswordApiStateFlow.collect {
+            viewModel.callUploadProfileImageApiStateFlow.collect {
                 FlowInActivity<BaseResponse<UserResponse>>(
                     data = it,
                     context = this@EditProfileActivity,
@@ -42,6 +48,19 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
                     shouldShowSuccessMessage = true,
                     shouldShowLoader = true,
                     onSuccess = ::handleUploadProfilePictureResponse,
+                )
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.callUpdateProfileApiStateFlow.collect {
+                FlowInActivity<BaseResponse<UserResponse>>(
+                    data = it,
+                    context = this@EditProfileActivity,
+                    shouldShowErrorMessage = true,
+                    shouldShowSuccessMessage = true,
+                    shouldShowLoader = true,
+                    onSuccess = ::handleUpdateProfileResponse,
                 )
             }
         }
@@ -60,6 +79,7 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
             etEmail.editText.changeText(user?.email ?: "")
             val stGender  = user?.gender ?: ""
             etGender.txtField.changeText(stGender.lowercase().replaceFirstChar { it.titlecase() })
+            profileImageUrl = user?.profileImage?.url ?: ""
             ivProfile.loadImageViaGlide(value = user?.profileImage?.url ?: "")
         }
     }
@@ -79,7 +99,18 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
                     })
             }
             btnUpdate.onSafeClick {
-                finish()
+                if (detailsAreNotUpdated()) {
+                    finish()
+                    return@onSafeClick
+                }
+                if (allDetailsValid()) {
+                    val request = com.basalbody.app.model.request.RegisterRequest(
+                        fullName = etFullName.getText()?.trim() ?: "",
+                        email = etEmail.getText()?.trim() ?: "",
+                        gender = etGender.txtField.getText()?.trim()?.toString()?.uppercase() ?: "",
+                    )
+                    viewModel.callUpdateProfileApi(request = request, userId = localDataRepository.getUserDetails()?.user?.id ?: 0)
+                }
             }
 
             ivCamera onSafeClick {
@@ -94,6 +125,57 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
             val userProfilePicture = localDataRepository.getUserDetails()?.user?.profileImage?.url ?: ""
             binding.ivProfile.loadImageViaGlide(value = userProfilePicture)
         }
+    }
+
+    private fun handleUpdateProfileResponse(response: BaseResponse<UserResponse>?) {
+        Log.e(TAG, "handleUpdateProfileResponse()")
+        if (response.notNull() && response?.status == true) {
+            val user = localDataRepository.getUserDetails()?.user
+            binding.apply {
+                etFullName.editText.changeText(user?.fullname ?: "")
+                etEmail.editText.changeText(user?.email ?: "")
+                val stGender  = user?.gender ?: ""
+                etGender.txtField.changeText(stGender.lowercase().replaceFirstChar { it.titlecase() })
+                finishActivityWithLauncherResult()
+            }
+        }
+    }
+
+    private fun allDetailsValid(): Boolean {
+        val fullName = binding.etFullName.getText()?.trim() ?: ""
+        val email = binding.etEmail.getText()?.trim() ?: ""
+        val gender = binding.etGender.txtField.getText()?.trim() ?: ""
+        return when {
+            fullName.isEmpty() -> {
+                viewModel.setValidationValue(ValidationStatus.EMPTY_NAME)
+                false
+            }
+
+            email.isEmpty() -> {
+                viewModel.setValidationValue(ValidationStatus.EMPTY_EMAIL)
+                false
+            }
+
+            !email.trim().matches(EMAIL_PATTERN.toRegex()) -> {
+                viewModel.setValidationValue(ValidationStatus.INVALID_EMAIL)
+                false
+            }
+
+            gender.isEmpty() -> {
+                viewModel.setValidationValue(ValidationStatus.EMPTY_GENDER)
+                false
+            }
+
+            else -> true
+        }
+    }
+
+    private fun detailsAreNotUpdated(): Boolean {
+        val user = localDataRepository.getUserDetails()?.user
+        val fullName = binding.etFullName.getText()?.trim() ?: ""
+        val email = binding.etEmail.getText()?.trim() ?: ""
+        val gender = binding.etGender.txtField.getText()?.toString()?.trim()?.uppercase() ?: ""
+        return profileImageUrl == user?.profileImage?.url && fullName == user.fullname && email == user.email && gender == user.gender
     }
 
     private fun openImagePickerDialog() {

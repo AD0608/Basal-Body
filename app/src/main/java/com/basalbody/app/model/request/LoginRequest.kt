@@ -12,17 +12,17 @@ data class LoginRequest(
 
 data class RegisterRequest(
     @SerializedName("fullname")
-    val fullName: String,
+    val fullName: String? = null,
 
     @SerializedName("email")
-    val email: String,
+    val email: String? = null,
 
     @SerializedName("gender")
-    val gender: String,
+    val gender: String? = null,
 
     @SerializedName("phone_number")
-    val phoneNumber: String,
+    val phoneNumber: String? = null,
 
     @SerializedName("password")
-    val password: String,
+    val password: String? = null,
 )

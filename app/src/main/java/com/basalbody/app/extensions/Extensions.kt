@@ -374,7 +374,7 @@ fun Context.getImageMultipart(uri: Uri, name: String): MultipartBody.Part? {
     val selectedFile = file?.let { saveBitmapToFile(it) }
 
     val requestFile: RequestBody? =
-        selectedFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+        selectedFile?.asRequestBody("application/octet-stream".toMediaTypeOrNull())
     return requestFile?.let { MultipartBody.Part.createFormData(name, selectedFile.name, it) }
 }
 

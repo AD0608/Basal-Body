@@ -96,9 +96,11 @@ abstract class BaseRepository {
                                                     (mBean as? BaseResponse<*>)?.safeCast<UserResponse>()
                                                 userResponse?.data?.withNotNull { data ->
                                                     data.withNotNull { loginData ->
-                                                        localDataRepository.saveBarrierToken(
-                                                            token = loginData.token ?: ""
-                                                        )
+                                                        if ((loginData.token ?: "").isNotEmpty()) {
+                                                            localDataRepository.saveBarrierToken(
+                                                                token = loginData.token ?: ""
+                                                            )
+                                                        }
                                                         localDataRepository.saveUserDetails(userData = loginData)
                                                     }
                                                 }

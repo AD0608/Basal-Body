@@ -65,7 +65,7 @@ class ChangePasswordActivity : BaseActivity<ProfileViewModel, ActivityChangePass
                         newPassword = etNewPass.getText()?.trim() ?: ""
                         confirmPassword = etConfirmPass.getText()?.trim() ?: ""
                     }
-                    viewModel.callChangePasswordApi(request)
+                    viewModel.callChangePasswordApi(request = request, userId = localDataRepository.getUserDetails()?.user?.id ?: 0)
                 }
             }
         }

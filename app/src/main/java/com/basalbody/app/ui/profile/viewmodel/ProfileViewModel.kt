@@ -20,9 +20,9 @@ class ProfileViewModel @Inject constructor(
     private val _callChangePasswordApiMutableStateFlow =
         MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
     val callChangePasswordApiStateFlow: StateFlow<Resource<*>> = _callChangePasswordApiMutableStateFlow
-    fun callChangePasswordApi(request: ChangePasswordRequest) {
+    fun callChangePasswordApi(request: ChangePasswordRequest, userId : Int) {
         viewModelScope.launch {
-            profileRepository.callChangePasswordApi(request).collect {
+            profileRepository.callChangePasswordApi(request = request, userId = userId).collect {
                 _callChangePasswordApiMutableStateFlow.value = it
             }
         }
@@ -36,6 +36,30 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch {
             profileRepository.callUploadProfileImageApi(image).collect {
                 _callUploadProfileImageApiMutableStateFlow.value = it
+            }
+        }
+    }
+
+    //-------Update Profile Api-------//
+    private val _callUpdateProfileApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callUpdateProfileApiStateFlow: StateFlow<Resource<*>> = _callUpdateProfileApiMutableStateFlow
+    fun callUpdateProfileApi(request : com.basalbody.app.model.request.RegisterRequest, userId: Int) {
+        viewModelScope.launch {
+            profileRepository.callUpdateProfileApi(request = request, userId = userId).collect {
+                _callUpdateProfileApiMutableStateFlow.value = it
+            }
+        }
+    }
+
+    //-------Add Inquiry Api-------//
+    private val _callAddInquiryApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callAddInquiryApiStateFlow: StateFlow<Resource<*>> = _callAddInquiryApiMutableStateFlow
+    fun callAddInquiryApi(request : com.basalbody.app.model.request.AddInquiryRequest) {
+        viewModelScope.launch {
+            profileRepository.callAddInquiryApi(request).collect {
+                _callAddInquiryApiMutableStateFlow.value = it
             }
         }
     }

@@ -73,13 +73,13 @@ interface ApiService {
     suspend fun callLogoutApi(): Response<BaseResponse<LogoutResponse>>
 
     @PUT(API_CHANGE_PASSWORD)
-    suspend fun callChangePasswordApi(@Body request: ChangePasswordRequest): Response<BaseResponse<ChangePasswordResponse>>
+    suspend fun callChangePasswordApi(@Path("userId") userId : Int, @Body request: ChangePasswordRequest): Response<BaseResponse<ChangePasswordResponse>>
 
     @GET(API_GET_USER_PROFILE)
     suspend fun callGetUserProfileApi(): Response<BaseResponse<UserResponse>>
 
     @PUT(API_UPDATE_USER_PROFILE)
-    suspend fun callUpdateUserProfileApi(@Body request: RegisterRequest): Response<BaseResponse<UserResponse>>
+    suspend fun callUpdateUserProfileApi(@Path("userId") userId : Int, @Body request: RegisterRequest): Response<BaseResponse<UserResponse>>
 
     @Multipart
     @POST(API_UPDATE_USER_PROFILE_PICTURE)

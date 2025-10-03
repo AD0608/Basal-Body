@@ -1,13 +1,23 @@
 package com.basalbody.app.ui.profile.activity
 
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
+import com.basalbody.app.base.FlowInActivity
 import com.basalbody.app.databinding.ActivityContactSupportBinding
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.request.AddInquiryRequest
+import com.basalbody.app.model.response.AddInquiryResponse
 import com.basalbody.app.ui.profile.viewmodel.ProfileViewModel
+import com.basalbody.app.utils.Constants
+import com.basalbody.app.utils.Constants.EMAIL_PATTERN
+import com.basalbody.app.utils.ValidationStatus
+import com.basalbody.app.utils.getText
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ContactSupportActivity : BaseActivity<ProfileViewModel, ActivityContactSupportBinding>() {
@@ -15,6 +25,21 @@ class ContactSupportActivity : BaseActivity<ProfileViewModel, ActivityContactSup
     private val TAG = "ContactSupportActivity"
     override fun getViewBinding(): ActivityContactSupportBinding =
         ActivityContactSupportBinding.inflate(layoutInflater)
+
+    override fun addObservers() {
+        lifecycleScope.launch {
+            viewModel.callAddInquiryApiStateFlow.collect {
+                FlowInActivity<BaseResponse<AddInquiryResponse>>(
+                    data = it,
+                    context = this@ContactSupportActivity,
+                    shouldShowErrorMessage = true,
+                    shouldShowSuccessMessage = true,
+                    shouldShowLoader = true,
+                    onSuccess = ::handleAddInquiryResponse,
+                )
+            }
+        }
+    }
 
     override fun initSetup() {
         setupUI()
@@ -36,7 +61,50 @@ class ContactSupportActivity : BaseActivity<ProfileViewModel, ActivityContactSup
             }
 
             btnSubmit.onSafeClick {
-                finish()
+                if (allDetailsValid()) {
+                    val request = AddInquiryRequest(
+                        /*fullname = etFullName.getText().toString().trim(),*/
+                        /*email = etEmail.getText().toString().trim(),*/
+                        type = Constants.ISSUE_TYPE_CONTACT,
+                        message = etMessage.text.toString().trim(),
+                    )
+                    viewModel.callAddInquiryApi(request)
+                }
+            }
+        }
+    }
+
+    private fun handleAddInquiryResponse(response: BaseResponse<AddInquiryResponse>?) {
+        Log.e(TAG, "handleAddInquiryResponse()")
+        Log.e(TAG, "handleAddInquiryResponse() response: $response")
+        finish()
+    }
+
+    private fun allDetailsValid(): Boolean {
+        Log.e(TAG, "allDetailsValid()")
+        binding.apply {
+            return when {
+                etFullName.getText().toString().trim().isEmpty() -> {
+                    viewModel.setValidationValue(ValidationStatus.EMPTY_NAME)
+                    false
+                }
+
+                etEmail.getText()?.isEmpty() == true -> {
+                    viewModel.setValidationValue(ValidationStatus.EMPTY_EMAIL)
+                    false
+                }
+
+                etEmail.getText()?.trim()?.matches(EMAIL_PATTERN.toRegex()) == false -> {
+                    viewModel.setValidationValue(ValidationStatus.INVALID_EMAIL)
+                    false
+                }
+
+                etMessage.text.toString().isEmpty() -> {
+                    viewModel.setValidationValue(ValidationStatus.EMPTY_MESSAGE) // Change to appropriate status
+                    false
+                }
+
+                else -> true
             }
         }
     }

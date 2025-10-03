@@ -5,6 +5,7 @@ import com.basalbody.app.BuildConfig
 import com.basalbody.app.base.BaseRepository
 import com.basalbody.app.model.Resource
 import com.basalbody.app.model.request.ChangePasswordRequest
+import com.basalbody.app.model.request.RegisterRequest
 import com.basalbody.app.network.ApiIdentifier
 import com.basalbody.app.network.ApiService
 import kotlinx.coroutines.flow.Flow
@@ -15,12 +16,12 @@ class ProfileRepository @Inject constructor(
     private val apiService: ApiService,
 ) : BaseRepository() {
     //-------Change Password Api-------//
-    fun callChangePasswordApi(request: ChangePasswordRequest): Flow<Resource<*>> {
+    fun callChangePasswordApi(request: ChangePasswordRequest, userId : Int): Flow<Resource<*>> {
         return callAPI(
             context = context,
             apiIdentifier = ApiIdentifier.API_CHANGE_PASSWORD,
             apiCall = {
-                apiService.callChangePasswordApi(request)
+                apiService.callChangePasswordApi(request = request, userId = userId)
             }
         )
     }
@@ -32,6 +33,27 @@ class ProfileRepository @Inject constructor(
             apiIdentifier = ApiIdentifier.API_UPDATE_USER_PROFILE_PICTURE,
             apiCall = {
                 apiService.callUpdateUserProfilePictureApi(profile = image)
+            }
+        )
+    }
+
+    //-------Update Profile Api-------//
+    fun callUpdateProfileApi(request : RegisterRequest, userId : Int) : Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiIdentifier = ApiIdentifier.API_UPDATE_USER_PROFILE,
+            apiCall = {
+                apiService.callUpdateUserProfileApi(request = request, userId = userId)
+            }
+        )
+    }
+
+    //-------Add Inquiry Api-------//
+    fun callAddInquiryApi(request : com.basalbody.app.model.request.AddInquiryRequest) : Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiCall = {
+                apiService.callAddInquiryApi(request)
             }
         )
     }

@@ -44,6 +44,8 @@ enum class ValidationStatus {
     EMPTY_COUNTRY,
     EMPTY_BUILDING,
     EMPTY_ZIP,
+    EMPTY_MESSAGE,
+    EMPTY_ISSUE_MESSAGE,
     UNKNOWN,
 }
 
@@ -99,6 +101,8 @@ object Validation {
             ValidationStatus.EMPTY_CONFIRM_NEW_PASSWORD -> activity.getString(R.string.validation_empty_confirm_new_password)
             ValidationStatus.CONFIRM_NEW_PASSWORD_LENGTH -> activity.getString(R.string.validation_confirm_new_password_min)
             ValidationStatus.CONFIRM_NEW_PASSWORD_START_END_BLANK_SPACE -> activity.getString(R.string.validation_confirm_new_password_space)
+            ValidationStatus.EMPTY_MESSAGE -> activity.getString(R.string.validation_empty_message)
+            ValidationStatus.EMPTY_ISSUE_MESSAGE -> activity.getString(R.string.validation_empty_issue_message)
             ValidationStatus.UNKNOWN -> ""
         }
     }

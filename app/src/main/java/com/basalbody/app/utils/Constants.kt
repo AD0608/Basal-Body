@@ -9,6 +9,9 @@ object Constants {
     const val USER_TYPE_COMPANY_DRIVER = "company"
     const val USER_TYPE_FREELANCER = "freelancer"
 
+    const val ISSUE_TYPE_BLUETOOTH = "BLUETOOTH"
+    const val ISSUE_TYPE_CONTACT = "CONTACT"
+
     const val LANG_AR = "ar"
     const val LANG_EN = "en"
     const val PRIVACY_POLICY = "privacy_policy"

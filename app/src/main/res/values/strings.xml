@@ -211,4 +211,6 @@
     <string name="validation_current_password_space">Current password can’t start or end with a blank space.</string>
     <string name="validation_terms_condition">Please accept terms and condition</string>
     <string name="invalid_password">Password must be at least 8 characters long, with at least one uppercase letter, one lowercase letter, one digit, and one special character.</string>
+    <string name="validation_empty_message">Please enter message</string>
+    <string name="validation_empty_issue_message">Please enter issue message</string>
 </resources>
