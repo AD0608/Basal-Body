@@ -141,10 +141,11 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:textStyle="semiBold" />
 
-                    <com.github.mikephil.charting.charts.BarChart
+                    <com.basalbody.app.utils.RoundedBarChart
                         android:id="@+id/barChart"
                         android:layout_width="@dimen/dp_0"
                         android:layout_height="184dp"
+                        app:radius="@dimen/dp_40"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

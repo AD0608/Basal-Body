@@ -141,5 +141,4 @@ class InsightsFragment : BaseFragment<HomeViewModel, FragmentInsightsBinding>(
     }
 
     data class CycleInsight(var month: String, var days: String)
-
 }
