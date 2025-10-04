@@ -25,7 +25,7 @@ class CycleRegularitiesInsightListAdapter(
         val item = list[position]
         binding.apply {
             tvMonth.text = item.month
-            tvDays.text = item.days.plus(" Days")
+            tvDays.text = item.days.plus("\nDays")
         }
         binding.root onSafeClick {
             onItemClick?.invoke(item)

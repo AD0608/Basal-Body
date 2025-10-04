@@ -8,7 +8,12 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import android.util.Log
 import androidx.exifinterface.media.ExifInterface
-import java.io.*
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
 
 
 object ImageUtilNew {
@@ -17,25 +22,30 @@ object ImageUtilNew {
 
     @Throws(IOException::class)
     fun from(context: Context, uri: Uri): File? {
-        val inputStream = context.contentResolver.openInputStream(uri)
-        val fileName = getFileName(context, uri)
+        val correctedUri = if (uri.scheme == "file") {
+            // Fix invalid "file:/" URIs (strip scheme)
+            Uri.fromFile(File(uri.path ?: return null))
+        } else {
+            uri
+        }
+
+        val inputStream = context.contentResolver.openInputStream(correctedUri)
+            ?: throw IOException("Unable to open input stream from $correctedUri")
+
+        val fileName = getFileName(context, correctedUri)
         val splitName = splitFileName(fileName)
         var tempFile = splitName[0]?.let { File.createTempFile(it, splitName[1]) }
         tempFile = tempFile?.let { rename(it, fileName) }
         tempFile?.deleteOnExit()
-        var out: FileOutputStream? = null
-        try {
-            out = FileOutputStream(tempFile)
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        }
-        if (inputStream != null) {
+
+        FileOutputStream(tempFile).use { out ->
             copy(inputStream, out)
-            inputStream.close()
         }
-        out?.close()
+
+        inputStream.close()
         return tempFile
     }
+
 
     private fun splitFileName(fileName: String?): Array<String?> {
         var name = fileName

@@ -9,7 +9,6 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
-import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
@@ -91,22 +90,27 @@ class ImagePickerNew(isPreventBackButton: Boolean) :
                     onResult?.invoke(null, null, uri)
                 }
             }
-
         takePictureLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success && photoURI != null && mCurrentPhotoPath != null) {
-                    val file = File(mCurrentPhotoPath.toString())
+                    val file = File(mCurrentPhotoPath!!)
 
-                    val correctedBitmap = fixImageOrientation(file)
-                    correctedBitmap?.let {
-                        val savedUri =
-                            saveBitmapToFile(it, file) // overwrite
-                        onResult?.invoke(savedUri.toString(), null, null)
+                    if (file.exists()) {
+                        val correctedBitmap = fixImageOrientation(file)
+                        correctedBitmap?.let {
+                            val savedUri = saveBitmapToFile(it, file) // overwrite original file
+                            onResult?.invoke(null, null, savedUri)
+                        }
+                    } else {
+                        Logger.e("File not found at path: $mCurrentPhotoPath")
                     }
 
                     dismiss()
+                } else {
+                    Logger.e("Camera capture failed or cancelled")
                 }
             }
+
     }
 
     override fun setOnClickListener() {
@@ -156,44 +160,42 @@ class ImagePickerNew(isPreventBackButton: Boolean) :
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult: ActivityResult? ->
             activityResult?.let {
                 dismiss()
-                onResult?.invoke(it.data?.data.toString(), it.data?.clipData, null)
+                onResult?.invoke(null, it.data?.clipData, it.data?.data)
             }
         }
 
     private lateinit var takePictureLauncher: ActivityResultLauncher<Uri>
     private fun dispatchTakePictureIntent() {
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        var photoFile: File? = null
         try {
-            photoFile = createImageFile()
+            val photoFile = createImageFile()
             photoURI = FileProvider.getUriForFile(
                 requireContext(),
-                requireContext().packageName + ".provider",
+                "${requireContext().packageName}.provider",
                 photoFile
             )
-        } catch (ex: IOException) {
-            Logger.e(ex.message!!)
-            Logger.e(requireContext().packageName)
-        }
 
-        if (photoFile != null) {
-            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+            // ✅ launch the URI directly
             photoURI?.let { takePictureLauncher.launch(it) }
+
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            Logger.e("Camera error: ${ex.message}")
         }
     }
+
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(Date())
-        val imageFileName = "JPEG_" + timeStamp + "_"
+        val imageFileName = "JPEG_${timeStamp}_"
         val storageDir = requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val image = File.createTempFile(
+        return File.createTempFile(
             imageFileName,
             ".jpg",
             storageDir
-        )
-        mCurrentPhotoPath = image.absolutePath
-        return image
+        ).apply {
+            mCurrentPhotoPath = absolutePath
+        }
     }
 
     var onResult: ((path: String?, clipData: android.content.ClipData?, uri: Uri?) -> Unit)? =

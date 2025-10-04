@@ -1,6 +1,5 @@
 package com.basalbody.app.ui.profile.activity
 
-import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
@@ -15,7 +14,9 @@ import com.basalbody.app.ui.profile.viewmodel.ProfileViewModel
 import com.basalbody.app.utils.Constants
 import com.basalbody.app.utils.Constants.EMAIL_PATTERN
 import com.basalbody.app.utils.ValidationStatus
+import com.basalbody.app.utils.disableField
 import com.basalbody.app.utils.getText
+import com.basalbody.app.utils.setText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -46,14 +47,17 @@ class ContactSupportActivity : BaseActivity<ProfileViewModel, ActivityContactSup
     }
 
     private fun setupUI() {
-        Log.e(TAG, "setupUI()")
+        val userDetails = localDataRepository.getUserDetails()?.user
         binding.apply {
             llToolBar.tvTitle.changeText(R.string.contact_support)
+            etFullName.setText(userDetails?.fullname ?: "")
+            etFullName.disableField()
+            etEmail.setText(userDetails?.email ?: "")
+            etEmail.disableField()
         }
     }
 
     override fun listeners() {
-        Log.e(TAG, "listeners()")
         binding.apply {
 
             llToolBar.ivBack.onSafeClick {
@@ -75,13 +79,10 @@ class ContactSupportActivity : BaseActivity<ProfileViewModel, ActivityContactSup
     }
 
     private fun handleAddInquiryResponse(response: BaseResponse<AddInquiryResponse>?) {
-        Log.e(TAG, "handleAddInquiryResponse()")
-        Log.e(TAG, "handleAddInquiryResponse() response: $response")
         finish()
     }
 
     private fun allDetailsValid(): Boolean {
-        Log.e(TAG, "allDetailsValid()")
         binding.apply {
             return when {
                 etFullName.getText().toString().trim().isEmpty() -> {

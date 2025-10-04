@@ -206,6 +206,11 @@ fun BasalTextField.getTextTextView(): String? {
     return this.txtField.text?.toString()
 }
 
+fun BasalTextField.disableField() {
+    this.editText.isFocusable = false
+    this.editText.isFocusableInTouchMode = false
+}
+
 class CustomPasswordTransformation : PasswordTransformationMethod() {
     override fun getTransformation(source: CharSequence, view: View?): CharSequence {
         return StarPasswordCharSequence(source)

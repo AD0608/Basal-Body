@@ -372,9 +372,10 @@ fun Boolean?.nullSafe(defaultValue: Boolean = false): Boolean {
 fun Context.getImageMultipart(uri: Uri, name: String): MultipartBody.Part? {
     val file = ImageUtilNew.from(this, uri)
     val selectedFile = file?.let { saveBitmapToFile(it) }
+    val mime = contentResolver.getType(uri) ?: "image/jpeg"
 
     val requestFile: RequestBody? =
-        selectedFile?.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+        selectedFile?.asRequestBody(mime.toMediaTypeOrNull())
     return requestFile?.let { MultipartBody.Part.createFormData(name, selectedFile.name, it) }
 }
 

@@ -2,6 +2,7 @@ package com.basalbody.app.ui.profile.activity
 
 import android.net.Uri
 import android.util.Log
+import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
@@ -12,7 +13,6 @@ import com.basalbody.app.extensions.getImageMultipart
 import com.basalbody.app.extensions.notNull
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.model.BaseResponse
-import com.basalbody.app.model.response.ChangePasswordResponse
 import com.basalbody.app.model.response.UserResponse
 import com.basalbody.app.ui.common.showGenderSelectionPopup
 import com.basalbody.app.ui.profile.viewmodel.ProfileViewModel
@@ -26,7 +26,6 @@ import com.basalbody.app.utils.loadImageViaGlide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
-import kotlin.text.uppercase
 
 @AndroidEntryPoint
 class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBinding>() {
@@ -35,8 +34,8 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
     override fun getViewBinding(): ActivityEditProfileBinding =
         ActivityEditProfileBinding.inflate(layoutInflater)
 
-    private var imageUri : Uri? = null
-    private var profileImageUrl : String = ""
+    private var imageUri: Uri? = null
+    private var profileImageUrl: String = ""
 
     override fun addObservers() {
         lifecycleScope.launch {
@@ -73,11 +72,14 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
     private fun setupUI() {
         Log.e(TAG, "setupUI()")
         val user = localDataRepository.getUserDetails()?.user
+        onBackPressedDispatcher.addCallback(this@EditProfileActivity) {
+            finishActivityWithLauncherResult()
+        }
         binding.apply {
             llToolBar.tvTitle.changeText(getString(R.string.title_edit_profile))
             etFullName.editText.changeText(user?.fullname ?: "")
             etEmail.editText.changeText(user?.email ?: "")
-            val stGender  = user?.gender ?: ""
+            val stGender = user?.gender ?: ""
             etGender.txtField.changeText(stGender.lowercase().replaceFirstChar { it.titlecase() })
             profileImageUrl = user?.profileImage?.url ?: ""
             ivProfile.loadImageViaGlide(value = user?.profileImage?.url ?: "")
@@ -90,10 +92,11 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
         binding.apply {
 
             llToolBar.ivBack.onSafeClick {
-                finish()
+                onBackPressedDispatcher.onBackPressed()
             }
             etGender.onSafeClick {
-                showGenderSelectionPopup(this@EditProfileActivity,
+                showGenderSelectionPopup(
+                    this@EditProfileActivity,
                     etGender, callback = {
                         etGender.txtField.text = it
                     })
@@ -109,7 +112,10 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
                         email = etEmail.getText()?.trim() ?: "",
                         gender = etGender.txtField.getText()?.trim()?.toString()?.uppercase() ?: "",
                     )
-                    viewModel.callUpdateProfileApi(request = request, userId = localDataRepository.getUserDetails()?.user?.id ?: 0)
+                    viewModel.callUpdateProfileApi(
+                        request = request,
+                        userId = localDataRepository.getUserDetails()?.user?.id ?: 0
+                    )
                 }
             }
 
@@ -122,7 +128,8 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
     private fun handleUploadProfilePictureResponse(response: BaseResponse<UserResponse>?) {
         Log.e(TAG, "handleUploadProfilePictureResponse()")
         if (response.notNull() && response?.status == true) {
-            val userProfilePicture = localDataRepository.getUserDetails()?.user?.profileImage?.url ?: ""
+            val userProfilePicture =
+                localDataRepository.getUserDetails()?.user?.profileImage?.url ?: ""
             binding.ivProfile.loadImageViaGlide(value = userProfilePicture)
         }
     }
@@ -134,9 +141,10 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
             binding.apply {
                 etFullName.editText.changeText(user?.fullname ?: "")
                 etEmail.editText.changeText(user?.email ?: "")
-                val stGender  = user?.gender ?: ""
-                etGender.txtField.changeText(stGender.lowercase().replaceFirstChar { it.titlecase() })
-                finishActivityWithLauncherResult()
+                val stGender = user?.gender ?: ""
+                etGender.txtField.changeText(
+                    stGender.lowercase().replaceFirstChar { it.titlecase() })
+                onBackPressedDispatcher.onBackPressed()
             }
         }
     }
@@ -179,7 +187,14 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
     }
 
     private fun openImagePickerDialog() {
-        ImagePickerNew.newInstance(binding.main, this, activityLauncher, isPreventBackButton = false, title = "Update Profile Photo", description = "Choose how you’d like to add your photo: take a new picture or select one from your gallery.").apply {
+        ImagePickerNew.newInstance(
+            binding.main,
+            this,
+            activityLauncher,
+            isPreventBackButton = false,
+            title = "Update Profile Photo",
+            description = "Choose how you’d like to add your photo: take a new picture or select one from your gallery."
+        ).apply {
             onResult = { path, clipData, uri ->
                 Logger.e("ImagePickerNew", "path: $path \n clipData: $clipData \n uri: $uri")
                 // Convert result to Uri
@@ -194,7 +209,11 @@ class EditProfileActivity : BaseActivity<ProfileViewModel, ActivityEditProfileBi
                 if (imageUri != null) {
                     binding.ivProfile.loadImageViaGlide(uri = imageUri)
                     val uriMultipart = getImageMultipart(imageUri!!, "profile")
-                    uriMultipart?.let { this@EditProfileActivity.viewModel.callUploadProfileImageApi(it) }
+                    uriMultipart?.let {
+                        this@EditProfileActivity.viewModel.callUploadProfileImageApi(
+                            it
+                        )
+                    }
                 }
             }
         }.show(supportFragmentManager, "ImagePicker")

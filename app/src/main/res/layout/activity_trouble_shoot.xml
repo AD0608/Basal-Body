@@ -83,6 +83,7 @@
         android:inputType="textMultiLine"
         android:minLines="7"
         android:padding="@dimen/dp_17"
+        android:textCursorDrawable="@drawable/cursor"
         android:textColor="@color/color_edittext_text"
         android:textColorHint="@color/color_edittext_hint"
         android:textSize="@dimen/sp_15"

@@ -15,7 +15,9 @@ import com.basalbody.app.ui.profile.viewmodel.ProfileViewModel
 import com.basalbody.app.utils.Constants
 import com.basalbody.app.utils.Constants.EMAIL_PATTERN
 import com.basalbody.app.utils.ValidationStatus
+import com.basalbody.app.utils.disableField
 import com.basalbody.app.utils.getText
+import com.basalbody.app.utils.setText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -46,9 +48,13 @@ class TroubleShootActivity : BaseActivity<ProfileViewModel, ActivityTroubleShoot
     }
 
     private fun setupUI() {
-        Log.e(TAG, "setupUI()")
+        val userDetails = localDataRepository.getUserDetails()?.user
         binding.apply {
             llToolBar.tvTitle.changeText(R.string.title_bluetooth_device_troubleshooting)
+            etFullName.setText(userDetails?.fullname ?: "")
+            etFullName.disableField()
+            etEmail.setText(userDetails?.email ?: "")
+            etEmail.disableField()
         }
     }
 
