@@ -88,7 +88,7 @@
             android:layout_weight="1"
             android:background="@drawable/bg_purple_20"
             android:backgroundTint="@color/colorSecondary4"
-            android:drawableTop="@drawable/ic_gallery"
+            android:drawableTop="@drawable/ic_gallery_"
             android:drawablePadding="@dimen/dp_10"
             android:gravity="center"
             android:paddingTop="@dimen/dp_15"
