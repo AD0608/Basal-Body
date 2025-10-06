@@ -167,7 +167,7 @@ class ProfileFragment :
     }
 
     private fun openDeleteAccountSuccessPopup() {
-        CommonSuccessBottomSheetDialog.newInstance(binding.root, requireActivity(), callBack = {
+        CommonSuccessBottomSheetDialog.newInstance(binding.root, requireActivity(), isCancel = false, callBack = {
             startNewActivity(LoginActivity::class.java, isClearAllStacks = true)
         }).apply {
             title = this@ProfileFragment.getString(R.string.label_account_deleted)
@@ -177,7 +177,7 @@ class ProfileFragment :
     }
 
     private fun openLogoutSuccessPopup() {
-        CommonSuccessBottomSheetDialog.newInstance(binding.root, requireActivity(), callBack = {
+        CommonSuccessBottomSheetDialog.newInstance(binding.root, requireActivity(), isCancel = false, callBack = {
             navigateToLoginScreen()
         }).apply {
             title = this@ProfileFragment.getString(R.string.label_logout_successfully)

@@ -26,11 +26,13 @@ class CommonSuccessBottomSheetDialog :
         fun newInstance(
             rootView: ViewGroup,
             activity: FragmentActivity,
+            isCancel : Boolean = false,
             callBack: (() -> Unit)
         ) = CommonSuccessBottomSheetDialog().apply {
             this.rootView = rootView
             this.mActivity = activity
             this.callBack = callBack
+            this.isCancel = isCancel
         }
     }
 
