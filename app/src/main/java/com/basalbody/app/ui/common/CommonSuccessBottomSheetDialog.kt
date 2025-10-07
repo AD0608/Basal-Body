@@ -12,9 +12,9 @@ import kotlin.reflect.KClass
 class CommonSuccessBottomSheetDialog :
     BaseBottomSheetDialogFragment<AuthViewModel, CommonSuccessBottomSheetDialogBinding>(
         inflate = CommonSuccessBottomSheetDialogBinding::inflate,
-        isCancel = true,
+        isCancel = false,
         isDraggable = true,
-        isPreventBackButton = false
+        isPreventBackButton = true
     ) {
 
     var callBack: (() -> Unit)? = null
@@ -26,13 +26,13 @@ class CommonSuccessBottomSheetDialog :
         fun newInstance(
             rootView: ViewGroup,
             activity: FragmentActivity,
-            isCancel : Boolean = false,
             callBack: (() -> Unit)
         ) = CommonSuccessBottomSheetDialog().apply {
             this.rootView = rootView
             this.mActivity = activity
             this.callBack = callBack
-            this.isCancel = isCancel
+            this.isCancelable = false
+            this.isPreventBackButton = true
         }
     }
 

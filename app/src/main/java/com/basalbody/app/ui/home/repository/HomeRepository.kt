@@ -26,6 +26,17 @@ class HomeRepository @Inject constructor(
         )
     }
 
+    //-------Logout Api-------//
+    fun callDeleteUserApi(): Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiIdentifier = ApiIdentifier.API_DELETE_ACCOUNT,
+            apiCall = {
+                apiService.callDeleteUserApi()
+            }
+        )
+    }
+
     //-------Get User Profile Api-------//
     fun callGetUserProfileApi(): Flow<Resource<*>> {
         return callAPI(

@@ -26,6 +26,19 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    //-------Delete User Api-------//
+    /**Always set Initial state of flow is Show loading [false]*/
+    private val _callDeleteUserApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callDeleteUserApiStateFlow: StateFlow<Resource<*>> = _callDeleteUserApiMutableStateFlow
+    fun callDeleteUserApi() {
+        viewModelScope.launch {
+            homeRepository.callDeleteUserApi().collect {
+                _callDeleteUserApiMutableStateFlow.value = it
+            }
+        }
+    }
+
     //-------Get User Profile Api-------//
     private val _callGetUserProfileApiMutableStateFlow =
         MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)

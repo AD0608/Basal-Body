@@ -15,6 +15,7 @@ import com.basalbody.app.extensions.notNull
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.response.DeleteUserResponse
 import com.basalbody.app.model.response.LogoutResponse
 import com.basalbody.app.model.response.UserResponse
 import com.basalbody.app.ui.auth.activity.LoginActivity
@@ -52,6 +53,18 @@ class ProfileFragment :
                     shouldShowErrorMessage = true,
                     shouldShowLoader = true,
                     onSuccess = ::handleLogoutResponse,
+                )
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.callDeleteUserApiStateFlow.collect {
+                FlowInFragment<BaseResponse<DeleteUserResponse>>(
+                    data = it,
+                    fragment = this@ProfileFragment,
+                    shouldShowErrorMessage = true,
+                    shouldShowLoader = true,
+                    onSuccess = ::handleDeleteUserResponse,
                 )
             }
         }
@@ -134,7 +147,7 @@ class ProfileFragment :
                     root,
                     requireActivity(),
                     callBack = {
-                        openDeleteAccountSuccessPopup()
+                        viewModel.callDeleteUserApi()
                     }).apply {
                     title = this@ProfileFragment.getString(R.string.label_delete_account)
                     description =
@@ -156,6 +169,12 @@ class ProfileFragment :
         }
     }
 
+    private fun handleDeleteUserResponse(response: BaseResponse<DeleteUserResponse>?) {
+        if (response.notNull() && response?.status == true) {
+            openLogoutSuccessPopup()
+        }
+    }
+
     private fun handleProfileResponse(response: BaseResponse<UserResponse>?) {
         if (response.notNull() && response?.status == true) {
             activityLauncher.launch(Intent(requireContext(), EditProfileActivity::class.java)) { result ->
@@ -167,8 +186,8 @@ class ProfileFragment :
     }
 
     private fun openDeleteAccountSuccessPopup() {
-        CommonSuccessBottomSheetDialog.newInstance(binding.root, requireActivity(), isCancel = false, callBack = {
-            startNewActivity(LoginActivity::class.java, isClearAllStacks = true)
+        CommonSuccessBottomSheetDialog.newInstance(binding.root, requireActivity(), callBack = {
+            navigateToLoginScreen()
         }).apply {
             title = this@ProfileFragment.getString(R.string.label_account_deleted)
             description = this@ProfileFragment.getString(R.string.message_account_deleted_success)
@@ -177,7 +196,7 @@ class ProfileFragment :
     }
 
     private fun openLogoutSuccessPopup() {
-        CommonSuccessBottomSheetDialog.newInstance(binding.root, requireActivity(), isCancel = false, callBack = {
+        CommonSuccessBottomSheetDialog.newInstance(binding.root, requireActivity(), callBack = {
             navigateToLoginScreen()
         }).apply {
             title = this@ProfileFragment.getString(R.string.label_logout_successfully)

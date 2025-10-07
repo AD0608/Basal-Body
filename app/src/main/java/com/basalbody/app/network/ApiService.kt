@@ -11,6 +11,7 @@ import com.basalbody.app.model.request.ResetPasswordStep1Request
 import com.basalbody.app.model.request.ResetPasswordStep2Request
 import com.basalbody.app.model.response.AddInquiryResponse
 import com.basalbody.app.model.response.ChangePasswordResponse
+import com.basalbody.app.model.response.DeleteUserResponse
 import com.basalbody.app.model.response.ForgotPasswordResponse
 import com.basalbody.app.model.response.InitData
 import com.basalbody.app.model.response.LogoutResponse
@@ -21,6 +22,7 @@ import com.basalbody.app.model.response.UserResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -71,6 +73,9 @@ interface ApiService {
 
     @GET(API_LOGOUT)
     suspend fun callLogoutApi(): Response<BaseResponse<LogoutResponse>>
+
+    @DELETE(API_USER_DELETE)
+    suspend fun callDeleteUserApi(): Response<BaseResponse<DeleteUserResponse>>
 
     @PUT(API_CHANGE_PASSWORD)
     suspend fun callChangePasswordApi(@Path("userId") userId : Int, @Body request: ChangePasswordRequest): Response<BaseResponse<ChangePasswordResponse>>
