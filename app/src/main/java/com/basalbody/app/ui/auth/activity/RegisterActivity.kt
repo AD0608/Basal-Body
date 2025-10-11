@@ -1,5 +1,6 @@
 package com.basalbody.app.ui.auth.activity
 
+import android.os.Bundle
 import android.util.Log
 import androidx.compose.ui.text.toUpperCase
 import androidx.lifecycle.lifecycleScope
@@ -10,6 +11,7 @@ import com.basalbody.app.databinding.ActivityRegisterBinding
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.notNull
 import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.extensions.putEnum
 import com.basalbody.app.extensions.setTextDecorator
 import com.basalbody.app.extensions.showToast
 import com.basalbody.app.extensions.startNewActivity
@@ -22,6 +24,7 @@ import com.basalbody.app.ui.home.activity.HomeActivity
 import com.basalbody.app.ui.profile.activity.WebViewActivity
 import com.basalbody.app.utils.Constants
 import com.basalbody.app.utils.Constants.EMAIL_PATTERN
+import com.basalbody.app.utils.EnumUtils
 import com.basalbody.app.utils.LimitCount
 import com.basalbody.app.utils.ValidationStatus
 import com.basalbody.app.utils.getText
@@ -53,7 +56,11 @@ class RegisterActivity : BaseActivity<AuthViewModel, ActivityRegisterBinding>() 
                 true,
                 callBack = {
                     Log.e(TAG, "setupUI() Terms and Condition")
-                    startNewActivity(WebViewActivity::class.java)
+                    val bundle = Bundle().apply {
+                        putEnum(Constants.BUNDLE_KEY_WHICH_WEB_VIEW, EnumUtils.WebView.TERMS_AND_CONDITIONS)
+                    }
+
+                    startNewActivity(WebViewActivity::class.java, bundle= bundle)
                 })
             tvSignInNow.setTextDecorator(resources.getString(R.string.sign_in_now),
                 R.color.colorText_309C34,

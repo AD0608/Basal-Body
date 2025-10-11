@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.basalbody.app.base.BaseViewModel
 import com.basalbody.app.model.Resource
 import com.basalbody.app.model.request.ForgotPasswordRequest
+import com.basalbody.app.model.request.InitRequest
 import com.basalbody.app.model.request.LoginRequest
 import com.basalbody.app.model.request.RegisterRequest
 import com.basalbody.app.model.request.ResendOtpRequest
@@ -23,6 +24,7 @@ class AuthViewModel @Inject constructor(
     var isSelectEmail: Boolean = false
     var isTermsConditionCheck: Boolean = false
     var countDownTimer: CountDownTimer? = null
+    var request : InitRequest? = null
 
     //-------Init Api-------//
     /**Always set Initial state of flow is Show loading [false]*/
@@ -30,9 +32,9 @@ class AuthViewModel @Inject constructor(
         MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
     val callInitApiStateFlow: StateFlow<Resource<*>> = _callInitApiMutableStateFlow
 
-    fun callInitApi() {
+    fun callInitApi(request: InitRequest) {
         viewModelScope.launch {
-            splashRepository.callInitApi().collect {
+            splashRepository.callInitApi(request).collect {
                 _callInitApiMutableStateFlow.value = it
             }
         }

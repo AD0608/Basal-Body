@@ -7,10 +7,12 @@ import androidx.viewbinding.ViewBinding
 import com.basalbody.app.base.BaseAdapterWithViewBinding
 import com.basalbody.app.databinding.EachRowConnectedBluetoothDevicesBinding
 import com.basalbody.app.databinding.EachRowFaqBinding
+import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.model.response.FaqItem
 
 class FaqListAdapter(
-    private var list: ArrayList<String>,
+    private var list: ArrayList<FaqItem>,
     private var onItemClick: ((String) -> Unit)? = null
 ) : BaseAdapterWithViewBinding(list) {
 
@@ -29,13 +31,18 @@ class FaqListAdapter(
         val binding = holder.binding as EachRowFaqBinding
         val item = list[position]
 
+        binding.apply {
+            tvQue.changeText(item.question ?: "")
+            tvAns.changeText(item.answer ?: "")
+        }
+
         // Show/Hide grpFaq depending on expanded position
         val isExpanded = position == expandedPosition
         binding.grpFaq.visibility = if (isExpanded) View.VISIBLE else View.GONE
 
         // Toggle on click
         holder.itemView onSafeClick {
-            onItemClick?.invoke(item)
+            onItemClick?.invoke(item.id.toString())
 
             expandedPosition = if (isExpanded) -1 else position
             notifyDataSetChanged() // refresh all items

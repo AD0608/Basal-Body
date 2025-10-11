@@ -4,6 +4,7 @@ import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.request.AddInquiryRequest
 import com.basalbody.app.model.request.ChangePasswordRequest
 import com.basalbody.app.model.request.ForgotPasswordRequest
+import com.basalbody.app.model.request.InitRequest
 import com.basalbody.app.model.request.LoginRequest
 import com.basalbody.app.model.request.RegisterRequest
 import com.basalbody.app.model.request.ResendOtpRequest
@@ -12,6 +13,7 @@ import com.basalbody.app.model.request.ResetPasswordStep2Request
 import com.basalbody.app.model.response.AddInquiryResponse
 import com.basalbody.app.model.response.ChangePasswordResponse
 import com.basalbody.app.model.response.DeleteUserResponse
+import com.basalbody.app.model.response.FaqResponse
 import com.basalbody.app.model.response.ForgotPasswordResponse
 import com.basalbody.app.model.response.InitData
 import com.basalbody.app.model.response.LogoutResponse
@@ -44,8 +46,10 @@ interface ApiService {
     }
 
     //-------Init-------//
-    @GET(API_INIT)
-    suspend fun callInitApi(@Path("version") version: String): Response<BaseResponse<InitData>>
+    /*@GET(API_INIT)
+    suspend fun callInitApi(@Path("version") version: String): Response<BaseResponse<InitData>>*/
+    @POST(API_INIT)
+    suspend fun callInitApi(@Body request: InitRequest): Response<BaseResponse<InitData>>
 
     //-------Login-------//
     @POST(API_LOGIN)
@@ -93,6 +97,9 @@ interface ApiService {
     @POST(API_ADD_INQUIRY)
     suspend fun callAddInquiryApi(@Body request : AddInquiryRequest): Response<BaseResponse<AddInquiryResponse>>
 
+    @GET(API_FAQ)
+    suspend fun callFaqApi(): Response<BaseResponse<FaqResponse>>
+
 }
 
 enum class ApiIdentifier {
@@ -105,4 +112,5 @@ enum class ApiIdentifier {
     API_GET_USER_PROFILE,
     API_UPDATE_USER_PROFILE,
     API_UPDATE_USER_PROFILE_PICTURE,
+    API_FAQ,
 }

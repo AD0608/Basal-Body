@@ -18,10 +18,11 @@ object Constants {
     const val TERMS_AND_CONDITIONS = "terms_and_conditions"
     const val ABOUT_US = "about_us"
 
-    const val URL_TERM_CONDITION="https://www.google.com"
+    var URL_TERM_CONDITION="https://www.google.com"
     const val URL_PRIVACY_POLICY="https://www.google.com"
     const val URL_ABOUT_US="https://www.google.com"
     const val URL_TEST="https://www.google.com"
+    var URL_DATA_PRIVACY="https://www.google.com"
 
     var latitude = 0.0
     var longitude = 0.0

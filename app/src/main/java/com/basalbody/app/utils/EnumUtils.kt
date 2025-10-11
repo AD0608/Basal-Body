@@ -24,6 +24,7 @@ object EnumUtils {
         PRIVACY_POLICY,
         TERMS_AND_CONDITIONS,
         ABOUT_US,
+        DATA_PRIVACY,
         NONE
     }
     enum class DialogType{

@@ -38,8 +38,13 @@ class WebViewActivity : BaseActivity<ProfileViewModel, ActivityWebViewBinding>()
                 bundle.getEnum<EnumUtils.WebView>(Constants.BUNDLE_KEY_WHICH_WEB_VIEW).withNotNull {
                     when (it) {
                         EnumUtils.WebView.TERMS_AND_CONDITIONS -> {
-                            //binding.toolbar.setTitle(getString(R.string.label_term_conditions))
+                            binding.llToolBar.tvTitle.changeText(getString(R.string.label_term_conditions))
                             loadUrl(Constants.URL_TERM_CONDITION)
+                        }
+
+                        EnumUtils.WebView.DATA_PRIVACY -> {
+                            binding.llToolBar.tvTitle.changeText(getString(R.string.lbl_data_privacy))
+                            loadUrl(Constants.URL_DATA_PRIVACY)
                         }
 
                         EnumUtils.WebView.PRIVACY_POLICY -> {

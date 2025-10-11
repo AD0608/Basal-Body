@@ -2,6 +2,7 @@ package com.basalbody.app.ui.home.fragment
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,7 @@ import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.gone
 import com.basalbody.app.extensions.notNull
 import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.extensions.putEnum
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.response.DeleteUserResponse
@@ -31,6 +33,8 @@ import com.basalbody.app.ui.profile.activity.EditProfileActivity
 import com.basalbody.app.ui.profile.activity.FaqActivity
 import com.basalbody.app.ui.profile.activity.TroubleShootActivity
 import com.basalbody.app.ui.profile.activity.WebViewActivity
+import com.basalbody.app.utils.Constants
+import com.basalbody.app.utils.EnumUtils
 import com.basalbody.app.utils.loadImageViaGlide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -115,7 +119,10 @@ class ProfileFragment :
                 startNewActivity(ConnectedBluetoothDeviceActivity::class.java)
             }
             llDataPrivacy.onSafeClick {
-                startNewActivity(WebViewActivity::class.java)
+                val bundle = Bundle().apply {
+                    putEnum(Constants.BUNDLE_KEY_WHICH_WEB_VIEW, EnumUtils.WebView.DATA_PRIVACY)
+                }
+                startNewActivity(WebViewActivity::class.java, bundle = bundle)
             }
             llFAQ.onSafeClick {
                 startNewActivity(FaqActivity::class.java)

@@ -7,16 +7,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseActivity
+import com.basalbody.app.base.FlowInActivity
 import com.basalbody.app.databinding.ActivityConnectedBluetoothDeviceBinding
 import com.basalbody.app.databinding.ActivityFaqBinding
 import com.basalbody.app.extensions.changeText
 import com.basalbody.app.extensions.onSafeClick
+import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.response.AddInquiryResponse
+import com.basalbody.app.model.response.FaqResponse
 import com.basalbody.app.ui.profile.adapter.ConnectedBluetoothDevicesListAdapter
 import com.basalbody.app.ui.profile.adapter.FaqListAdapter
 import com.basalbody.app.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FaqActivity : BaseActivity<ProfileViewModel, ActivityFaqBinding>() {
@@ -27,7 +33,7 @@ class FaqActivity : BaseActivity<ProfileViewModel, ActivityFaqBinding>() {
 
     private val faqAdapter by lazy {
         FaqListAdapter(
-            arrayListOf("", "", "", "", "", "","", "", "", "", "", "","", "", "", "", "", "","", "", "", "", "", ""),
+            viewModel.faqArrayList,
             ::onConnectDeviceClick
         )
     }
@@ -50,11 +56,37 @@ class FaqActivity : BaseActivity<ProfileViewModel, ActivityFaqBinding>() {
     }
 
     override fun listeners() {
+
+        viewModel.callFaqApi()
+
         binding.apply {
             llToolBar.ivBack.onSafeClick {
                 finish()
             }
         }
+    }
+
+    override fun addObservers() {
+        lifecycleScope.launch {
+            viewModel.callFaqApiStateFlow.collect {
+                FlowInActivity<BaseResponse<FaqResponse>>(
+                    data = it,
+                    context = this@FaqActivity,
+                    shouldShowErrorMessage = true,
+                    shouldShowSuccessMessage = false,
+                    shouldShowLoader = true,
+                    onSuccess = ::handleFaqResponse,
+                )
+            }
+        }
+    }
+
+    private fun handleFaqResponse(response: BaseResponse<FaqResponse>?) {
+        Log.e(TAG, "handleAddInquiryResponse() response: $response")
+        response?.data?.data?.let {
+            viewModel.faqArrayList.addAll(it)
+        }
+        faqAdapter.notifyDataSetChanged()
     }
 
     private fun onConnectDeviceClick(s: String) {

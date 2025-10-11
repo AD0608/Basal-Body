@@ -5,6 +5,7 @@ import com.basalbody.app.BuildConfig
 import com.basalbody.app.base.BaseRepository
 import com.basalbody.app.model.Resource
 import com.basalbody.app.model.request.ForgotPasswordRequest
+import com.basalbody.app.model.request.InitRequest
 import com.basalbody.app.model.request.LoginRequest
 import com.basalbody.app.model.request.RegisterRequest
 import com.basalbody.app.model.request.ResendOtpRequest
@@ -20,12 +21,12 @@ class AuthRepository @Inject constructor(
     private val apiService: ApiService,
 ) : BaseRepository() {
     //-------Init Api-------//
-    fun callInitApi(): Flow<Resource<*>> {
+    fun callInitApi(request: InitRequest): Flow<Resource<*>> {
         return callAPI(
             context = context,
             apiIdentifier = ApiIdentifier.API_INIT,
             apiCall = {
-                apiService.callInitApi(BuildConfig.VERSION_NAME)
+                apiService.callInitApi(request)
             }
         )
     }

@@ -112,6 +112,9 @@ abstract class BaseRepository {
                                                 localDataRepository.resetUserData()
                                             }
 
+                                            ApiIdentifier.API_FAQ -> {
+                                            }
+
                                             else -> {}
                                         }
                                         emit(
