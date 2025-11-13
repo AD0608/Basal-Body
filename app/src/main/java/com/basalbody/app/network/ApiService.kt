@@ -1,6 +1,7 @@
 package com.basalbody.app.network
 
 import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.request.AddDailyLogRequest
 import com.basalbody.app.model.request.AddInquiryRequest
 import com.basalbody.app.model.request.ChangePasswordRequest
 import com.basalbody.app.model.request.ForgotPasswordRequest
@@ -10,6 +11,7 @@ import com.basalbody.app.model.request.RegisterRequest
 import com.basalbody.app.model.request.ResendOtpRequest
 import com.basalbody.app.model.request.ResetPasswordStep1Request
 import com.basalbody.app.model.request.ResetPasswordStep2Request
+import com.basalbody.app.model.response.AddDailyLogResponse
 import com.basalbody.app.model.response.AddInquiryResponse
 import com.basalbody.app.model.response.ChangePasswordResponse
 import com.basalbody.app.model.response.DeleteUserResponse
@@ -99,6 +101,9 @@ interface ApiService {
 
     @GET(API_FAQ)
     suspend fun callFaqApi(): Response<BaseResponse<FaqResponse>>
+
+    @POST(API_ADD_DAILY_LOG)
+    suspend fun callAddDailyLogApi(@Body request : AddDailyLogRequest): Response<BaseResponse<AddDailyLogResponse>>
 
 }
 

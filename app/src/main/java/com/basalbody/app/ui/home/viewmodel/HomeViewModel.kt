@@ -3,6 +3,7 @@ package com.basalbody.app.ui.home.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.basalbody.app.base.BaseViewModel
 import com.basalbody.app.model.Resource
+import com.basalbody.app.model.request.AddDailyLogRequest
 import com.basalbody.app.ui.home.repository.HomeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -49,6 +50,19 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             homeRepository.callGetUserProfileApi().collect {
                 _callGetUserProfileApiMutableStateFlow.value = it
+            }
+        }
+    }
+
+    //-------All Daily Log Api-------//
+    private val _callAllDailyLogApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callAllDailyLogApiStateFlow: StateFlow<Resource<*>> =
+        _callAllDailyLogApiMutableStateFlow
+    fun callAllDailyLogApi(request: AddDailyLogRequest) {
+        viewModelScope.launch {
+            homeRepository.callAddDailyLogApi(request).collect {
+                _callAllDailyLogApiMutableStateFlow.value = it
             }
         }
     }

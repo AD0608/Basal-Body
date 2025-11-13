@@ -174,7 +174,7 @@
         app:layout_constraintTop_toBottomOf="@id/etTemperature" />
 
     <com.basalbody.app.utils.BasalTextView
-        android:id="@+id/tvLabelDate"
+        android:id="@+id/tvLabelNotes"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_20"
@@ -187,6 +187,7 @@
         app:textStyle="normal" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etNotes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_8"
@@ -202,7 +203,7 @@
         android:textSize="@dimen/sp_15"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/tvLabelDate" />
+        app:layout_constraintTop_toBottomOf="@id/tvLabelNotes" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAdd"

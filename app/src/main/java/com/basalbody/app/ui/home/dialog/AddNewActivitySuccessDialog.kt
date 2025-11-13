@@ -1,5 +1,6 @@
 package com.basalbody.app.ui.home.dialog
 
+import android.content.DialogInterface
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import com.basalbody.app.base.BaseDialogFragment
@@ -17,16 +18,25 @@ class AddNewActivitySuccessDialog :
         setDialogWidthPercent(Constants.DEFAULT_WIDTH_DIALOG)
     }
 
+    private var onDismiss : (() -> Unit)? = null
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismiss?.invoke()
+    }
+
     companion object {
         var isCancel = false
         fun newInstance(
             isCancel: Boolean = false,
             rootView: ViewGroup,
             activity: FragmentActivity,
+            onDismiss: (() -> Unit)? = null
         ) = AddNewActivitySuccessDialog().apply {
             Companion.isCancel = isCancel
             this.rootView = rootView
             this.mActivity = activity
+            this.onDismiss = onDismiss
         }
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import com.basalbody.app.BuildConfig
 import com.basalbody.app.base.BaseRepository
 import com.basalbody.app.model.Resource
+import com.basalbody.app.model.request.AddDailyLogRequest
 import com.basalbody.app.model.request.ChangePasswordRequest
 import com.basalbody.app.network.ApiIdentifier
 import com.basalbody.app.network.ApiService
@@ -44,6 +45,16 @@ class HomeRepository @Inject constructor(
             apiIdentifier = ApiIdentifier.API_GET_USER_PROFILE,
             apiCall = {
                 apiService.callGetUserProfileApi()
+            }
+        )
+    }
+
+    //-------Add Daily Log Api-------//
+    fun callAddDailyLogApi(request: AddDailyLogRequest): Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiCall = {
+                apiService.callAddDailyLogApi(request = request)
             }
         )
     }

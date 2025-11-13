@@ -21,6 +21,12 @@
         <item name="android:backgroundTint">@color/color_peach_extra_light</item>
     </style>
 
+    <style name="MyDatePickerTheme" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/colorPrimary</item>
+    </style>
+
     <style name="FilledButtonTheme" parent="Widget.AppCompat.Button">
         <item name="android:textSize">@dimen/sp_16</item>
         <item name="android:fontFamily">@font/geist_semi_bold</item>

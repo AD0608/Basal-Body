@@ -199,7 +199,7 @@ fun BasalTextField.setText(text: String?) {
 }
 
 fun BasalTextField.getText(): String? {
-    return this.editText.text?.toString()
+    return this.editText.text?.trim()?.toString()
 }
 
 fun BasalTextField.getTextTextView(): String? {
