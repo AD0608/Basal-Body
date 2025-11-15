@@ -15,6 +15,7 @@ import com.basalbody.app.model.response.ChangePasswordResponse
 import com.basalbody.app.model.response.DeleteUserResponse
 import com.basalbody.app.model.response.FaqResponse
 import com.basalbody.app.model.response.ForgotPasswordResponse
+import com.basalbody.app.model.response.GetInsightsResponse
 import com.basalbody.app.model.response.InitData
 import com.basalbody.app.model.response.LogoutResponse
 import com.basalbody.app.model.response.ResendOtpResponse
@@ -99,6 +100,8 @@ interface ApiService {
 
     @GET(API_FAQ)
     suspend fun callFaqApi(): Response<BaseResponse<FaqResponse>>
+    @GET(API_DAILY_LOGS_INSIGHTS)
+    suspend fun callGetLogsInsights(): Response<BaseResponse<GetInsightsResponse>>
 
 }
 
@@ -113,4 +116,5 @@ enum class ApiIdentifier {
     API_UPDATE_USER_PROFILE,
     API_UPDATE_USER_PROFILE_PICTURE,
     API_FAQ,
+    API_GET_LOGS_INSIGHTS,
 }

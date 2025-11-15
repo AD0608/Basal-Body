@@ -47,4 +47,15 @@ class HomeRepository @Inject constructor(
             }
         )
     }
+
+    //-------Get Logs Insights Api-------//
+    fun callGetLogsInsights() : Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiIdentifier = ApiIdentifier.API_GET_LOGS_INSIGHTS,
+            apiCall = {
+                apiService.callGetLogsInsights()
+            }
+        )
+    }
 }

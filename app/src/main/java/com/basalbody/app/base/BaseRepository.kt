@@ -112,7 +112,8 @@ abstract class BaseRepository {
                                                 localDataRepository.resetUserData()
                                             }
 
-                                            ApiIdentifier.API_FAQ -> {
+                                            ApiIdentifier.API_FAQ,
+                                            ApiIdentifier.API_GET_LOGS_INSIGHTS-> {
                                             }
 
                                             else -> {}
