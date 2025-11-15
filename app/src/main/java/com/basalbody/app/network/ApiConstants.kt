@@ -22,6 +22,7 @@ const val API_UPDATE_USER_PROFILE_PICTURE = "user/upload-profile"
 const val API_ADD_INQUIRY = "user/add-inquiry"
 const val API_FAQ = "faqs/list-faqs"
 const val API_ADD_DAILY_LOG = "daily-logs/add-log"
+const val API_GET_CALENDER_LOGS = "daily-logs"
 
 
 //---------- Api Params ----------//

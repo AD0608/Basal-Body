@@ -1,5 +1,6 @@
 package com.basalbody.app.ui.home.activity
 
+import android.content.Intent
 import android.util.Log
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +18,7 @@ import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.model.BaseResponse
 import com.basalbody.app.model.request.AddDailyLogRequest
 import com.basalbody.app.model.response.AddDailyLogResponse
+import com.basalbody.app.model.response.CalenderLogs
 import com.basalbody.app.model.response.UserResponse
 import com.basalbody.app.ui.home.dialog.AddNewActivitySuccessDialog
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
@@ -67,6 +69,17 @@ class AddNewActivityActivity : BaseActivity<HomeViewModel, ActivityAddNewActivit
                 rootView = binding.root,
                 activity = this@AddNewActivityActivity,
                 onDismiss = {
+                    val addedLog = data?.data
+                    val newLog = CalenderLogs(
+                        date = addedLog?.date,
+                        temperature = addedLog?.temperature,
+                        notes = addedLog?.notes,
+                        status = addedLog?.status,
+                        type = addedLog?.type
+                    )
+                    val intent = Intent()
+                    intent.putExtra("newLog", gson.toJson(newLog))
+                    setResult(RESULT_OK, intent)
                     finish()
                 }
             ).show(supportFragmentManager, AddNewActivitySuccessDialog::class.java.simpleName)
@@ -125,11 +138,11 @@ class AddNewActivityActivity : BaseActivity<HomeViewModel, ActivityAddNewActivit
             btnYes.isSelected = isYesSelected
             btnNo.isSelected = !isYesSelected
             btnYes.apply {
-                changeColor(if (isYesSelected) R.color.white else "#46B74F".toColorInt())
+                changeColor(if (isYesSelected) R.color.white else R.color.green_46B74F)
                 changeBackground(if (isYesSelected) R.drawable.bg_rounded_corners_gradient else R.drawable.bg_rounded_corners)
             }
             btnNo.apply {
-                changeColor(if (!isYesSelected) R.color.white else "#46B74F".toColorInt())
+                changeColor(if (!isYesSelected) R.color.white else R.color.green_46B74F)
                 changeBackground(if (!isYesSelected) R.drawable.bg_rounded_corners_gradient else R.drawable.bg_rounded_corners)
             }
         }

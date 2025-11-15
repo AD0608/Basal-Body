@@ -213,4 +213,8 @@
     <string name="invalid_password">Password must be at least 8 characters long, with at least one uppercase letter, one lowercase letter, one digit, and one special character.</string>
     <string name="validation_empty_message">Please enter message</string>
     <string name="validation_empty_issue_message">Please enter issue message</string>
+    <string name="no_logs_to_display">No logs to display</string>
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+    <string name="label_tomorrow">Tomorrow</string>
 </resources>

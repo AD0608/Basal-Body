@@ -208,7 +208,7 @@ fun BasalTextField.getTextTextView(): String? {
 
 fun BasalTextField.disableField() {
     this.editText.isFocusable = false
-    this.editText.isFocusableInTouchMode = false
+    this.editText.isClickable = true
 }
 
 class CustomPasswordTransformation : PasswordTransformationMethod() {

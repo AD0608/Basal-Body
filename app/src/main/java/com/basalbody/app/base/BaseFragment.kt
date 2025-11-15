@@ -21,6 +21,7 @@ import com.basalbody.app.extensions.showLoader
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.ui.auth.activity.LoginActivity
 import com.basalbody.app.utils.CommonUtils.showOkDialog
+import com.google.gson.Gson
 import javax.inject.Inject
 
 abstract class BaseFragment<V : BaseViewModel, B : ViewBinding>(private val inflate: Inflate<B>) :
@@ -40,6 +41,9 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewBinding>(private val infl
         }
         return available
     }
+
+    @Inject
+    lateinit var gson: Gson
 
     @Inject
     lateinit var localDataRepository: LocalDataRepository

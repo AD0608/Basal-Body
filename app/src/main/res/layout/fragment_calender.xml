@@ -219,6 +219,22 @@
                 tools:itemCount="3"
                 tools:listitem="@layout/each_row_todays_activity" />
 
+            <com.basalbody.app.utils.BasalTextView
+                android:id="@+id/tvEmptyLogsView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_24"
+                android:layout_marginVertical="@dimen/dp_80"
+                android:text="@string/no_logs_to_display"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvToday"
+                app:textStyle="medium" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

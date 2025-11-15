@@ -67,4 +67,17 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    //-------Get Calender logs api-------//
+    private val _callGetCalenderLogsApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callGetCalenderLogsApiStateFlow: StateFlow<Resource<*>> =
+        _callGetCalenderLogsApiMutableStateFlow
+    fun callGetCalenderLogsApi() {
+        viewModelScope.launch {
+            homeRepository.callGetCalenderLogsApi().collect {
+                _callGetCalenderLogsApiMutableStateFlow.value = it
+            }
+        }
+    }
+
 }

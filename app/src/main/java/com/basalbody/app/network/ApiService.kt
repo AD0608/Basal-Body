@@ -13,6 +13,7 @@ import com.basalbody.app.model.request.ResetPasswordStep1Request
 import com.basalbody.app.model.request.ResetPasswordStep2Request
 import com.basalbody.app.model.response.AddDailyLogResponse
 import com.basalbody.app.model.response.AddInquiryResponse
+import com.basalbody.app.model.response.CalenderLogs
 import com.basalbody.app.model.response.ChangePasswordResponse
 import com.basalbody.app.model.response.DeleteUserResponse
 import com.basalbody.app.model.response.FaqResponse
@@ -104,6 +105,9 @@ interface ApiService {
 
     @POST(API_ADD_DAILY_LOG)
     suspend fun callAddDailyLogApi(@Body request : AddDailyLogRequest): Response<BaseResponse<AddDailyLogResponse>>
+
+    @GET(API_GET_CALENDER_LOGS)
+    suspend fun callGetCalenderLogsApi(): Response<BaseResponse<ArrayList<CalenderLogs>>>
 
 }
 

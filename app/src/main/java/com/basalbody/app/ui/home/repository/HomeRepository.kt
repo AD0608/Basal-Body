@@ -58,4 +58,14 @@ class HomeRepository @Inject constructor(
             }
         )
     }
+
+    //-------Get Calender Logs Api-------//
+    fun callGetCalenderLogsApi(): Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiCall = {
+                apiService.callGetCalenderLogsApi()
+            }
+        )
+    }
 }
