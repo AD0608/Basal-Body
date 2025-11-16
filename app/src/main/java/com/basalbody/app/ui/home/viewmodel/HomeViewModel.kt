@@ -67,4 +67,18 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    //-------Home Api-------//
+    private val _callHomeApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callHomeApiStateFlow: StateFlow<Resource<*>> =
+        _callHomeApiMutableStateFlow
+
+    fun callHomeApi() {
+        viewModelScope.launch {
+            homeRepository.callHome().collect {
+                _callHomeApiMutableStateFlow.value = it
+            }
+        }
+    }
+
 }

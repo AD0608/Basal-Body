@@ -58,4 +58,15 @@ class HomeRepository @Inject constructor(
             }
         )
     }
+
+    //-------Home Api-------//
+    fun callHome() : Flow<Resource<*>> {
+        return callAPI(
+            context = context,
+            apiIdentifier = ApiIdentifier.API_HOME,
+            apiCall = {
+                apiService.callHome()
+            }
+        )
+    }
 }

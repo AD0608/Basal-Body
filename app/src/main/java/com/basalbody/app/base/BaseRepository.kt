@@ -113,7 +113,8 @@ abstract class BaseRepository {
                                             }
 
                                             ApiIdentifier.API_FAQ,
-                                            ApiIdentifier.API_GET_LOGS_INSIGHTS-> {
+                                            ApiIdentifier.API_GET_LOGS_INSIGHTS,
+                                            ApiIdentifier.API_HOME -> {
                                             }
 
                                             else -> {}

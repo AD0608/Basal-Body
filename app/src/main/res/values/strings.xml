@@ -102,7 +102,7 @@
     <string name="label_welcome_sarah">Welcome Sarah!</string>
     <string name="label_latest_temperature_reading">Latest Temperature Reading</string>
     <string name="label_last_activity_logged">Last Activity\nLogged</string>
-    <string name="menstruation_nday_2">Menstruation\nDay 2</string>
+    <string name="menstruation_nday_2">Menstruation</string>
     <string name="label_quick_status">Quick status</string>
     <string name="label_connect_bluetooth">Connect Bluetooth</string>
     <string name="btn_tap_to_scan">Tap to scan</string>

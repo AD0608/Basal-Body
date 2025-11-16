@@ -743,3 +743,13 @@ fun formatFertileWindow(start: String, end: String): String {
 
     return "$month $startDay-$endDay"
 }
+
+fun formatTemperatureOneDecimal(temp: Double?): String {
+    val value = temp ?: 0.0
+    return String.format("%.1f°C", value)
+}
+
+fun formatCycleDay(day: Int?): String {
+    val value = day ?: 0
+    return "Day $value"
+}
