@@ -70,6 +70,9 @@ import java.io.Serializable
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import java.time.LocalDate
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.UUID
 
@@ -714,4 +717,39 @@ fun View.shake() {
 
 fun String.getFileNameFromUrl(): String {
     return this.substringAfterLast('/')
+}
+
+fun getSortMonth(input : String) : String {
+
+    val monthName = input.substringBefore("-")
+
+    val formatter = DateTimeFormatter.ofPattern("MMMM")
+    val month = LocalDate.parse("01-$monthName-2000", DateTimeFormatter.ofPattern("dd-MMMM-yyyy"))
+
+    val shortMonth = month.format(DateTimeFormatter.ofPattern("MMM"))
+
+    return  shortMonth
+}
+
+fun formatFertileWindow(start: String, end: String): String {
+    val startDate = OffsetDateTime.parse(start).toLocalDate()
+    val endDate = OffsetDateTime.parse(end).toLocalDate()
+
+    val monthFormatter = DateTimeFormatter.ofPattern("MMM") // Jul, Nov, etc.
+    val month = startDate.format(monthFormatter)
+
+    val startDay = String.format("%02d", startDate.dayOfMonth)
+    val endDay = String.format("%02d", endDate.dayOfMonth)
+
+    return "$month $startDay-$endDay"
+}
+
+fun formatTemperatureOneDecimal(temp: Double?): String {
+    val value = temp ?: 0.0
+    return String.format("%.1f°C", value)
+}
+
+fun formatCycleDay(day: Int?): String {
+    val value = day ?: 0
+    return "Day $value"
 }

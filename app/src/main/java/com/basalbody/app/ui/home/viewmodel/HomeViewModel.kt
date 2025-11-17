@@ -80,4 +80,32 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    //-------Get User Profile Api-------//
+    private val _callGetLogsInsightsApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callGetLogsInsightsApiStateFlow: StateFlow<Resource<*>> =
+        _callGetLogsInsightsApiMutableStateFlow
+
+    fun callGetLogsInsightsApi() {
+        viewModelScope.launch {
+            homeRepository.callGetLogsInsights().collect {
+                _callGetLogsInsightsApiMutableStateFlow.value = it
+            }
+        }
+    }
+
+    //-------Home Api-------//
+    private val _callHomeApiMutableStateFlow =
+        MutableStateFlow(Resource.Loading<Boolean>(isLoadingShow = false) as Resource<*>)
+    val callHomeApiStateFlow: StateFlow<Resource<*>> =
+        _callHomeApiMutableStateFlow
+
+    fun callHomeApi() {
+        viewModelScope.launch {
+            homeRepository.callHome().collect {
+                _callHomeApiMutableStateFlow.value = it
+            }
+        }
+    }
+
 }

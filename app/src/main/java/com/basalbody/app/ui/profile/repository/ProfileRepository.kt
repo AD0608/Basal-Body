@@ -58,7 +58,7 @@ class ProfileRepository @Inject constructor(
         )
     }
 
-    //-------Add Inquiry Api-------//
+    //-------FAQ Api-------//
     fun callFaqApi() : Flow<Resource<*>> {
         return callAPI(
             context = context,

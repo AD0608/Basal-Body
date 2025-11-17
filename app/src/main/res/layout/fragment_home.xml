@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_9"
                     android:gravity="center"
-                    android:text="36.5°C"
+                    tools:text="36.5°C"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_18"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -174,15 +174,29 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_9"
-                    android:layout_marginBottom="@dimen/dp_11"
                     android:gravity="center"
                     android:text="@string/menstruation_nday_2"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_18"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLastActivityLoggedLabel"
+                    app:textStyle="semiBold" />
+
+                <com.basalbody.app.utils.BasalTextView
+                    android:id="@+id/tvDays"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_9"
+                    android:layout_marginBottom="@dimen/dp_11"
+                    android:gravity="center"
+                    tools:text="Day 2"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_18"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvLastActivityLoggedLabel"
+                    app:layout_constraintTop_toBottomOf="@id/tvLastActivityLogged"
                     app:textStyle="semiBold" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

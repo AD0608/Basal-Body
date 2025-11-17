@@ -1,17 +1,27 @@
 package com.basalbody.app.ui.home.fragment
 
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorInt
+import androidx.lifecycle.lifecycleScope
 import com.basalbody.app.R
 import com.basalbody.app.base.BaseFragment
+import com.basalbody.app.base.FlowInFragment
 import com.basalbody.app.databinding.FragmentHomeBinding
 import com.basalbody.app.databinding.WeekCalendarDayViewBinding
 import com.basalbody.app.extensions.changeText
+import com.basalbody.app.extensions.formatCycleDay
+import com.basalbody.app.extensions.formatFertileWindow
+import com.basalbody.app.extensions.formatTemperatureOneDecimal
 import com.basalbody.app.extensions.gone
+import com.basalbody.app.extensions.notNull
 import com.basalbody.app.extensions.onSafeClick
 import com.basalbody.app.extensions.startNewActivity
 import com.basalbody.app.extensions.visible
+import com.basalbody.app.model.BaseResponse
+import com.basalbody.app.model.response.GetInsightsResponse
+import com.basalbody.app.model.response.HomeResponse
 import com.basalbody.app.ui.home.activity.HomeActivity
 import com.basalbody.app.ui.home.activity.NotificationsActivity
 import com.basalbody.app.ui.home.viewmodel.HomeViewModel
@@ -22,6 +32,7 @@ import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import com.kizitonwose.calendar.view.ViewContainer
 import com.kizitonwose.calendar.view.WeekDayBinder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
@@ -31,30 +42,64 @@ import java.util.Locale
 @AndroidEntryPoint
 class HomeFragment :
     BaseFragment<HomeViewModel, FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+
+    val TAG = "HomeFragment"
     override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
     var selectedDate: LocalDate? = LocalDate.now()
     val menstruationDays: ArrayList<LocalDate> = arrayListOf(LocalDate.now())
     val intercourseDays: ArrayList<LocalDate> = arrayListOf(LocalDate.now())
 
-    override fun addObserver() {
-        super.addObserver()
-        /*lifecycleScope.launch {
-            delay(5000)
-            menstruationDays.add(LocalDate.of(2025, 9, 1))
-            intercourseDays.add(LocalDate.of(2025, 9, 2))
-            requireActivity().runOnUiThread {
-                // Update those specific dates
-                binding.weekCalendarView.notifyDateChanged(LocalDate.of(2025, 9, 1))
-                binding.weekCalendarView.notifyDateChanged(LocalDate.of(2025, 9, 2))
-            }
-
-        }*/
-    }
-
     override fun initSetup() {
         setupCalendar()
         setupUI()
+        viewModel.callHomeApi()
+    }
+
+    override fun addObserver() {
+        super.addObserver()
+
+        lifecycleScope.launch {
+            viewModel.callHomeApiStateFlow.collect {
+                FlowInFragment<BaseResponse<HomeResponse>>(
+                    data = it,
+                    fragment = this@HomeFragment,
+                    shouldShowErrorMessage = true,
+                    shouldShowLoader = true,
+                    onSuccess = ::handleHomeResponse,
+                )
+            }
+        }
+    }
+
+    private fun handleHomeResponse(response: BaseResponse<HomeResponse>?) {
+        if (response.notNull() && response?.status == true) {
+            Log.e(TAG, "handleHomeResponse()")
+            response?.data?.let {
+
+                binding.tvLatestTemp.changeText(formatTemperatureOneDecimal(it.temperature))
+                binding.tvDays.changeText(formatCycleDay(it.cycleInfo?.cycleDay))
+
+                val menstruationStatus = it.activityStatus?.menstruation?.status ?: false
+                val intercourseStatus = it.activityStatus?.intercourse?.status ?: false
+
+                if (menstruationStatus){
+                    binding.btnYesMenstruation.visible()
+                    binding.btnNoMenstruation.gone()
+                }else{
+                    binding.btnYesMenstruation.gone()
+                    binding.btnNoMenstruation.visible()
+                }
+
+                if (intercourseStatus){
+                    binding.btnYesIntercourse.visible()
+                    binding.btnNoIntercourse.gone()
+                }else{
+                    binding.btnYesIntercourse.gone()
+                    binding.btnNoIntercourse.visible()
+                }
+            }
+        }
     }
 
     private fun setupCalendar() {
@@ -125,7 +170,7 @@ class HomeFragment :
                 startNewActivity(NotificationsActivity::class.java)
             }
 
-            btnYesMenstruation onSafeClick {
+            /*btnYesMenstruation onSafeClick {
                 llMenstruationAnswer.background = null
                 btnNoMenstruation.gone()
             }
@@ -140,7 +185,7 @@ class HomeFragment :
             }
             btnNoIntercourse onSafeClick {
                 btnYesIntercourse.gone()
-            }
+            }*/
 
             btnViewAll onSafeClick {
                 (activity as HomeActivity).setCalenderTab()

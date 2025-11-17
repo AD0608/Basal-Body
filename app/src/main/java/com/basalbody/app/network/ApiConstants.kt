@@ -23,6 +23,8 @@ const val API_ADD_INQUIRY = "user/add-inquiry"
 const val API_FAQ = "faqs/list-faqs"
 const val API_ADD_DAILY_LOG = "daily-logs/add-log"
 const val API_GET_CALENDER_LOGS = "daily-logs"
+const val API_DAILY_LOGS_INSIGHTS = "daily-logs/insights"
+const val API_HOME = "daily-logs/latest"
 
 
 //---------- Api Params ----------//
