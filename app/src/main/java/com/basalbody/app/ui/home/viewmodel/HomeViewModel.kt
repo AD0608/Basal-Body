@@ -5,8 +5,11 @@ import com.basalbody.app.base.BaseViewModel
 import com.basalbody.app.model.Resource
 import com.basalbody.app.model.request.AddDailyLogRequest
 import com.basalbody.app.ui.home.repository.HomeRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -107,5 +110,4 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
 }

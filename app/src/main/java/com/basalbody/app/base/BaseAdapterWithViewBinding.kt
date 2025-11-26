@@ -20,7 +20,7 @@ abstract class BaseAdapterWithViewBinding(private val items: ArrayList<out Any?>
     class ItemViewHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        if (!animatedPositions.contains(position)) {
+        /*if (!animatedPositions.contains(position)) {
             holder.itemView.translationX =
                 if (LocaleHelper.isRtl(holder.binding.root.context)) 300f else -300f
             holder.itemView.alpha = 0f
@@ -32,6 +32,6 @@ abstract class BaseAdapterWithViewBinding(private val items: ArrayList<out Any?>
                 .start()
 
             animatedPositions.add(position)
-        }
+        }*/
     }
 }
