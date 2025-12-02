@@ -81,7 +81,12 @@ class CalenderFragment :
 
     override fun initSetup() {
         setupUI()
-        viewModel.callGetCalenderLogsApi()
+        
+        // Defer API call to avoid blocking fragment initialization
+        // API will trigger calendar setup in handleCalenderLogsResponse
+        binding.root.post {
+            viewModel.callGetCalenderLogsApi()
+        }
     }
 
     private fun setupUI() {
@@ -152,22 +157,43 @@ class CalenderFragment :
             mainResponse.clear()
             mainResponse.addAll(response.data ?: arrayListOf())
 
-            // ensure calendar is set up first (call setupCalendar() once in onCreate/onViewCreated ideally)
-            if (!isCalendarInitialized) {
-                setupCalendar()
-                isCalendarInitialized = true
-            }
-
-            // update logs, then refresh calendar UI
+            // update logs first
             setCalendarLogs(mainResponse)
 
-            // Refresh the calendar display:
-            // - Prefer a library refresh call if available. Keep safe-call to avoid crashes.
-            try {
+            // ensure calendar is set up first (call setupCalendar() once in onCreate/onViewCreated ideally)
+            if (!isCalendarInitialized) {
+                isCalendarInitialized = true
+                setupCalendar {
+                    // After calendar is set up, refresh the calendar display
+                    refreshCalendarDisplay()
+                }
+            } else {
+                // Calendar is already initialized, refresh it
+                refreshCalendarDisplay()
+            }
+        }
+    }
+    
+    private fun refreshCalendarDisplay() {
+        // Ensure view is attached and calendar is ready before trying to refresh
+        if (!isAdded || view == null) {
+            return
+        }
+        
+        // Refresh the calendar display:
+        // - Prefer a library refresh call if available. Keep safe-call to avoid crashes.
+        try {
+            // Ensure calendar layout manager exists before trying to refresh
+            binding.calendarView.layoutManager?.let {
                 binding.calendarView.notifyCalendarChanged()
-            } catch (e: Throwable) {
-                // fallback: re-scroll to current month to force rebind
+            }
+        } catch (e: Throwable) {
+            // fallback: re-scroll to current month to force rebind
+            try {
                 binding.calendarView.scrollToMonth(YearMonth.now())
+            } catch (ex: Throwable) {
+                // Ignore if calendar is not fully initialized yet
+                Log.d("CalenderFragment", "Calendar refresh failed: ${ex.message}")
             }
         }
     }
@@ -182,7 +208,15 @@ class CalenderFragment :
         updateUI()
     }
 
-    private fun setupCalendar() {
+    private fun setupCalendar(onSetupComplete: (() -> Unit)? = null) {
+        // Post calendar setup to avoid blocking UI thread during fragment initialization
+        binding.root.post {
+            setupCalendarInternal()
+            onSetupComplete?.invoke()
+        }
+    }
+    
+    private fun setupCalendarInternal() {
         binding.apply {
             val daysOfWeek = daysOfWeek()
             weekDayTitleContainer.root.children

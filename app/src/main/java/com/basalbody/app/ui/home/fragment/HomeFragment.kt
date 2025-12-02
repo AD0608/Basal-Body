@@ -51,9 +51,13 @@ class HomeFragment :
     val intercourseDays: ArrayList<LocalDate> = arrayListOf(LocalDate.now())
 
     override fun initSetup() {
-        setupCalendar()
         setupUI()
-        viewModel.callHomeApi()
+        
+        // Defer heavy calendar setup to avoid blocking fragment initialization
+        binding.root.post {
+            setupCalendar()
+            viewModel.callHomeApi()
+        }
     }
 
     override fun addObserver() {

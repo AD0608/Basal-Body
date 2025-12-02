@@ -1,7 +1,5 @@
 package com.basalbody.app.ui.home.activity
 
-import android.os.Handler
-import android.os.Looper
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -82,16 +80,17 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
 
     private fun loadFragment(fragment: Fragment, itemId: Int) {
         val transaction = supportFragmentManager.beginTransaction()
+            .setReorderingAllowed(true) // Optimize fragment transitions
+        
         fragmentMap.values.forEach { transaction.hide(it) }
+        
         if (!fragmentMap.containsKey(itemId)) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                transaction.add(R.id.fragmentContainer, fragment)
-                fragmentMap[itemId] = fragment
-                transaction.commitAllowingStateLoss()
-            }, 300)
+            transaction.add(R.id.fragmentContainer, fragment)
+            fragmentMap[itemId] = fragment
         } else {
             transaction.show(fragment)
-            transaction.commitAllowingStateLoss()
         }
+        
+        transaction.commitAllowingStateLoss()
     }
 }

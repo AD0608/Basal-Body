@@ -32,6 +32,7 @@ class LocalDataRepository @Inject constructor(
         val SELECTED_LNG_KEY = stringPreferencesKey("selected_lng")
         val FCM_TOKEN_KEY = stringPreferencesKey("fcm_token")
         val ONBOARDING_COMPLETED_KEY = booleanPreferencesKey("is_onboarding_completed")
+        val BLUETOOTH_PERMISSIONS_REQUESTED_KEY = booleanPreferencesKey("bluetooth_permissions_requested")
     }
 
     override fun saveUserSession(key: String?, value: String?) {
@@ -154,6 +155,21 @@ class LocalDataRepository @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             context.userDataStore.edit { preferences ->
                 preferences[ONBOARDING_COMPLETED_KEY] = completed
+            }
+        }
+    }
+
+    override fun hasRequestedBluetoothPermissions(): Boolean {
+        return runBlocking {
+            context.userDataStore.data.first()[BLUETOOTH_PERMISSIONS_REQUESTED_KEY].withNotNull { it }
+                ?: run { return@run false }
+        }
+    }
+
+    override fun setBluetoothPermissionsRequested(requested: Boolean) {
+        CoroutineScope(Dispatchers.IO).launch {
+            context.userDataStore.edit { preferences ->
+                preferences[BLUETOOTH_PERMISSIONS_REQUESTED_KEY] = requested
             }
         }
     }

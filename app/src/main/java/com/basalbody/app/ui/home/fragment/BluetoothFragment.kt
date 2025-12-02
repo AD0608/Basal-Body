@@ -60,12 +60,20 @@ class BluetoothFragment :
             rvAvailableDevices.adapter = availableDevicesAdapter
             tvLabelAvailableDevices.gone()
             rvAvailableDevices.gone()
-            bluetoothService = BluetoothService(requireContext())
-            observeBluetoothState()
-            // Check and request necessary permissions
-            if (!checkBluetoothPermissions()) {
-                showPermissionRationaleDialog()
-            }
+        }
+        
+        // Defer heavy Bluetooth initialization to avoid blocking UI
+        binding.root.post {
+            initializeBluetoothService()
+        }
+    }
+    
+    private fun initializeBluetoothService() {
+        bluetoothService = BluetoothService(requireContext())
+        observeBluetoothState()
+        // Check and request necessary permissions
+        if (!checkBluetoothPermissions()) {
+            showPermissionRationaleDialog()
         }
     }
 
@@ -261,9 +269,7 @@ class BluetoothFragment :
 
     /**
      * Requests Bluetooth and location permissions at runtime if not already granted.
-     */
-    /**
-     * Requests Bluetooth and location permissions with rationale and permanent denial handling.
+     * This method handles first-time requests, rationale, and permanent denial.
      */
     private fun requestBluetoothPermissions() {
         val permissionsToRequest = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -281,14 +287,17 @@ class BluetoothFragment :
         }
 
         if (!checkBluetoothPermissions()) {
-            // Check if any permission was permanently denied
-            val permanentlyDenied = permissionsToRequest.any { permission ->
-                !ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), permission) &&
-                        ActivityCompat.checkSelfPermission(
-                            requireContext(),
-                            permission
-                        ) != PackageManager.PERMISSION_GRANTED
+            // Check if permissions were previously requested and might be permanently denied
+            val hasRequestedBefore = localDataRepository.hasRequestedBluetoothPermissions()
+            
+            // Check if we should show rationale (user denied before but not permanently)
+            val shouldShowRationale = permissionsToRequest.any { permission ->
+                ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), permission)
             }
+
+            // Only check for permanent denial if we've requested before AND shouldShowRationale is false
+            // This means user denied and checked "Don't ask again"
+            val permanentlyDenied = hasRequestedBefore && !shouldShowRationale
 
             if (permanentlyDenied) {
                 // Show dialog to redirect user to app settings
@@ -305,27 +314,15 @@ class BluetoothFragment :
                     .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
                     .show()
             } else {
-                // Show normal rationale dialog
-                val message = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    "This app requires Bluetooth and Location permissions to scan and connect to devices."
-                } else {
-                    "This app requires Location permissions to scan Bluetooth devices."
-                }
-
-                AlertDialog.Builder(requireContext())
-                    .setTitle("Permissions Required")
-                    .setMessage(message)
-                    .setCancelable(false)
-                    .setPositiveButton("Allow") { dialog, _ ->
-                        ActivityCompat.requestPermissions(
-                            requireActivity(),
-                            permissionsToRequest,
-                            BLUETOOTH_PERMISSION_REQUEST_CODE
-                        )
-                        dialog.dismiss()
-                    }
-                    .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
-                    .show()
+                // First time or user denied but can ask again - request permissions
+                // Mark that we're requesting permissions
+                localDataRepository.setBluetoothPermissionsRequested(true)
+                
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    permissionsToRequest,
+                    BLUETOOTH_PERMISSION_REQUEST_CODE
+                )
             }
         }
     }
@@ -352,13 +349,15 @@ class BluetoothFragment :
                 startScanFlow()
             } else {
                 // Check if any permission was permanently denied
+                // If shouldShowRequestPermissionRationale returns false for a denied permission,
+                // it means user checked "Don't ask again" (permanently denied)
                 val permanentlyDenied = permissions.indices.any { index ->
-                    ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), permissions[index]!!)
-                        .not()
+                    grantResults[index] != PackageManager.PERMISSION_GRANTED &&
+                            !ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), permissions[index]!!)
                 }
 
                 if (permanentlyDenied) {
-                    // Permission permanently denied
+                    // Permission permanently denied - direct to settings
                     AlertDialog.Builder(requireContext())
                         .setTitle("Permissions Required")
                         .setMessage(
@@ -374,13 +373,12 @@ class BluetoothFragment :
                         .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
                         .show()
                 } else {
-                    // Temporary denial, show rationale dialog again
+                    // Temporary denial - user can try again
                     Toast.makeText(
                         requireContext(),
-                        "Permissions denied. Cannot scan for devices.",
+                        "Permissions denied. Please allow permissions to scan for devices.",
                         Toast.LENGTH_LONG
                     ).show()
-                    showPermissionRationaleDialog()
                 }
             }
         }

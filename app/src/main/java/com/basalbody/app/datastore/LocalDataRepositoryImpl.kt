@@ -28,4 +28,7 @@ interface LocalDataRepositoryImpl {
     fun getUserType(): String
     fun isOnboardingCompleted(): Boolean
     fun setOnboardingCompleted(completed: Boolean)
+    
+    fun hasRequestedBluetoothPermissions(): Boolean
+    fun setBluetoothPermissionsRequested(requested: Boolean)
 }

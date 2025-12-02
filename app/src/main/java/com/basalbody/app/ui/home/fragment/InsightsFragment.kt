@@ -53,7 +53,6 @@ class InsightsFragment : BaseFragment<HomeViewModel, FragmentInsightsBinding>(
 
     private fun setupUI() {
         Log.e(TAG, "setupUI()")
-        viewModel.callGetLogsInsightsApi()
         binding.apply {
             toolBar.tvTitle.changeText(R.string.item_insights)
             toolBar.ivBack.gone()
@@ -61,7 +60,6 @@ class InsightsFragment : BaseFragment<HomeViewModel, FragmentInsightsBinding>(
             val spanCount = 4 // number of columns
             val spacing = dpToPx(requireContext(), 10)
             val includeEdge = false
-
 
             rvCycleRegularityInsights.layoutManager = GridLayoutManager(requireContext(), spanCount)
             rvCycleRegularityInsights.adapter = cycleRegularitiesInsightListAdapter
@@ -73,6 +71,11 @@ class InsightsFragment : BaseFragment<HomeViewModel, FragmentInsightsBinding>(
                     includeEdge
                 )
             )
+        }
+        
+        // Defer API call to avoid blocking fragment initialization
+        binding.root.post {
+            viewModel.callGetLogsInsightsApi()
         }
     }
 
