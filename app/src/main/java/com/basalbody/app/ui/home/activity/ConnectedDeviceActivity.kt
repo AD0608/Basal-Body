@@ -80,13 +80,35 @@ class ConnectedDeviceActivity : BaseActivity<HomeViewModel, ActivityConnectedDev
                     }
 
                     ConnectionState.DISCONNECTED -> {
-                        binding.rvFoundedDevices.visibility = View.VISIBLE
+                        binding.apply {
+                            rvFoundedDevices.visibility = View.VISIBLE
+                            clConnectedDevice.gone()
+                            tvLabelFoundedDevices.visible()
+                        }
                         isScanning = false
                         updateScanButtonUI()
+                        connectedDevice = null
+                        // Optionally restart scanning after disconnect
+                        if (!isScanning) {
+                            setInitialUI()
+                        }
                     }
 
                     ConnectionState.ERROR -> {
+                        binding.apply {
+                            clConnectedDevice.gone()
+                            cvNoDevicesFound.visible()
+                            rvFoundedDevices.visible()
+                            tvLabelFoundedDevices.visible()
+                        }
+                        isScanning = false
                         updateScanButtonUI()
+                        Toast.makeText(
+                            this@ConnectedDeviceActivity,
+                            "Connection error. Please try again.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        connectedDevice = null
                     }
                 }
             }
@@ -98,8 +120,43 @@ class ConnectedDeviceActivity : BaseActivity<HomeViewModel, ActivityConnectedDev
             imgBluetooth.addRippleWaves(color = "#46B74F".toColorInt())
             rvFoundedDevices.adapter = availableDevicesAdapter
             toolBar.tvTitle.changeText(getString(R.string.label_connected_device))
-            setInitialUI()
             bluetoothService = BluetoothService(this@ConnectedDeviceActivity)
+            // Check current connection state before setting UI
+            checkInitialConnectionState()
+        }
+    }
+
+    private fun checkInitialConnectionState() {
+        when (bluetoothService.connectionState.value) {
+            ConnectionState.CONNECTED, ConnectionState.CONNECTING -> {
+                // Device is already connected or connecting, show connected UI
+                val connected = bluetoothService.availableDevices.value.find { it.isConnected }
+                connectedDevice = connected
+                binding.apply {
+                    rvFoundedDevices.gone()
+                    tvLabelFoundedDevices.gone()
+                    clConnectedDevice.visible()
+                    cvNoDevicesFound.gone()
+                    updateConnectedDeviceUI(connectedDevice)
+                }
+                isScanning = false
+                updateScanButtonUI()
+            }
+            ConnectionState.DISCONNECTED, ConnectionState.ERROR -> {
+                // No connection, start scanning
+                setInitialUI()
+            }
+            ConnectionState.DISCONNECTING -> {
+                // Wait for disconnection to complete
+                binding.apply {
+                    rvFoundedDevices.visible()
+                    tvLabelFoundedDevices.visible()
+                    clConnectedDevice.gone()
+                    cvNoDevicesFound.gone()
+                }
+                isScanning = false
+                updateScanButtonUI()
+            }
         }
     }
 

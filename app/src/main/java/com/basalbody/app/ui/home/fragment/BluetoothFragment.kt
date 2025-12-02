@@ -72,16 +72,26 @@ class BluetoothFragment :
     override fun listeners() {
         binding.apply {
             btnScanForDevices.setOnClickListener {
-                imgBluetooth.addRippleWaves(color = "#46B74F".toColorInt())
-                tvLabelAvailableDevices.visible()
-                rvAvailableDevices.visible()
+                if (isScanning) {
+                    // Stop scanning
+                    bluetoothService.stopScan()
+                    isScanning = false
+                    updateScanButtonUI()
+                } else {
+                    // Start scanning
+                    tvLabelAvailableDevices.visible()
+                    rvAvailableDevices.visible()
+                    startScanFlow()
+                }
             }
         }
     }
 
     private fun onConnectDeviceClick(device: BluetoothService.BluetoothDeviceData) {
         if (checkBluetoothPermissions() && bluetoothService.isBluetoothSupportedAndEnabled()) {
+            // Initiate connection and navigate
             bluetoothService.connectToDevice(device.address)
+            // Navigate to ConnectedDeviceActivity - it will observe the connection state
             startNewActivity(ConnectedDeviceActivity::class.java)
         } else {
             Toast.makeText(requireContext(), "Permissions or Bluetooth needed.", Toast.LENGTH_SHORT)

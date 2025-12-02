@@ -374,7 +374,8 @@ class BluetoothService(private val context: Context) {
                         Log.i("BluetoothService", "Device connected: $deviceAddress")
                         _connectionState.value = ConnectionState.CONNECTED
                         updateDeviceListConnectionState(deviceAddress, true)
-                        //gatt.discoverServices()
+                        // Discover services to enable communication
+                        gatt.discoverServices()
                     }
 
                     BluetoothProfile.STATE_DISCONNECTED -> {
